@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# =============================================================================
+# shells — QuickShell config switcher
+# =============================================================================
+# Detects installed QuickShell configs and lets you switch between them
+# via rofi. Kills the running instance and launches the selected one.
+# =============================================================================
+set -euo pipefail
+
+# --- Find all QuickShell configs ---
+# QuickShell scans XDG config dirs for quickshell/<name>/shell.qml
+SHELLS=()
+
+while IFS= read -r -d '' qmlfile; do
+  # Extract config name from path
+  DIRNAME="$(basename "$(dirname "$qmlfile")")"
+  # Get a friendly description (first comment or shebang line)
+  DESC=$(head -5 "$qmlfile" | grep -E '^\s*(//|#|/\*|Description:)' | sed 's/.*Description:\s*//i; s/^\s*[\/#* ]*\s*//' | head -1)
+  if [ -z "$DESC" ]; then
+    DESC="$DIRNAME"
+  fi
+  SHELLS+=("$DIRNAME|$DESC")
+done < <(find "$HOME/.config/quickshell" /etc/xdg/quickshell /usr/share/quickshell -name "shell.qml" -type f -print0 2>/dev/null)
+
+if [ ${#SHELLS[@]} -eq 0 ]; then
+  notify-send "Shell Switcher" "No QuickShell configs found" -t 3000
+  exit 1
+fi
+
+# --- Build rofi menu ---
+MENU=""
+declare -A SHELL_MAP
+for entry in "${SHELLS[@]}"; do
+  NAME="${entry%%|*}"
+  DESC="${entry#*|}"
+  # Skip duplicates (user config overrides system)
+  if [ -n "${SHELL_MAP[$NAME]:-}" ]; then
+    continue
+  fi
+  SHELL_MAP["$NAME"]="$NAME"
+  if [ "$NAME" = "dms" ]; then
+    MENU+="dms    Desktop Management Shell\n"
+  elif [ "$NAME" = "noctalia-shell" ]; then
+    MENU+="noctalia-shell    Noctalia (current)\n"
+  elif [ "$NAME" = "caelestia" ]; then
+    MENU+="caelestia    Caelestia\n"
+  elif [ "$NAME" = "flavourswitch" ]; then
+    MENU+="flavourswitch    Flavour Switch\n"
+  else
+    MENU+="$NAME    $DESC\n"
+  fi
+done
+
+# Show current shell
+CURRENT=""
+if pgrep -x qs >/dev/null 2>&1; then
+  # Try to determine which config is running
+  CURRENT=$(ps -o args= -C qs 2>/dev/null | grep -oP '\-c\s+\K\S+' | head -1 || echo "unknown")
+fi
+
+CHOICE=$(echo -e "$MENU" | rofi -dmenu -p "Shell " -theme ~/.config/rofi/shells.rasi -l 6 -width 30 2>/dev/null || true)
+
+# Extract shell name from choice
+SELECTED=$(echo "$CHOICE" | awk '{print $1}')
+
+if [ -z "$SELECTED" ]; then
+  exit 0
+fi
+
+# --- Kill current qs ---
+if pgrep -x qs >/dev/null 2>&1; then
+  # Graceful kill
+  pkill -x qs 2>/dev/null || true
+  sleep 0.3
+  # Force kill if still alive
+  if pgrep -x qs >/dev/null 2>&1; then
+    pkill -9 -x qs 2>/dev/null || true
+  fi
+fi
+
+# --- Launch new shell ---
+if [ "$SELECTED" = "dms" ]; then
+  # DMS is the default config (shell.qml at root of quickshell/)
+  # It needs a different path
+  if [ -f "$HOME/.config/quickshell/dms/shell.qml" ]; then
+    qs -c dms &
+  elif [ -f "/etc/xdg/quickshell/dms/shell.qml" ]; then
+    qs -c dms &
+  elif [ -f "/usr/share/quickshell/shell.qml" ]; then
+    # DMS is the default at /usr/share/quickshell/shell.qml
+    qs &
+  fi
+else
+  qs -c "$SELECTED" &
+fi
+
+# Notify
+notify-send "Shell Switcher" "Switched to $SELECTED" -t 2000

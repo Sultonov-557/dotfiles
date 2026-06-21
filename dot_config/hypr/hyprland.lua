@@ -286,6 +286,9 @@ hl.bind("F12", hl.dsp.exec_cmd("ghostty --class=dropdown"), { description = "Dro
 -- --- Emoji picker ---
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("rofi -modi emoji -show emoji"), { description = "Emoji picker" })
 
+-- --- Shell switcher ---
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("shells"), { description = "Switch QuickShell config" })
+
 -- =============================================================================
 --     WINDOW RULES
 -- =============================================================================
