@@ -1,0 +1,146 @@
+# =============================================================================
+# Dunst — Notification daemon
+# =============================================================================
+# Gruvbox Dark theme with flow-friendly notification discipline
+# Managed by chezmoi
+
+[global]
+    ### Display
+    monitor = 0
+    follow = mouse
+    geometry = "450x80-20+40"
+    indicator = true
+    shrink = false
+    transparency = 10
+    separator_height = 2
+    padding = 12
+    horizontal_padding = 12
+    text_icon_padding = 8
+    frame_width = 2
+    frame_color = "#504945"
+    gap_size = 4
+    corner_radius = 8
+
+    ### Text
+    font = "JetBrainsMono Nerd Font 11"
+    line_height = 4
+    markup = full
+    format = "<span font_desc='JetBrainsMono Nerd Font 12'>%I</span> %s\\n%b"
+    ellipsize = middle
+    ignore_newline = false
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = true
+
+    ### Alignment
+    alignment = left
+    vertical_alignment = center
+    sticky_history = yes
+    history_length = 50
+
+    ### Mouse
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+
+    ### Progress bar
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 400
+    progress_bar_corner_radius = 4
+
+    ### Icons
+    enable_recursive_icon_lookup = true
+    icon_theme = Papirus-Dark
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 64
+
+    ### Flow: group by app, hide low urgency
+    word_wrap = true
+    ignore_dbusclose = false
+    force_xinerama = false
+    mouse_left_close = true
+    mouse_middle_close = false
+    mouse_right_close = false
+
+    ### Notification limits
+    notification_limit = 20
+
+[shortcuts]
+    close = mod4+shift+grave
+    close_all = mod4+shift+escape
+    history = mod4+grave
+    context = mod4+shift+period
+
+[urgency_low]
+    ### Flow: low urgency = silently logged, no popup
+    background = "#282828"
+    foreground = "#928374"
+    frame_color = "#504945"
+    timeout = 0
+    highlight = "#928374"
+    skip_display = false
+
+[urgency_normal]
+    ### Normal notifications: brief appearance, auto-dismiss
+    background = "#282828"
+    foreground = "#ebdbb2"
+    frame_color = "#83a598"
+    timeout = 4
+    highlight = "#83a598"
+
+[urgency_critical]
+    ### Critical: persistent until dismissed, distinct styling
+    background = "#3c3836"
+    foreground = "#fb4934"
+    frame_color = "#fb4934"
+    timeout = 0
+    highlight = "#fb4934"
+    fullscreen = pushback
+
+# =============================================================================
+# Rules — notification filtering for flow
+# =============================================================================
+
+# Suppress playerctl media notifications (too chatty)
+[rule-playerctl]
+    appname = "playerctld"
+    skip_display = yes
+
+# Suppress battery full notifications
+[rule-battery-full]
+    summary = "Battery Full*"
+    skip_display = yes
+
+# Suppress Bluetooth device connected (low-value noise)
+[rule-bluetooth-connected]
+    summary = "Device Connected*"
+    urgency = low
+    timeout = 2
+
+# Suppress network connectivity changes (brief only)
+[rule-network-connectivity]
+    summary = "Network Connectivity*"
+    urgency = low
+    timeout = 2
+
+# Screenshots: brief feedback
+[rule-screenshot]
+    summary = "Screenshot*"
+    timeout = 2
+
+# Volume/brightness OSD: brief only
+[rule-volume]
+    appname = "wpctl*"
+    summary = "Volume*"
+    timeout = 2
+    skip_display = no
+
+# MPRIS media changes: brief appearance
+[rule-mpris]
+    appname = "MPRIS*"
+    urgency = low
+    timeout = 2

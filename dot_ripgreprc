@@ -1,0 +1,24 @@
+# Ripgrep config
+# Managed by chezmoi
+
+# Search behavior
+--smart-case
+--hidden
+--no-ignore-vcs
+
+# Performance
+--max-columns = 150
+--max-count = 500
+--sort = path
+
+# Exclude common dirs
+--glob = !.git/
+--glob = !node_modules/
+--glob = !vendor/
+--glob = !.venv/
+--glob = !venv/
+--glob = !.direnv/
+--glob = !__pycache__/
+--glob = !target/
+--glob = !build/
+--glob = !dist/

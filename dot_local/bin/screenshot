@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# =============================================================================
+# screenshot — Unified screenshot script
+# =============================================================================
+# Usage: screenshot region|full|copy|active|picker
+#
+# Depends: grim, slurp, swappy, wl-copy, hyprpicker, notify-send
+# =============================================================================
+set -euo pipefail
+
+DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
+mkdir -p "$DIR"
+
+case "${1:-region}" in
+  region)
+    # Select region → open in swappy for annotation
+    grim -g "$(slurp)" - | swappy -f - -o "$DIR/swappy-$(date +'%Y-%m-%d_%H-%M-%S').png"
+    notify-send "Screenshot" "Region captured" -t 2000
+    ;;
+  full)
+    # Full screen → save to screenshots dir
+    FILE="$DIR/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png"
+    grim "$FILE"
+    wl-copy < "$FILE"
+    notify-send "Screenshot" "Full screen saved and copied" -t 2000
+    ;;
+  copy)
+    # Select region → copy to clipboard (no save)
+    grim -g "$(slurp)" - | wl-copy
+    notify-send "Screenshot" "Region copied to clipboard" -t 2000
+    ;;
+  active)
+    # Currently focused monitor
+    grim -o "$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')" - | wl-copy
+    notify-send "Screenshot" "Active monitor copied" -t 2000
+    ;;
+  picker)
+    # Color picker: pick pixel → hex to clipboard
+    COLOR=$(hyprpicker -a -f hex)
+    if [ -n "$COLOR" ]; then
+      echo -n "$COLOR" | wl-copy
+      notify-send "Color picker" "$COLOR copied to clipboard" -t 3000
+    fi
+    ;;
+  *)
+    echo "Usage: screenshot region|full|copy|active|picker"
+    exit 1
+    ;;
+esac

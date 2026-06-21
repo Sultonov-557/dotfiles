@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# =============================================================================
+# focus — Toggle deep focus mode
+# =============================================================================
+# Enter: mute notifications, hide bar, disable idle, perf mode
+# Exit:  restore everything
+# =============================================================================
+set -euo pipefail
+
+FLAGFILE="/tmp/focus-mode"
+
+if [ -f "$FLAGFILE" ]; then
+  rm -f "$FLAGFILE"
+
+  # Restore notifications
+  dunstctl set-paused false
+
+  # Restore idle
+  killall hypridle 2>/dev/null || true
+  hypridle &
+
+  # Restore effects
+  hyprctl keyword decoration:blur:enabled true
+  hyprctl keyword decoration:shadow:enabled true
+  hyprctl keyword animations:enabled true
+
+  # Show Noctalia bar if hidden
+  hyprctl dispatch exec "qs -c noctalia-shell" 2>/dev/null || true
+
+  notify-send "Focus Mode" "Off — restored" -t 2000
+else
+  touch "$FLAGFILE"
+
+  # Mute notifications
+  dunstctl set-paused true
+
+  # Stop idle (don't get interrupted by dpms/suspend)
+  killall hypridle 2>/dev/null || true
+
+  # Kill bar to reclaim pixels
+  killall qs 2>/dev/null || true
+
+  # Disable effects for smoothness
+  hyprctl keyword decoration:blur:enabled false
+  hyprctl keyword decoration:shadow:enabled false
+  hyprctl keyword animations:enabled true
+  hyprctl keyword decoration:rounding 0
+
+  notify-send "Focus Mode" "On — distractions blocked" -t 2000
+fi

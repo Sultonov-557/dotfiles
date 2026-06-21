@@ -1,0 +1,7 @@
+# Personal git config — included for gitdir:~/Projects/
+[user]
+	name = sultonov
+	email = sultonovzerifboy@gmail.com
+
+[commit]
+	gpgSign = false

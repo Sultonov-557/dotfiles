@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# =============================================================================
+# run_once_install-packages.sh.tmpl
+# chezmoi run_once script — installs packages from packages.txt
+# Runs once on first chezmoi apply on a new machine.
+# =============================================================================
+set -euo pipefail
+
+PACKAGE_FILE="{{ .chezmoi.sourceDir }}/packages.txt"
+
+if [ ! -f "$PACKAGE_FILE" ]; then
+  echo ":: packages.txt not found at $PACKAGE_FILE, skipping..."
+  exit 0
+fi
+
+echo ":: Installing packages from packages.txt..."
+echo ""
+
+OFFICIAL_PKGS=()
+
+while IFS= read -r line || [ -n "$line" ]; do
+  # Trim whitespace
+  line="${line#"${line%%[![:space:]]*}"}"
+  line="${line%"${line##*[![:space:]]}"}"
+
+  # Skip empty lines and comments
+  [[ -z "$line" ]] || [[ "$line" == \#* ]] && continue
+
+  # Skip section headings
+  [[ "$line" == *──* ]] && continue
+
+  # Strip inline comments
+  line="${line%%#*}"
+  line="${line%"${line##*[![:space:]]}"}"
+  [[ -z "$line" ]] && continue
+
+  # Skip AUR section (handled manually)
+  [[ "$line" == *"AUR"* ]] && break
+
+  OFFICIAL_PKGS+=("$line")
+
+done < "$PACKAGE_FILE"
+
+echo "  Packages to install: ${#OFFICIAL_PKGS[@]}"
+echo ""
+
+sudo pacman -S --noconfirm --needed "${OFFICIAL_PKGS[@]}"
+
+echo ""
+echo ":: Package installation complete!"

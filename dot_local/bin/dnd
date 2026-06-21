@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# =============================================================================
+# dnd — Do Not Disturb toggle
+# =============================================================================
+# Depends: dunstctl, notify-send
+set -euo pipefail
+
+if dunstctl is-paused | grep -q "true"; then
+  dunstctl set-paused false
+  notify-send "DnD" "Off — notifications enabled" -t 2000
+else
+  dunstctl set-paused true
+  # notify-send won't show since we're muting — use the bar/OSD
+  # Just exit silently
+fi

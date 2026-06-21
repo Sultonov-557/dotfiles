@@ -1,0 +1,74 @@
+# Zathura — Document viewer
+# Gruvbox Dark theme
+# Managed by chezmoi
+
+set window-title-home-tilde true
+
+# --- Appearance ---
+set default-bg "#282828"
+set default-fg "#ebdbb2"
+set statusbar-fg "#ebdbb2"
+set statusbar-bg "#282828"
+set inputbar-bg "#282828"
+set inputbar-fg "#ebdbb2"
+set notification-bg "#282828"
+set notification-fg "#ebdbb2"
+set notification-error-bg "#282828"
+set notification-error-fg "#fb4934"
+set notification-warning-bg "#282828"
+set notification-warning-fg "#fabd2f"
+set highlight-color "#504945"
+set highlight-active-color "#b8bb26"
+set completion-bg "#282828"
+set completion-fg "#ebdbb2"
+set completion-group-bg "#3c3836"
+set completion-group-fg "#b8bb26"
+set completion-highlight-fg "#1d2021"
+set completion-highlight-bg "#b8bb26"
+set recolor-lightcolor "#1d2021"
+set recolor-darkcolor "#ebdbb2"
+set index-bg "#282828"
+set index-fg "#ebdbb2"
+set index-active-bg "#504945"
+set index-active-fg "#b8bb26"
+set render-loading-bg "#282828"
+set render-loading-fg "#ebdbb2"
+
+# --- Behavior ---
+set sandbox strict
+set scroll-step 50
+set scroll-hstep 50
+set zoom-step 0.1
+set pages-per-row 1
+set page-padding 4
+set adjust-open  best-fit
+set font "JetBrainsMono Nerd Font 11"
+set guioptions "c"
+set statusbar-h-padding 4
+set statusbar-v-padding 4
+
+# --- Keybindings ---
+map j scroll-down
+map k scroll-up
+map h scroll-left
+map l scroll-right
+map d half-page-down
+map u half-page-up
+map <C-d> page-down
+map <C-u> page-up
+map r reload
+map R rotate
+map i recolor
+map f toggle-fullscreen
+map p print
+map <C-n> zoom-in
+map <C-p> zoom-out
+map <C-+> zoom-in
+map <C--> zoom-out
+map <C-0> zoom-fit
+map / search-forward
+map ? search-backward
+map n search-next
+map N search-prev
+map b toggle-page-mode
+map <Space> toggle-index

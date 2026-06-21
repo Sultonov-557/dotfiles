@@ -1,0 +1,10 @@
+# Work git config — included for gitdir:~/work/
+[user]
+	name = sultonov
+	email = sultonov@work-email.com
+
+[commit]
+	gpgSign = true
+
+[core]
+	sshCommand = ssh -i ~/.ssh/work-key

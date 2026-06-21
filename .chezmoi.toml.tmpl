@@ -1,0 +1,9 @@
+# Chezmoi per-machine template
+# This file is used to define per-machine data variables.
+# Edit the hostname conditions to match your machines.
+# Repo: https://github.com/Sultonov-557/dotfiles.git
+
+[data]
+    name = "sultonov"
+    email = "sultonovzerifboy@gmail.com"
+    machine_type = '{{ if eq .chezmoi.hostname "vanguard" }}desktop{{ else if eq .chezmoi.hostname "archbook" }}laptop{{ else if eq .chezmoi.hostname "server" }}server{{ else }}unknown{{ end }}'

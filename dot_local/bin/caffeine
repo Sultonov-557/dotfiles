@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# =============================================================================
+# caffeine — Prevent idle/suspend
+# =============================================================================
+# Toggle: inhibit hypridle while active
+# Depends: systemctl, hyprctl, notify-send
+set -euo pipefail
+
+FLAGFILE="/tmp/caffeine"
+
+if [ -f "$FLAGFILE" ]; then
+  rm -f "$FLAGFILE"
+  notify-send "Caffeine" "Off — idle enabled" -t 2000
+else
+  touch "$FLAGFILE"
+  notify-send "Caffeine" "On — idle disabled" -t 2000
+fi

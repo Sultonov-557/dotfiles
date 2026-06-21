@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# =============================================================================
+# power-menu — Rofi-based power menu
+# =============================================================================
+# Depends: rofi, systemctl, hyprctl, hyprlock, notify-send
+set -euo pipefail
+
+OPTIONS="  Lock\n  Logout\n  Suspend\n  Reboot\n  Shutdown\n  Cancel"
+
+CHOICE=$(echo -e "$OPTIONS" | rofi -dmenu -p "Power" -theme ~/.config/rofi/power.rasi -l 6 -width 15 -xoffset -10 -yoffset 40 2>/dev/null || echo "")
+
+case "$CHOICE" in
+  *Lock)
+    hyprlock
+    ;;
+  *Logout)
+    hyprctl dispatch exit
+    ;;
+  *Suspend)
+    systemctl suspend
+    ;;
+  *Reboot)
+    systemctl reboot
+    ;;
+  *Shutdown)
+    systemctl poweroff
+    ;;
+esac

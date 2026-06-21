@@ -1,0 +1,72 @@
+# =============================================================================
+# Ghostty Terminal Configuration — Riced Gruvbox Dark
+# =============================================================================
+# Managed with GNU Stow via ~/dotfiles/ghostty
+
+# --- Theme: Gruvbox Dark (Hard). ---
+background = #1d2021
+foreground = #ebdbb2
+
+# Black / Dark Gray
+palette = 0=#282828
+palette = 8=#928374
+
+# Red
+palette = 1=#cc241d
+palette = 9=#fb4934
+
+# Green
+palette = 2=#98971a
+palette = 10=#b8bb26
+
+# Yellow / Orange
+palette = 3=#d79921
+palette = 11=#fabd2f
+
+# Blue
+palette = 4=#458588
+palette = 12=#83a598
+
+# Purple / Magenta
+palette = 5=#b16286
+palette = 13=#d3869b
+
+# Cyan / Aqua
+palette = 6=#689d6a
+palette = 14=#8ec07c
+
+# White / Light
+palette = 7=#a89984
+palette = 15=#ebdbb2
+
+# --- Cursor ---
+cursor-color = #ebdbb2
+cursor-style = bar
+cursor-style-blink = true
+
+# --- Font ---
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+font-feature = calt
+font-feature = liga
+
+# --- Window ---
+window-padding-x = 8
+window-padding-y = 4
+window-save-state = always
+window-decoration = auto
+macos-titlebar-style = tabs
+background-opacity = 0.70
+background-blur-radius = 20
+
+# --- Shell ---
+shell-integration = fish
+command = fish
+
+# --- Misc ---
+confirm-close-surface = false
+mouse-hide-while-typing = true
+term = xterm-256color
+copy-on-select = clipboard
+clipboard-write = allow
+clipboard-read = allow

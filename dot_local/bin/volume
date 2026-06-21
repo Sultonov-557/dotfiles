@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# =============================================================================
+# volume — Volume OSD wrapper
+# =============================================================================
+# Usage: volume [up|down|mute|set N]
+# Depends: wpctl, notify-send
+set -euo pipefail
+
+SINK="@DEFAULT_AUDIO_SINK@"
+
+case "${1:-}" in
+  up)
+    wpctl set-volume -l 1.5 "$SINK" 5%+
+    ;;
+  down)
+    wpctl set-volume "$SINK" 5%-
+    ;;
+  mute)
+    wpctl set-mute "$SINK" toggle
+    ;;
+  set)
+    wpctl set-volume "$SINK" "${2:-50}%"
+    ;;
+  mic-mute)
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    ;;
+  *)
+    VOLUME=$(wpctl get-volume "$SINK" | sed 's/.*: //' | awk '{print $1 * 100}' | cut -d. -f1)
+    IS_MUTED=$(wpctl get-volume "$SINK" | grep -c MUTED || true)
+    if [ "$IS_MUTED" -gt 0 ]; then
+      notify-send -h string:x-dunst-stack-tag:volume "Volume" "Muted" -t 1500
+    else
+      notify-send -h int:value:"$VOLUME" -h string:x-dunst-stack-tag:volume "Volume" "${VOLUME}%" -t 1500
+    fi
+    ;;
+esac

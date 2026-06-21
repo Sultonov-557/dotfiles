@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# =============================================================================
+# perfmode — Toggle compositor performance
+# =============================================================================
+# Disables blur, shadow, and animations for gaming/coding.
+# Depends: hyprctl, notify-send
+set -euo pipefail
+
+FLAGFILE="/tmp/perfmode"
+
+if [ -f "$FLAGFILE" ]; then
+  rm -f "$FLAGFILE"
+  hyprctl keyword decoration:blur:enabled true
+  hyprctl keyword decoration:shadow:enabled true
+  hyprctl keyword animations:enabled true
+  notify-send "Performance" "Effects enabled" -t 2000
+else
+  touch "$FLAGFILE"
+  hyprctl keyword decoration:blur:enabled false
+  hyprctl keyword decoration:shadow:enabled false
+  hyprctl keyword animations:enabled false
+  notify-send "Performance" "Effects disabled — max FPS" -t 2000
+fi

@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# =============================================================================
+# recorder — Screen recording wrapper
+# =============================================================================
+# Usage: recorder [start|stop|toggle]
+# Depends: wl-screenrec, notify-send, slurp
+set -euo pipefail
+
+PIDFILE="/tmp/screenrec.pid"
+DIR="${XDG_VIDEOS_DIR:-$HOME/Videos}/ScreenRecordings"
+mkdir -p "$DIR"
+
+case "${1:-}" in
+  start|region)
+    FILE="$DIR/recording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
+    GEOMETRY=$(slurp)
+    if [ -n "$GEOMETRY" ]; then
+      wl-screenrec -g "$GEOMETRY" -f "$FILE" &
+      echo $! > "$PIDFILE"
+      notify-send "Screen Recording" "Started (region)" -t 2000
+    fi
+    ;;
+  start-full|full)
+    FILE="$DIR/recording-$(date +'%Y-%m-%d_%H-%M-%S').mp4"
+    wl-screenrec -f "$FILE" &
+    echo $! > "$PIDFILE"
+    notify-send "Screen Recording" "Started (full screen)" -t 2000
+    ;;
+  stop)
+    if [ -f "$PIDFILE" ]; then
+      kill "$(cat "$PIDFILE")" 2>/dev/null || true
+      rm -f "$PIDFILE"
+      notify-send "Screen Recording" "Saved to $DIR" -t 3000
+    else
+      notify-send "Screen Recording" "No active recording" -t 2000
+    fi
+    ;;
+  toggle)
+    if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+      exec "$0" stop
+    else
+      exec "$0" start-full
+    fi
+    ;;
+  *)
+    echo "Usage: recorder start|start-full|stop|toggle"
+    exit 1
+    ;;
+esac

@@ -1,0 +1,40 @@
+* {
+    font: "JetBrainsMono Nerd Font 14";
+    background: #282828;
+    background-alt: #3c3836;
+    foreground: #ebdbb2;
+    selected: #b8bb26;
+    urgent: #fb4934;
+}
+
+window {
+    background-color: @background;
+    border: 2px;
+    border-color: #504945;
+    border-radius: 12;
+    width: 200;
+}
+
+listview {
+    background-color: @background;
+    border: 0;
+    padding: 4;
+    lines: 6;
+}
+
+element {
+    background-color: @background;
+    text-color: @foreground;
+    padding: 8;
+    border-radius: 6;
+}
+
+element selected {
+    background-color: #504945;
+    text-color: @selected;
+}
+
+element urgent {
+    background-color: @urgent;
+    text-color: @background;
+}

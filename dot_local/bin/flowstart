@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# =============================================================================
+# flowstart — Open a project in its own workspace layout
+# =============================================================================
+# Usage: flowstart <project-dir> [project-name]
+#
+# Opens: terminal (ws1), editor (ws2), browser (ws3)
+# Example: flowstart ~/Projects/myapp myapp
+# =============================================================================
+set -euo pipefail
+
+if [ $# -lt 1 ]; then
+  echo "Usage: flowstart <project-dir> [project-name]"
+  echo ""
+  echo "Opens the project in a dedicated workspace group."
+  echo "  ws1 → terminal (git status, dev server)"
+  echo "  ws2 → editor (nvim)"
+  echo "  ws3 → browser (preview)"
+  exit 1
+fi
+
+PROJECT_DIR="$(realpath "$1")"
+PROJECT_NAME="${2:-$(basename "$PROJECT_DIR")}"
+
+if [ ! -d "$PROJECT_DIR" ]; then
+  echo "Error: directory does not exist: $PROJECT_DIR"
+  exit 1
+fi
+
+# Switch to a dedicated workspace by hashing the project name
+WS_BASE=$(( ( $(echo "$PROJECT_NAME" | cksum | cut -d' ' -f1) % 7 ) + 3 ))
+
+WS_TERM=$WS_BASE
+WS_EDIT=$(( WS_BASE + 1 ))
+WS_BROWSER=$(( WS_BASE + 2 ))
+
+# Open terminal on ws1
+hyprctl dispatch exec "ghostty --working-directory=$PROJECT_DIR --title='$PROJECT_NAME'"
+# Move to ws term
+hyprctl dispatch movetoworkspacesilent "$WS_TERM"
+
+# Open nvim on ws2
+hyprctl dispatch exec "ghostty --working-directory=$PROJECT_DIR -e nvim --title='$PROJECT_NAME-nvim'"
+# Move to ws edit
+hyprctl dispatch movetoworkspacesilent "$WS_EDIT"
+
+# Focus back to terminal workspace
+hyprctl dispatch workspace "$WS_TERM"
+
+notify-send "flowstart" "🚀 $PROJECT_NAME ready" -t 2000

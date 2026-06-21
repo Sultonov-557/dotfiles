@@ -1,0 +1,17 @@
+# Ghostty: dropdown terminal profile
+# Used by: ghostty --class=dropdown
+# Managed by chezmoi
+
+[profile]
+name = "Dropdown"
+
+[window]
+decorations = false
+padding-x = 12
+padding-y = 12
+width = 80
+height = 30
+
+[background]
+opacity = 0.90
+blur-radius = 20

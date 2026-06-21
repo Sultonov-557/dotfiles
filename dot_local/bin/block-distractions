@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# =============================================================================
+# block-distractions — Toggle websites in /etc/hosts
+# =============================================================================
+# Adds/removes common distractions to block during focus hours.
+# Depends: sudo, notify-send
+set -euo pipefail
+
+FLAGFILE="/tmp/block-distractions"
+HOSTS_FILE="/etc/hosts"
+MARKER="# --- block-distractions ---"
+
+# Sites to block
+SITES=(
+  "reddit.com"
+  "www.reddit.com"
+  "old.reddit.com"
+  "news.ycombinator.com"
+  "lobste.rs"
+  "twitter.com"
+  "x.com"
+  "www.twitter.com"
+  "www.x.com"
+  "youtube.com"
+  "www.youtube.com"
+  "instagram.com"
+  "www.instagram.com"
+  "facebook.com"
+  "www.facebook.com"
+  "tiktok.com"
+  "www.tiktok.com"
+)
+
+if [ -f "$FLAGFILE" ]; then
+  rm -f "$FLAGFILE"
+  # Remove the blocked entries
+  sudo sed -i "/$MARKER/,/$MARKER/d" "$HOSTS_FILE"
+  notify-send "Distractions" "Unblocked — all sites accessible" -t 2000
+else
+  touch "$FLAGFILE"
+  # Add the blocked entries (127.0.0.1 for each)
+  {
+    echo "$MARKER"
+    for site in "${SITES[@]}"; do
+      echo "127.0.0.1 $site"
+      echo "127.0.0.1 www.$site"
+    done
+    echo "$MARKER"
+  } | sudo tee -a "$HOSTS_FILE" > /dev/null
+  notify-send "Distractions" "Blocked — $SITES" -t 3000
+fi

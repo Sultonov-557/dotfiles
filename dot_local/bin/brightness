@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# =============================================================================
+# brightness — Brightness OSD wrapper
+# =============================================================================
+# Usage: brightness [up|down|set N]
+# Depends: brightnessctl, notify-send
+set -euo pipefail
+
+case "${1:-}" in
+  up)
+    brightnessctl set 5%+
+    ;;
+  down)
+    brightnessctl set 5%-
+    ;;
+  set)
+    brightnessctl set "${2:-50}%"
+    ;;
+  *)
+    CURRENT=$(brightnessctl get)
+    MAX=$(brightnessctl max)
+    PERCENT=$(( CURRENT * 100 / MAX ))
+    echo "$PERCENT%"
+    ;;
+esac
+
+# Notify current level
+CURRENT=$(brightnessctl get)
+MAX=$(brightnessctl max)
+PERCENT=$(( CURRENT * 100 / MAX ))
+notify-send -h int:value:"$PERCENT" -h string:x-dunst-stack-tag:brightness "Brightness" "${PERCENT}%" -t 1500

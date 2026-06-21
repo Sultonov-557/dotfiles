@@ -1,0 +1,12 @@
+# imv — Image viewer
+# Gruvbox Dark theme
+# Managed by chezmoi
+
+[options]
+background=282828
+overlay_font=JetBrainsMono Nerd Font 11
+overlay_text_fg=ebdbb2
+overlay_text_bg=282828
+overlay_text_border=282828
+font=JetBrainsMono Nerd Font 11
+fullscreen=yes

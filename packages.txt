@@ -1,0 +1,118 @@
+# =============================================================================
+# packages.txt — Curated list of packages for this system
+# One package per line. Lines starting with # are comments.
+# Used by: scripts/install-packages.sh
+# =============================================================================
+
+# ── Core ──────────────────────────────────────────────────────────────────────
+chezmoi
+git
+base-devel
+
+# ── Shell & Terminal ──────────────────────────────────────────────────────────
+fish
+ghostty
+starship
+zoxide
+atuin
+tmux
+
+# ── Display Server / WM ───────────────────────────────────────────────────────
+hyprland
+hyprpaper
+hyprlock
+hypridle
+hyprpicker
+xdg-desktop-portal-hyprland
+polkit-gnome
+grimblast-git
+
+# ── Fonts ─────────────────────────────────────────────────────────────────────
+ttf-jetbrains-mono-nerd
+ttf-firacode-nerd
+noto-fonts-emoji
+ttf-font-awesome
+noto-fonts
+noto-fonts-cjk
+
+# ── Development ───────────────────────────────────────────────────────────────
+neovim
+lazygit
+ripgrep
+fd
+fzf
+bat
+eza
+tree
+jq
+yq
+direnv
+trash-cli
+
+# ── Screenshots & Screen Recording ────────────────────────────────────────────
+grim
+slurp
+swappy
+wl-screenrec
+imagemagick
+wl-clipboard
+cliphist
+
+# ── Audio & Brightness ────────────────────────────────────────────────────────
+pipewire
+wireplumber
+pipewire-audio
+pipewire-pulse
+playerctl
+brightnessctl
+helvum
+pavucontrol
+pwvucontrol
+
+# ── Network & Bluetooth ───────────────────────────────────────────────────────
+networkmanager
+network-manager-applet
+blueman
+bluez
+bluez-utils
+iwd
+
+# ── Notifications ─────────────────────────────────────────────────────────────
+dunst
+libnotify
+
+# ── Launcher ──────────────────────────────────────────────────────────────────
+rofi
+rofi-emoji
+
+# ── Apps ──────────────────────────────────────────────────────────────────────
+nautilus
+btop
+fastfetch
+firefox
+zen-browser
+mpv
+imv
+zathura
+zathura-pdf-mupdf
+file-roller
+udiskie
+qalculate-gtk
+wlogout
+obs-studio
+
+# ── System ────────────────────────────────────────────────────────────────────
+ufw
+tumbler
+cups
+ipp-usb
+print-manager
+poppler
+
+# ── AUR (uncomment per machine) ───────────────────────────────────────────────
+# bibata-cursor-theme
+# papirus-icon-theme
+# gruvbox-dark-gtk
+# grimblast-git (if not in official repos)
+# wl-screenrec
+# rofi-emoji

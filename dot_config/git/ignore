@@ -1,0 +1,77 @@
+# Git global ignore
+# Version: 2025-06
+# Managed by chezmoi
+
+# --- OS files ---
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Editor / IDE ---
+*.swp
+*.swo
+*~
+*.orig
+.\#*
+*.bak
+*.tmp
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.ensime_cache
+.classpath
+.project
+.settings/
+.factorypath
+.pydevproject
+
+# --- Build / dependency dirs ---
+node_modules/
+vendor/
+.bundle/
+.build/
+dist/
+build/
+target/
+out/
+_build/
+deps/
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.venv/
+venv/
+env/
+.direnv/
+.coverage
+htmlcov/
+.coverage.*
+coverage/
+
+# --- Vagrant / Docker ---
+.vagrant/
+.docker/
+
+# --- System ---
+*.log
+*.pid
+*.seed
+*.pid.lock
+*.socket
+*.swap

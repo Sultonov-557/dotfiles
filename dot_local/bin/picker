@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# =============================================================================
+# picker — Color picker: pick → hex to clipboard + notification
+# =============================================================================
+# Depends: hyprpicker, wl-copy, notify-send
+set -euo pipefail
+
+COLOR=$(hyprpicker -a -f hex)
+if [ -n "$COLOR" ]; then
+  echo -n "$COLOR" | wl-copy
+  notify-send "Color picker" "$COLOR copied to clipboard" -t 3000
+fi
