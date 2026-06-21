@@ -7,6 +7,11 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
+-- Search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+
 -- Indentation
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
