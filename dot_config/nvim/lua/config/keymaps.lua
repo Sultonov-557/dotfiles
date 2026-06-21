@@ -195,14 +195,4 @@ end, { desc = "Prev todo" })
 -- ── Which-key registration for LSP/gitsigns ──────────────────────────────────
 -- This provides human-readable descriptions in the which-key popup.
 -- The maps themselves are already defined above; these just register descriptions.
-
-local wk = require("which-key")
-
-wk.add({
-  { "<leader>c",  group = "Comment" },
-  { "<leader>f",  group = "Telescope" },
-  { "<leader>g",  group = "Git" },
-  { "<leader>t",  group = "Todo" },
-  { "<leader>x",  group = "Trouble" },
-  { "<leader>w",  group = "Session" },
-})
+-- Groups are registered in plugins/whichkey.lua via opts.spec.
