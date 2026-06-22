@@ -1,0 +1,41 @@
+# Minimal bash config — fallback for recovery/SSH sessions
+# Primary shell is fish, this is just for emergencies
+
+# If not interactive, bail
+[[ $- != *i* ]] && return
+
+# History
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+
+# Check window size after each command
+shopt -s checkwinsize
+
+# Enable color support
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Dev tools — use eza if available
+if command -v eza &>/dev/null; then
+  alias ll='eza -l --icons=auto --group-directories-first'
+  alias la='eza -la --icons=auto --group-directories-first'
+else
+  alias ll='ls -lh'
+  alias la='ls -lah'
+fi
+
+# Editor
+export EDITOR=nvim
+export VISUAL=nvim
+export MANPAGER='nvim +Man!'
+
+# PATH additions
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "$HOME/.npm-global/bin" ]] && export PATH="$HOME/.npm-global/bin:$PATH"

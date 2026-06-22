@@ -48,6 +48,14 @@ jq
 yq
 direnv
 trash-cli
+gh
+nodejs
+npm
+python
+python-pip
+# rustup — run `rustup default stable` after install
+rustup
+go
 
 # ── Screenshots & Screen Recording ────────────────────────────────────────────
 grim
@@ -100,6 +108,7 @@ udiskie
 qalculate-gtk
 wlogout
 obs-studio
+yazi
 
 # ── System ────────────────────────────────────────────────────────────────────
 ufw
@@ -108,10 +117,15 @@ cups
 ipp-usb
 print-manager
 poppler
+gnome-keyring
+unrar
+p7zip
+unzip
+lz4
 
 # ── AUR (uncomment per machine) ───────────────────────────────────────────────
-# bibata-cursor-theme
-# papirus-icon-theme
+bibata-cursor-theme
+papirus-icon-theme
 # gruvbox-dark-gtk
 # grimblast-git (if not in official repos)
 # wl-screenrec

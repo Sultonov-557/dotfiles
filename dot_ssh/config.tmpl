@@ -1,0 +1,23 @@
+# SSH Configuration — managed by chezmoi
+# Add host-specific entries below
+
+# ── Defaults ──────────────────────────────────────────────────────────────
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityAgent ~/.ssh/agent
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# ── GitHub ────────────────────────────────────────────────────────────────
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_github
+    IdentitiesOnly yes
+
+# ── Work servers (add your hosts here) ───────────────────────────────────
+# Host work-server
+#     HostName 192.168.x.x
+#     User {{ .name }}
+#     IdentityFile ~/.ssh/id_ed25519_work

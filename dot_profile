@@ -1,0 +1,32 @@
+# ~/.profile — login shell environment
+# Loaded by display managers and SSH sessions
+
+# Set PATH
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
+if [ -d "$HOME/.cargo/bin" ] ; then
+  PATH="$HOME/.cargo/bin:$PATH"
+fi
+if [ -d "$HOME/.npm-global/bin" ] ; then
+  PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
+# Default programs
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=zen-browser
+export TERMINAL=ghostty
+
+# Wayland
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=Hyprland
+export GDK_BACKEND=wayland,x11
+export QT_QPA_PLATFORM=wayland;xcb
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+
+# Source .bashrc if it exists (for bash login shells)
+if [ -f "$HOME/.bashrc" ] && [ -n "$BASH_VERSION" ]; then
+  . "$HOME/.bashrc"
+fi
