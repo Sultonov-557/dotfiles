@@ -13,24 +13,38 @@ shopt -s histappend
 # Check window size after each command
 shopt -s checkwinsize
 
-# Enable color support
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+# ── Shared aliases ──────────────────────────────────────────────────────────
+[[ -f "$HOME/.config/aliases/aliases.sh" ]] && . "$HOME/.config/aliases/aliases.sh"
 
-# Navigation
-alias ..='cd ..'
-alias ...='cd ../..'
+# ── Shell-specific overrides ────────────────────────────────────────────────
 
-# Dev tools — use eza if available
-if command -v eza &>/dev/null; then
-  alias ll='eza -l --icons=auto --group-directories-first'
-  alias la='eza -la --icons=auto --group-directories-first'
-else
+# cd - alias (uses -- which is bash/zsh specific)
+alias -- -='cd -'
+
+# dotfiles cd (uses $() syntax)
+alias dotc='cd "$(chezmoi source-path)"'
+
+# trailing space lets aliases expand after sudo (bash/zsh feature)
+alias sudo='sudo '
+
+# which
+alias which='type -a'
+
+# eza fallback
+if ! command -v eza &>/dev/null; then
+  alias ls='ls --color=auto'
   alias ll='ls -lh'
   alias la='ls -lah'
+  alias lt='ls -R'
+  alias l.='ls -d .*'
 fi
 
-# Editor
+# cat via bat
+if command -v bat &>/dev/null; then
+  alias cat='bat --style=plain'
+fi
+
+# ── Editor ──────────────────────────────────────────────────────────────────
 export EDITOR=nvim
 export VISUAL=nvim
 export MANPAGER='nvim +Man!'

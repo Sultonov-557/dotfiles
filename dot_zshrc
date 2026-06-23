@@ -1,0 +1,73 @@
+# =============================================================================
+# .zshrc — Z shell configuration
+# =============================================================================
+
+# ── Shared aliases ──────────────────────────────────────────────────────────
+[[ -f "$HOME/.config/aliases/aliases.sh" ]] && . "$HOME/.config/aliases/aliases.sh"
+
+# ── Shell-specific overrides ────────────────────────────────────────────────
+
+# cd - alias (uses -- which is bash/zsh specific)
+alias -- -='cd -'
+
+# dotfiles cd
+alias dotc='cd "$(chezmoi source-path)"'
+
+# trailing space lets aliases expand after sudo
+alias sudo='sudo '
+
+# which
+alias which='type -a'
+
+# eza fallback
+if ! command -v eza &>/dev/null; then
+  alias ls='ls --color=auto'
+  alias ll='ls -lh'
+  alias la='ls -lah'
+  alias lt='ls -R'
+  alias l.='ls -d .*'
+fi
+
+# cat via bat
+if command -v bat &>/dev/null; then
+  alias cat='bat --style=plain'
+fi
+
+# ── History ─────────────────────────────────────────────────────────────────
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$HOME/.zsh_history"
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt share_history
+setopt inc_append_history
+
+# ── Completion ─────────────────────────────────────────────────────────────
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# ── Key bindings (emacs mode) ──────────────────────────────────────────────
+bindkey -e
+
+# ── Editor ──────────────────────────────────────────────────────────────────
+export EDITOR=nvim
+export VISUAL=nvim
+export MANPAGER='nvim +Man!'
+
+# ── Prompt ──────────────────────────────────────────────────────────────────
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# ── Zoxide ─────────────────────────────────────────────────────────────────
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# ── PATH additions ──────────────────────────────────────────────────────────
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "$HOME/.npm-global/bin" ]] && export PATH="$HOME/.npm-global/bin:$PATH"
