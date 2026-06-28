@@ -17,7 +17,10 @@ map("c", "<C-b>", "<Left>", opts)
 map("c", "<C-f>", "<Right>", opts)
 
 -- Quick file navigation
-map("n", "<leader><leader>", vim.cmd.bprevious, opts)
+-- <leader><space> = file search, <tab>/<S-tab> = buffer prev/next
+map("n", "<leader><space>", function()
+  require("telescope.builtin").find_files()
+end, { desc = "Find files" })
 map("n", "<tab>", "<cmd>bnext<CR>", opts)
 map("n", "<S-tab>", "<cmd>bprevious<CR>", opts)
 
@@ -55,7 +58,9 @@ map("v", "J", ":m '>+1<CR>gv=gv", opts)
 map("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- Quick save / quit
-map("n", "<leader>w", "<cmd>w<CR>", opts)
+map("n", "<C-s>", "<cmd>update<CR>", opts)
+map("i", "<C-s>", "<cmd>update<CR>", opts)
+map("v", "<C-s>", "<C-c><cmd>update<CR>", opts)
 map("n", "<leader>q", "<cmd>wq<CR>", opts)
 map("n", "<leader>Q", "<cmd>q!<CR>", opts)
 
@@ -80,7 +85,7 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 map("n", "<leader>d", vim.diagnostic.open_float, opts)
 map("n", "[d", vim.diagnostic.goto_prev, opts)
 map("n", "]d", vim.diagnostic.goto_next, opts)
-map("n", "<leader>f", function()
+map("n", "<leader>F", function()
   vim.lsp.buf.format({ async = true })
 end, opts)
 

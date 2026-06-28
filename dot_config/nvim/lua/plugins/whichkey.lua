@@ -11,7 +11,7 @@ return {
       separator = "➜",
       group = " ",
     },
-    window = {
+    win = {
       border = "rounded",
     },
     spec = {
