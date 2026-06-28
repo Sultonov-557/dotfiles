@@ -64,6 +64,8 @@ shell-integration = fish
 command = fish
 
 # --- Misc ---
+keybind = clear
+keybind = ctrl+shift+v=paste_from_clipboard
 confirm-close-surface = false
 mouse-hide-while-typing = true
 term = xterm-256color

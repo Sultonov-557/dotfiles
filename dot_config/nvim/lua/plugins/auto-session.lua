@@ -6,7 +6,7 @@ return {
     suppressed_dirs = { "~/", "/tmp", "~/.local/share/chezmoi" },
     log_level = "error",
     auto_save_enabled = true,
-    auto_restore_enabled = false,
+    auto_restore_enabled = true,
     auto_session_suppress_dirs = { "~/", "/tmp" },
   },
   keys = {

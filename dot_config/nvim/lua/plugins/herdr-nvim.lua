@@ -1,0 +1,3 @@
+return {
+  "devxplay/herdr.nvim",
+}

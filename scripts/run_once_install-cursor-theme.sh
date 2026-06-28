@@ -15,6 +15,6 @@ fi
 
 echo ":: Installing cursor and icon themes via $aur_helper..."
 
-$aur_helper -S --needed --noconfirm bibata-cursor-theme papirus-icon-theme
+$aur_helper -S --needed --noconfirm bibata-cursor-theme-bin papirus-icon-theme
 
 echo ":: Themes installed. Set cursor in hyprland.conf if not already done."

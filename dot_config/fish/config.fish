@@ -9,26 +9,8 @@ if test -f "$HOME/.config/aliases/aliases.sh"
   source "$HOME/.config/aliases/aliases.sh"
 end
 
-# ── Shell-specific overrides ────────────────────────────────────────────────
-
-# cd - works natively in fish (remembers previous dir), no alias needed
-
 # dotfiles cd (fish uses ( ) not $( ) for command substitution)
 alias dotc='cd (chezmoi source-path)'
-
-# eza fallback
-if not command -q eza
-  alias ls='ls --color=auto'
-  alias ll='ls -lh'
-  alias la='ls -lah'
-  alias lt='ls -R'
-  alias l.='ls -d .*'
-end
-
-# cat via bat
-if command -q bat
-  alias cat='bat --style=plain'
-end
 
 # ── PATH ────────────────────────────────────────────────────────────────────
 fish_add_path -g ~/.local/bin
