@@ -1,0 +1,217 @@
+/* ===========================================================================
+ * Swaync — Notification Center (Gruvbox Dark)
+ * Managed by chezmoi
+ * =========================================================================== */
+
+* {
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 13px;
+}
+
+/* --- Control Center --- */
+.control-center {
+  background: rgba(40, 40, 40, 0.95);
+  border: 2px solid #504945;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.control-center-list-placeholder {
+  color: #928374;
+  font-style: italic;
+}
+
+/* --- Notifications --- */
+.notification {
+  background: #282828;
+  border: 1px solid #504945;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 4px 0;
+}
+
+.notification:hover {
+  background: #3c3836;
+  border-color: #665c54;
+}
+
+.notification-default-action {
+  border-radius: 12px;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 4px;
+}
+
+/* --- Notification Header --- */
+.notification-header {
+  color: #ebdbb2;
+}
+
+.notification-time {
+  color: #928374;
+  font-size: 11px;
+}
+
+.notification-critical .notification-header {
+  color: #fb4934;
+}
+
+.notification-low .notification-header {
+  color: #928374;
+}
+
+/* --- Notification Body --- */
+.notification-body {
+  color: #ebdbb2;
+  margin-top: 4px;
+}
+
+.notification-app-name {
+  color: #83a598;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.notification-summary {
+  color: #ebdbb2;
+  font-weight: bold;
+}
+
+/* --- Buttons --- */
+.notification-actions {
+  margin-top: 8px;
+}
+
+.notification-action-button {
+  background: #504945;
+  color: #ebdbb2;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 12px;
+  margin: 0 2px;
+}
+
+.notification-action-button:hover {
+  background: #665c54;
+  color: #b8bb26;
+}
+
+/* --- Widgets --- */
+.widget-title {
+  color: #b8bb26;
+  font-weight: bold;
+  margin: 8px 4px;
+}
+
+.widget-title button {
+  background: #504945;
+  color: #ebdbb2;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.widget-title button:hover {
+  background: #665c54;
+  color: #b8bb26;
+}
+
+.widget-dnd {
+  color: #928374;
+  margin: 8px 4px;
+}
+
+.widget-dnd > span {
+  font-weight: bold;
+}
+
+.widget-dnd > switch {
+  background: #504945;
+  border-radius: 12px;
+}
+
+.widget-dnd > switch:checked {
+  background: #b8bb26;
+}
+
+/* --- MPRIS Widget --- */
+.widget-mpris {
+  background: #1d2021;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 8px 4px;
+}
+
+.widget-mpris-player {
+  color: #ebdbb2;
+}
+
+.widget-mpris-title {
+  color: #b8bb26;
+  font-weight: bold;
+}
+
+.widget-mpris-subtitle {
+  color: #83a598;
+  font-size: 11px;
+}
+
+/* --- Volume Widget --- */
+.widget-volume {
+  background: #1d2021;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 8px 4px;
+}
+
+.widget-volume > slider {
+  background: #504945;
+}
+
+.widget-volume > slider:highlight {
+  background: #83a598;
+}
+
+/* --- Inhibitors --- */
+.widget-inhibitors {
+  margin: 8px 4px;
+}
+
+.widget-inhibitors > button {
+  background: #504945;
+  color: #ebdbb2;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.widget-inhibitors > button:hover {
+  background: #665c54;
+}
+
+/* --- Scrollbar --- */
+scrollbar {
+  background: #1d2021;
+  border-radius: 8px;
+}
+
+scrollbar slider {
+  background: #504945;
+  border-radius: 8px;
+  min-width: 6px;
+}
+
+/* --- Inhibitors --- */
+.inhibitor {
+  background: #282828;
+  border: 1px solid #504945;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 2px 0;
+}

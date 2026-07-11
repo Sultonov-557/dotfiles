@@ -1,0 +1,52 @@
+# =============================================================================
+# .inputrc — Readline configuration
+# Managed by chezmoi
+# =============================================================================
+
+# Case-insensitive tab completion
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set colored-stats on
+set colored-completion-prefix on
+set menu-complete-display-prefix on
+
+# Use Page Up/Down to search history
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+# Up/Down for prefix-based history search
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Home/End keys
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# Delete key
+"\e[3~": delete-char
+
+# Alt+arrows for word movement
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+"\eb": backward-word
+"\ef": forward-word
+
+# Ctrl+arrows for word movement (tmux/herdr)
+"\eOD": backward-word
+"\eOC": forward-word
+
+# Better history
+set history-size 10000
+set keymap emacs
+
+# No bell
+set bell-style none
+
+# Re-read init file
+"\e[21~": re-read-init-file
+
+# vi mode is cool but we use emacs mode
+set editing-mode emacs

@@ -1,0 +1,181 @@
+# =========================================================================
+# AdGuardHome.yaml — DNS-level ad blocking
+# Managed by chezmoi — deployed to /etc/AdGuardHome.yaml via run_once
+# =========================================================================
+
+# --- General ---
+http:
+  pprof:
+    enabled: false
+    port: 6060
+  address: "0.0.0.0:9000"
+  session_ttl: 720h
+
+users:
+  - name: admin
+    # Password is set via initial setup wizard OR
+    # generate with: docker run --rm adguard/adguardhome hash -p <your-password>
+    # Default: no password set — visit http://localhost:9000 after install
+
+auth_attempts: 5
+block_auth_min: 15
+
+# --- DNS ---
+dns:
+  bind_hosts:
+    - 0.0.0.0
+  port: 53
+  protection_enabled: true
+  filtering_enabled: true
+  blocking_mode: default
+  blocking_ipv4: ""
+  blocking_ipv6: ""
+  blocked_response_ttl: 10
+  parental_block_host: "family-block.dns.adguard.com"
+  safebrowsing_block_host: "standard-block.dns.adguard.com"
+  ratelimit: 20
+  ratelimit_whitelist: []
+  refuse_any: true
+  upstream_dns:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.quad9.net/dns-query
+    - tls://dns.adguard.com
+  upstream_dns_file: ""
+  bootstrap_dns:
+    - 1.1.1.1
+    - 9.9.9.9
+    - 94.140.14.14
+  fallback_dns:
+    - tls://1.1.1.1
+    - tls://dns.quad9.net
+  all_servers: true
+  fastest_addr: false
+  fastest_timeout: 1s
+  allowed_clients: []
+  disallowed_clients: []
+  blocked_hosts:
+    - version.bind
+    - id.server
+    - hostname.bind
+  cache_size: 4194304
+  cache_ttl_min: 0
+  cache_ttl_max: 0
+  bogus_nxdomain: []
+  aaaa_disabled: false
+  enable_dnssec: true
+  edns_client_subnet:
+    enabled: false
+    use_custom: false
+    custom_ip: ""
+  max_goroutines: 300
+  handshake_timeout: 4s
+  ipset_file: ""
+  ipset: []
+  trusted_proxies:
+    - 127.0.0.0/8
+    - ::1/128
+  private_networks:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - fd00::/8
+  use_private_ptr_resolvers: true
+  local_ptr_upstreams: []
+
+# --- Filtering ---
+filtering:
+  filtering_enabled: true
+  parental_enabled: false
+  safebrowsing_enabled: false
+  protection_enabled: true
+  filters_update_interval: 24
+  blocked_services:
+    schedule:
+      time_zone: "Asia/Tashkent"
+    ids: []
+  disabled_filters: []
+  filters:
+    - enabled: true
+      url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+      name: AdGuard DNS filter
+      id: 1
+    - enabled: true
+      url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      name: StevenBlack Unified
+      id: 2
+    - enabled: false
+      url: https://someonewhocares.org/hosts/zero/hosts
+      name: Dan Pollock's List
+      id: 3
+  whitelist_filters: []
+  user_rules:
+    # Allow these (often false-positived) domains
+    - "@@||github.com^$important"
+    - "@@||gitlab.com^$important"
+    - "@@||microsoft.com^$important"
+    - "@@||live.com^$important"
+    - "@@||msn.com^$important"
+    - "@@||windowsupdate.com^$important"
+
+# --- DHCP ---
+dhcp:
+  enabled: false
+  interface_name: ""
+  dhcpv4:
+    gateway_ip: ""
+    subnet_mask: ""
+    range_start: ""
+    range_end: ""
+    lease_duration: 86400
+    icmp_timeout_msec: 1000
+    options: []
+  dhcpv6:
+    range_start: ""
+    lease_duration: 86400
+    ra_slaac_only: false
+    ra_allow_slaac: false
+
+# --- TLS ---
+tls:
+  enabled: false
+  server_name: ""
+  force_https: false
+  port_https: 443
+  port_dns_over_tls: 853
+  port_dns_over_quic: 853
+  port_dnscrypt: 0
+  allow_unencrypted_doh: false
+  certificate_chain: ""
+  private_key: ""
+  certificate_path: ""
+  private_key_path: ""
+  strict_sni_check: false
+
+# --- Query log ---
+querylog:
+  enabled: true
+  file_enabled: true
+  interval: 2160h # 90 days
+  size_memory: 1000
+  ignored: []
+
+# --- Statistics ---
+statistics:
+  enabled: true
+  interval: 90 # days
+
+# --- Logging ---
+log:
+  file: ""
+  max_backups: 3
+  max_size: 100
+  max_age: 7
+  compress: true
+  local_time: false
+  verbose: false
+
+# --- OS config (no auto-fixes for now) ---
+os:
+  group: ""
+  user: ""
+  rlimit_nofile: 0

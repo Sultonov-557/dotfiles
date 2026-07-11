@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Do Not Disturb
+Comment=Toggle notification muting
+Exec=dnd
+Icon=notification-disabled
+Terminal=false
+Categories=Utility;Settings;
+StartupNotify=false

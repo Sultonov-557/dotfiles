@@ -75,11 +75,11 @@ playerctl
 brightnessctl
 helvum
 pavucontrol
-pwvucontrol
 
 # ── Network & Bluetooth ───────────────────────────────────────────────────────
 networkmanager
 network-manager-applet
+adguardhome  # DNS-level ad blocker (systemd service, not Docker)
 blueman
 bluez
 bluez-utils
@@ -95,6 +95,7 @@ rofi-emoji
 
 # ── Apps ──────────────────────────────────────────────────────────────────────
 nautilus
+obsidian
 btop
 fastfetch
 firefox

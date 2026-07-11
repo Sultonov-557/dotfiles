@@ -1,0 +1,16 @@
+# systemd user services — managed by chezmoi
+
+[Unit]
+Description=Clipboard history daemon (wl-clipboard + cliphist)
+Documentation=https://github.com/sentriz/cliphist
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/share/bin/cliphist-wl
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target

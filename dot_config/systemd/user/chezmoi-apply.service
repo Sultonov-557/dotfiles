@@ -1,0 +1,13 @@
+# chezmoi auto-apply — systemd user service + timer
+# Managed by chezmoi
+# Keeps dotfiles in sync across machines. Runs every 6 hours.
+
+[Unit]
+Description=chezmoi auto-apply (sync dotfiles)
+Documentation=https://chezmoi.io
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/chezmoi update --apply --force
+Nice=19
+IOSchedulingClass=idle

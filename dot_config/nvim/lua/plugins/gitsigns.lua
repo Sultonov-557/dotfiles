@@ -1,6 +1,7 @@
 -- Gitsigns — git signs in the gutter
 return {
   "lewis6991/gitsigns.nvim",
+  event = "BufReadPre",
   opts = {
     signs = {
       add = { text = "│" },

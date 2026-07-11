@@ -1,7 +1,11 @@
 -- Toggleterm — floating/horizontal terminal
 return {
   "akinsho/toggleterm.nvim",
-  lazy = false,
+  cmd = "ToggleTerm",
+  keys = {
+    { "<leader>tt", desc = "Toggle terminal" },
+    { "<C-\\>", desc = "Floating terminal" },
+  },
   opts = {
     size = 20,
     open_mapping = nil,

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Wlogout — Logout/session menu layout
+  Managed by chezmoi
+-->
+<wlogout>
+  <item name="lock">
+    <text></text>
+    <tooltip>Lock Screen</tooltip>
+    <action>loginctl lock-session</action>
+    <shortcut>Super_L</shortcut>
+  </item>
+  <item name="logout">
+    <text></text>
+    <tooltip>Log Out</tooltip>
+    <action>hyprctl dispatch exit</action>
+    <shortcut>Shift_L</shortcut>
+  </item>
+  <item name="reboot">
+    <text></text>
+    <tooltip>Reboot</tooltip>
+    <action>systemctl reboot</action>
+    <shortcut>R</shortcut>
+  </item>
+  <item name="shutdown">
+    <text></text>
+    <tooltip>Shutdown</tooltip>
+    <action>systemctl poweroff</action>
+    <shortcut>S</shortcut>
+  </item>
+  <item name="suspend">
+    <text></text>
+    <tooltip>Suspend</tooltip>
+    <action>systemctl suspend</action>
+    <shortcut>U</shortcut>
+  </item>
+  <item name="hibernate">
+    <text></text>
+    <tooltip>Hibernate</tooltip>
+    <action>systemctl hibernate</action>
+    <shortcut>H</shortcut>
+  </item>
+</wlogout>

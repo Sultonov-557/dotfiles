@@ -1,6 +1,7 @@
 -- nvim-cmp — completion engine with sources
 return {
   "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
   version = false, -- latest
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",

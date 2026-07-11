@@ -7,3 +7,8 @@
     name = "sultonov"
     email = "sultonovzerifboy@gmail.com"
     machine_type = '{{ if eq .chezmoi.hostname "vanguard" }}desktop{{ else if eq .chezmoi.hostname "archbook" }}laptop{{ else if eq .chezmoi.hostname "server" }}server{{ else }}unknown{{ end }}'
+    is_laptop = '{{ eq .chezmoi.hostname "archbook" }}'
+    is_desktop = '{{ eq .chezmoi.hostname "vanguard" }}'
+    is_server = '{{ eq .chezmoi.hostname "server" }}'
+    has_nvidia = '{{ if eq .chezmoi.hostname "vanguard" }}true{{ else }}false{{ end }}'
+    gpu_driver = '{{ if eq .chezmoi.hostname "vanguard" }}nvidia{{ else }}amd{{ end }}'

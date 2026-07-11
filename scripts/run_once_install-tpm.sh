@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Install Tmux Plugin Manager (TPM)
+# NOTE: tmux has been replaced by herdr. This script is kept for reference
+# but no longer runs automatically during setup.
 set -euo pipefail
 
 TPM_DIR="$HOME/.tmux/plugins/tpm"
@@ -9,6 +11,7 @@ if [ -d "$TPM_DIR" ]; then
   exit 0
 fi
 
-echo ":: Installing TPM..."
-git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-echo ":: TPM installed. Press prefix + I inside tmux to install plugins."
+echo ":: tmux is no longer the primary multiplexer (herdr replaces it)."
+echo ":: Skipping TPM install. To install anyway, run:"
+echo "::   git clone https://github.com/tmux-plugins/tpm \"$TPM_DIR\""
+exit 0

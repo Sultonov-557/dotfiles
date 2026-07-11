@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Screen Recording
+Comment=Toggle screen recording (full screen)
+Exec=recorder toggle
+Icon=media-record
+Terminal=false
+Categories=Utility;AudioVideo;
+StartupNotify=false

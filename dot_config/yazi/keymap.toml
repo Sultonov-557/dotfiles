@@ -1,0 +1,76 @@
+# =============================================================================
+# Yazi — Keybindings (Vim-style, Gruvbox consistent)
+# Managed by chezmoi
+# =============================================================================
+
+[manager]
+prepend_keymap = [
+  # Vim-style navigation
+  { on = "h", run = "leave", desc = "Go back" },
+  { on = "j", run = "arrow -1", desc = "Move down" },
+  { on = "k", run = "arrow 1", desc = "Move up" },
+  { on = "l", run = "enter", desc = "Enter directory / open file" },
+  { on = "J", run = "half_down", desc = "Half page down" },
+  { on = "K", run = "half_up", desc = "Half page up" },
+  { on = "H", run = "back", desc = "Back in history" },
+  { on = "L", run = "forward", desc = "Forward in history" },
+
+  # File operations
+  { on = "y", run = "yank", desc = "Yank selected files" },
+  { on = "d", run = "remove", desc = "Delete selected files" },
+  { on = "p", run = "paste", desc = "Paste yanked files" },
+  { on = "P", run = "paste_link", desc = "Paste as symlink" },
+  { on = "r", run = "rename", desc = "Rame file" },
+  { on = "c", run = "create", desc = "Create file / directory" },
+  { on = "D", run = "remove", desc = "Delete selected" },
+  { on = "Y", run = "yank", desc = "Yank (copy)" },
+
+  # Selection
+  { on = "v", run = "toggle", desc = "Toggle selection" },
+  { on = "V", run = "toggle_all", desc = "Toggle all" },
+  { on = "tab", run = "toggle", desc = "Toggle selection" },
+
+  # Search & filter
+  { on = "/", run = "find", desc = "Search files" },
+  { on = "f", run = "filter", desc = "Filter files" },
+  { on = "n", run = "find_prev", desc = "Next match" },
+  { on = "N", run = "find_next", desc = "Prev match" },
+
+  # Sorting
+  { on = "s", run = "sort", desc = "Toggle sort" },
+  { on = ".", run = "toggle_hidden", desc = "Toggle hidden" },
+
+  # Tabs
+  { on = "t", run = "tab_create", desc = "New tab" },
+  { on = "1", run = "tab_switch 1", desc = "Tab 1" },
+  { on = "2", run = "tab_switch 2", desc = "Tab 2" },
+  { on = "3", run = "tab_switch 3", desc = "Tab 3" },
+  { on = "4", run = "tab_switch 4", desc = "Tab 4" },
+  { on = "5", run = "tab_switch 5", desc = "Tab 5" },
+  { on = "]", run = "tab_next", desc = "Next tab" },
+  { on = "[", run = "tab_prev", desc = "Prev tab" },
+  { on = "q", run = "close", desc = "Close tab / quit" },
+
+  # Parent / root
+  { on = "~", run = "goto /home/sultonov", desc = "Go home" },
+  { on = "u", run = "back", desc = "Back" },
+  { on = "U", run = "forward", desc = "Forward" },
+
+  # Open in...
+  { on = "o", run = "open", desc = "Open file" },
+
+  # Quit / cd on quit
+  { on = "Q", run = "quit", desc = "Quit (no cd)" },
+]
+
+[input]
+prepend_keymap = [
+  { on = "esc", run = "close", desc = "Cancel" },
+  { on = "enter", run = "close", desc = "Confirm" },
+]
+
+[help]
+prepend_keymap = [
+  { on = "esc", run = "close", desc = "Close help" },
+  { on = "q", run = "close", desc = "Close help" },
+]

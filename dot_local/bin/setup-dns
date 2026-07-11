@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# =============================================================================
+# setup-dns.sh — Configure systemd-resolved to use AdGuardHome
+# Run AFTER installing and starting AdGuardHome:
+#   sudo pacman -S adguardhome
+#   sudo systemctl enable --now adguardhome
+#   bash ~/.local/bin/setup-dns.sh
+# =============================================================================
+set -euo pipefail
+
+AGH_PORT="127.0.0.1:53"
+
+# Check if AdGuardHome is running
+if ! curl -sf http://127.0.0.1:3000 &>/dev/null; then
+  echo ":: AdGuardHome doesn't appear to be running on port 3000"
+  echo ":: Start it first: sudo systemctl start adguardhome"
+  exit 1
+fi
+
+echo ":: Configuring systemd-resolved to use AdGuardHome..."
+
+# Point the loopback interface at AdGuardHome
+sudo resolvectl dns lo 127.0.0.1
+sudo resolvectl domain lo "~."
+sudo resolvectl dnsovertls lo false
+sudo resolvectl dnssec lo allow-downgrade
+
+# Make it persistent via /etc/systemd/resolved.conf.d/
+sudo mkdir -p /etc/systemd/resolved.conf.d
+cat << 'EOF' | sudo tee /etc/systemd/resolved.conf.d/adguardhome.conf > /dev/null
+# AdGuardHome DNS — managed by chezmoi/setup-dns.sh
+[Resolve]
+DNS=127.0.0.1#localhost
+DNSStubListener=no
+Domains=~.
+ReadEtcHosts=yes
+EOF
+
+# Restart resolved to pick up changes
+sudo systemctl restart systemd-resolved
+
+echo ":: Verifying DNS resolution..."
+echo "  Testing google.com..."
+dig +short google.com @127.0.0.1 | head -3
+echo ""
+echo "  Testing with resolvectl..."
+resolvectl query github.com | head -2
+echo ""
+echo ":: Done! DNS is now routed through AdGuardHome."
+echo ""
+echo ":: To verify ad blocking:"
+echo "   dig +short doubleclick.net @127.0.0.1"
+echo "   # Should return 0.0.0.0 (blocked)"

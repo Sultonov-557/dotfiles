@@ -144,34 +144,24 @@ alias cpu='ps aux --sort=-%cpu | head -20' # top 20 by CPU
 alias kill9='kill -9'
 alias pskill='pkill -9'
 
-# ── Tmux ────────────────────────────────────────────────────────────────────
-alias tx='tmux'
-alias txn='tmux new-session -s'
-alias txl='tmux list-sessions'
-alias txa='tmux attach -t'
-alias txk='tmux kill-session -t'
-alias txr='tmux rename-session'
-alias txw='tmux list-windows'
-alias txwl='tmux list-windows -a' # windows across all sessions
-
 # ── Package Management (Arch) ───────────────────────────────────────────────
-alias yay='yay'
-alias pac='yay'
-alias pacu='yay -Syu'
-alias pacs='yay -Ss'
-alias pacq='yay -Q'
-alias pacr='yay -Rns'
-alias pacqo='yay -Qo'    # which package owns this file
-alias pacqd='yay -Qdt'   # orphaned packages
-alias pacy='yay -Y'      # yay-specific (e.g. yay -Yc)
-alias cleanpac='yay -Sc' # clean build cache
+alias paru='paru'
+alias pac='paru'
+alias pacu='paru -Syu'
+alias pacs='paru -Ss'
+alias pacq='paru -Q'
+alias pacr='paru -Rns'
+alias pacqo='paru -Qo'    # which package owns this file
+alias pacqd='paru -Qdt'   # orphaned packages
+alias pacy='paru -Y'      # paru-specific (e.g. paru -Yc)
+alias cleanpac='paru -Sc' # clean build cache
 alias mirrors='sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
 alias lock='sudo touch /var/lib/pacman/db.lck' # manual pacman lock
 alias unlock='sudo rm /var/lib/pacman/db.lck'  # manual pacman unlock
-alias why='yay -Qi'                            # package info
-alias files='yay -Ql'                          # files installed by package
-alias installed='yay -Qe'                      # explicitly installed
-alias installed-all='yay -Qen'                 # explicit + non-AUR (@ -n)
+alias why='paru -Qi'                           # package info
+alias files='paru -Ql'                         # files installed by package
+alias installed='paru -Qe'                     # explicitly installed
+alias installed-all='paru -Qen'                # explicit + non-AUR (@ -n)
 
 # ── Docker (if installed) ───────────────────────────────────────────────────
 alias d='docker'

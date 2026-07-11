@@ -20,12 +20,38 @@ local bg     = background
 -- ------------------
 --     MONITORS
 -- ------------------
-hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "auto",
-})
+-- Per-hostname monitor layouts
+-- Customize for your machines: archbook (laptop), vanguard (desktop), server
+local hostname = io.popen("hostname"):read("*l"):gsub("%s+", "")
+
+if hostname == "archbook" then
+    hl.monitor({
+        output   = "eDP-1",
+        mode     = "preferred",
+        position = "0x0",
+        scale    = "1.25",
+    })
+elseif hostname == "vanguard" then
+    hl.monitor({
+        output   = "DP-1",
+        mode     = "2560x1440@165",
+        position = "0x0",
+        scale    = "1.0",
+    })
+    hl.monitor({
+        output   = "HDMI-A-1",
+        mode     = "1920x1080@60",
+        position = "2560x0",
+        scale    = "1.0",
+    })
+else
+    hl.monitor({
+        output   = "",
+        mode     = "preferred",
+        position = "auto",
+        scale    = "auto",
+    })
+end
 
 -- -------------------------------
 --   ENVIRONMENT VARIABLES
@@ -173,25 +199,28 @@ hl.animation({ leaf = "windowsMove",      enabled = true, speed = 4.79,  bezier 
 -- =============================================================================
 local mainMod      = "SUPER"
 local terminal     = "ghostty"
-local menu         = "noctalia-launcher"
 local fileManager  = "nautilus"
+local noci         = "qs -c noctalia-shell ipc --any-display call"
 
 -- --- App launchers ---
-hl.bind(mainMod .. " + SPACE",         hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("rofi -show drun -show-icons"))
+hl.bind(mainMod .. " + SPACE",         hl.dsp.exec_cmd(noci .. " launcher toggle"), { description = "App launcher" })
+hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd(noci .. " launcher command"), { description = "Command launcher" })
 hl.bind(mainMod .. " + Return",        hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Return",hl.dsp.exec_cmd(terminal .. " --working-directory=~/"))
+
+-- --- Most used apps (one-key access) ---
+hl.bind(mainMod .. " + W",             hl.dsp.exec_cmd("zen"), { description = "Zen browser" })
+hl.bind(mainMod .. " + A",             hl.dsp.exec_cmd("obsidian"), { description = "Obsidian" })
+hl.bind(mainMod .. " + G",             hl.dsp.exec_cmd("steam"), { description = "Steam" })
 hl.bind(mainMod .. " + E",             hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + B",             hl.dsp.exec_cmd(terminal .. " -e btop"))
-hl.bind(mainMod .. " + SHIFT + W",     hl.dsp.exec_cmd(terminal .. " -e nvim"))
-hl.bind(mainMod .. " + A",             hl.dsp.exec_cmd("noctalia-notes"))
 
 -- --- Clipboard ---
-hl.bind(mainMod .. " + V",             hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"), { description = "Clipboard picker" })
-hl.bind(mainMod .. " + ALT + X",     hl.dsp.exec_cmd("cliphist delete-prime && cliphist delete-prime"), { description = "Clear clipboard" })
+hl.bind(mainMod .. " + C",             hl.dsp.exec_cmd(noci .. " launcher clipboard"), { description = "Clipboard picker" })
+hl.bind(mainMod .. " + ALT + X",       hl.dsp.exec_cmd("cliphist delete-prime && cliphist delete-prime"), { description = "Clear clipboard" })
 
 -- --- Screenshots ---
 hl.bind("Print",                         hl.dsp.exec_cmd("screenshot region"))
+hl.bind(mainMod .. " + SHIFT + S",       hl.dsp.exec_cmd("screenshot region"), { description = "Screenshot region" })
 hl.bind("SHIFT + Print",               hl.dsp.exec_cmd("screenshot full"))
 hl.bind("CTRL + Print",                hl.dsp.exec_cmd("screenshot copy"))
 hl.bind("CTRL + SHIFT + Print",        hl.dsp.exec_cmd("screenshot active"))
@@ -200,7 +229,7 @@ hl.bind("CTRL + SHIFT + Print",        hl.dsp.exec_cmd("screenshot active"))
 hl.bind(mainMod .. " + Q",             hl.dsp.window.close())
 hl.bind(mainMod .. " + F",             hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + F",     hl.dsp.window.fullscreen({ mode = 1 }))
-hl.bind(mainMod .. " + ALT + V",       hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + V",             hl.dsp.window.float({ action = "toggle" }), { description = "Toggle float" })
 hl.bind(mainMod .. " + SHIFT + V",     hl.dsp.window.pin())
 hl.bind(mainMod .. " + P",             hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",             hl.dsp.layout("togglesplit"))
@@ -255,39 +284,43 @@ hl.bind(mainMod .. " + mouse:272",     hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273",     hl.dsp.window.resize(), { mouse = true })
 hl.bind(mainMod .. " + ALT + mouse:272", hl.dsp.window.resize(), { mouse = true })
 
--- --- Multimedia keys ---
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("volume up"),  { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("volume down"),          { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("volume mute"),         { locked = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("volume mic-mute"),       { locked = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightness up"),                              { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightness down"),                              { locked = true, repeating = true })
-hl.bind("XF86AudioNext",        hl.dsp.exec_cmd("playerctl next"),                                     { locked = true })
-hl.bind("XF86AudioPrev",        hl.dsp.exec_cmd("playerctl previous"),                                 { locked = true })
-hl.bind("XF86AudioPlay",        hl.dsp.exec_cmd("playerctl play-pause"),                               { locked = true })
-hl.bind("XF86AudioStop",        hl.dsp.exec_cmd("playerctl stop"),                                     { locked = true })
+-- --- Multimedia keys (via noctalia IPC) ---
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(noci .. " volume increase"),  { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(noci .. " volume decrease"),  { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd(noci .. " volume muteOutput"), { locked = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd(noci .. " volume muteInput"),  { locked = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd(noci .. " brightness increase"),  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd(noci .. " brightness decrease"),  { locked = true, repeating = true })
+hl.bind("XF86AudioNext",        hl.dsp.exec_cmd(noci .. " media next"),       { locked = true })
+hl.bind("XF86AudioPrev",        hl.dsp.exec_cmd(noci .. " media previous"),   { locked = true })
+hl.bind("XF86AudioPlay",        hl.dsp.exec_cmd(noci .. " media playPause"),  { locked = true })
+hl.bind("XF86AudioStop",        hl.dsp.exec_cmd(noci .. " media stop"),       { locked = true })
 
 -- --- Lock screen ---
-hl.bind(mainMod .. " + CTRL + L",         hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + CTRL + L",         hl.dsp.exec_cmd(noci .. " sessionMenu lock"), { description = "Lock screen" })
 hl.bind(mainMod .. " + CTRL + SHIFT + L", hl.dsp.exec_cmd("hyprctl dispatch exit"))
 
--- --- Flow / Utility ---
+-- --- Flow / Utility (via noctalia IPC) ---
 hl.bind(mainMod .. " + SHIFT + C",     hl.dsp.exec_cmd("picker"), { description = "Color picker" })
 hl.bind(mainMod .. " + SHIFT + R",     hl.dsp.exec_cmd("recorder toggle"), { description = "Toggle screen recording" })
-hl.bind(mainMod .. " + SHIFT + I",     hl.dsp.exec_cmd("caffeine"), { description = "Toggle caffeine (idle inhibit)" })
-hl.bind(mainMod .. " + SHIFT + D",     hl.dsp.exec_cmd("dnd"), { description = "Toggle Do Not Disturb" })
-hl.bind(mainMod .. " + SHIFT + P",     hl.dsp.exec_cmd("perfmode"), { description = "Toggle performance mode" })
-hl.bind(mainMod .. " + Escape",        hl.dsp.exec_cmd("power-menu"), { description = "Power menu" })
-hl.bind(mainMod .. " + SHIFT + F12",  hl.dsp.exec_cmd("focus"), { description = "Toggle focus mode" })
+hl.bind(mainMod .. " + SHIFT + I",     hl.dsp.exec_cmd(noci .. " idleInhibitor toggle"), { description = "Toggle caffeine (idle inhibit)" })
+hl.bind(mainMod .. " + SHIFT + D",     hl.dsp.exec_cmd(noci .. " notifications toggleDND"), { description = "Toggle Do Not Disturb" })
+hl.bind(mainMod .. " + SHIFT + P",     hl.dsp.exec_cmd(noci .. " powerProfile cycle"), { description = "Toggle performance mode" })
+hl.bind(mainMod .. " + Escape",        hl.dsp.exec_cmd(noci .. " sessionMenu toggle"), { description = "Power menu" })
+hl.bind(mainMod .. " + SHIFT + F12",   hl.dsp.exec_cmd("focus"), { description = "Toggle focus mode" })
 
 -- --- Dropdown terminal (quake-style) ---
 hl.bind("F12", hl.dsp.exec_cmd("ghostty --class=dropdown"), { description = "Dropdown terminal" })
 
 -- --- Emoji picker ---
-hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("rofi -modi emoji -show emoji"), { description = "Emoji picker" })
+hl.bind(mainMod .. " + period", hl.dsp.exec_cmd(noci .. " launcher emoji"), { description = "Emoji picker" })
 
 -- --- Shell switcher ---
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("shells"), { description = "Switch QuickShell config" })
+
+-- --- Noctalia extras ---
+hl.bind(mainMod .. " + D",             hl.dsp.exec_cmd(noci .. " controlCenter toggle"), { description = "Toggle control center" })
+hl.bind(mainMod .. " + SHIFT + O",     hl.dsp.exec_cmd(noci .. " monitors off"), { description = "Turn off monitors" })
 
 -- =============================================================================
 --     WINDOW RULES

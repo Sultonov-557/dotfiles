@@ -9,7 +9,11 @@ return {
   -- Enable nvim-tree instead
   {
     "nvim-tree/nvim-tree.lua",
-    lazy = false,
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    keys = {
+      { "<leader>e", desc = "Toggle file tree" },
+      { "<leader>E", desc = "Focus file tree" },
+    },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       filters = { dotfiles = false },

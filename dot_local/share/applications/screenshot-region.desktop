@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Screenshot Region
+Comment=Select a region to screenshot and annotate
+Exec=screenshot region
+Icon=applets-screenshooter
+Terminal=false
+Categories=Utility;Graphics;
+StartupNotify=false

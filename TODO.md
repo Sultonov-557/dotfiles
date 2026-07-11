@@ -1,97 +1,96 @@
 # Dotfiles TODO
 
-## Status: Review complete — gaps identified
+## Status: Most planned improvements completed ✓
 
-All dotfiles configs are **done**. The remaining work is **setup automation** — scripts and packages to make `bash install.sh` actually produce a working machine end-to-end.
-
----
-
-## 🔴 P0 — Critical (setup breaks without these)
-
-### Package gaps
-- [ ] **Add `gh` to packages.txt** — gitconfig uses `gh auth git-credential`
-- [ ] **Add `yazi` to packages.txt** — fish config has a `y()` wrapper for it
-- [ ] **Add dev toolchains** to packages.txt:
-  - `nodejs` + `npm` (fish PATH, Mason ts_ls, npm global packages)
-  - `python` + `python-pip` (Mason pyright)
-  - `rustup` (fish PATH, Mason rust-analyzer)
-  - `go` (Mason gopls)
-- [ ] **Add `gnome-keyring`** to packages.txt (secrets env vars for git/gpg)
-
-### Missing run_once scripts
-- [ ] **`run_once_install-aur-helper.sh`** — install paru/yay, since packages.txt has AUR items
-- [ ] **`run_once_install-aur-packages.sh`** — install AUR packages from packages.txt
-- [ ] **`run_once_install-tpm.sh`** — `git clone` TPM (tmux.conf line 88 depends on it)
-- [ ] **`run_once_enable-services.sh`** — `systemctl enable --now` for: NetworkManager, bluetooth, cups, ufw
-- [ ] **`run_once_set-default-shell.sh`** — `chsh -s $(which fish)`
-- [ ] **`run_once_setup-xdg-dirs.sh`** — `xdg-user-dirs-update` + create `~/work/`, `~/Projects/`, etc.
-- [ ] **`run_once_install-cursor-theme.sh`** — install Bibata-Modern-Classic cursor and Papirus-Dark icons (AUR)
-- [ ] **`run_once_setup-gpg.sh`** — basic `~/.gnupg/gpg-agent.conf`, key generation prompt
-
-### Noctalia / QuickShell
-- [ ] **Document or script the Noctalia/QuickShell install** — autostart references:
-  - `qs -c noctalia-shell`
-  - `noctalia-launcher`
-  - `noctalia-notes`
-  - These are custom tools with no install path right now
-- [ ] **Add wallpaper to repo** — hyprpaper.conf exists but no actual wallpaper file. Add a default or script to fetch one
+All dotfiles configs are **done** and setup automation has been filled in.
+This file tracks remaining nice-to-haves and future ideas.
 
 ---
 
-## 🟡 P1 — Important (workflow incomplete without these)
+## 🟢 Recently completed
 
-### Shell fallbacks
-- [ ] **Add `dot_bashrc`** — minimal bash config for recovery mode, SSH sessions, scripts
-- [ ] **Add `dot_profile`** — login shell env vars (PATH, EDITOR, etc.) for display managers and SSH
-
-### SSH & GPG
-- [ ] **Add `dot_ssh/config.tmpl`** — chezmoi-templated SSH config with:
-  - Host aliases for work servers
-  - Key paths
-  - KeepAlive settings
-- [ ] **Add `dot_gnupg/gpg-agent.conf`** — pinentry program, cache TTL
-
-### Environment
-- [ ] **Add `dot_xprofile`** — legacy X11 fallback env vars (for GDM/SDDM on Wayland)
-- [ ] **Add unrar/lz4/p7zip/unzip to packages.txt** — basic archive support
+- [x] **Tmux dead leaf cleaned** — aliases removed, tpm script deprecated
+- [x] **paru over yay** — all package aliases now use paru (matches aur-helper)
+- [x] **macOS leftover** — macos-titlebar-style removed from ghostty config
+- [x] **Package dedup** — pwvucontrol removed (pavucontrol kept)
+- [x] **bat theme** — BAT_THEME=Gruvbox-dark in all shells + xprofile
+- [x] **dot_xprofile** — created for login-manager environment
+- [x] **Per-host monitor layouts** — hyprland.lua now detects hostname
+- [x] **Default wallpaper script** — run_once_after downloads placeholder
+- [x] **btop config** — Gruvbox-themed btop.conf + custom theme file
+- [x] **wlogout config** — layout + style.css for session menu
+- [x] **fastfetch config** — Gruvbox-themed config.jsonc
+- [x] **~/.face avatar** — SVG placeholder deployed via chezmoi
+- [x] **dot_inputrc** — readline config for bash/python REPLs
+- [x] **Udiskie config** — YAML config for automount daemon
+- [x] **Firefox/Zen userChrome.css** — Gruvbox browser theme + deploy script
+- [x] **Systemd user services** — cliphist, hyprpaper, dunst, polkit-gnome
+- [x] **Enhanced .chezmoi.toml.tmpl** — per-machine booleans (is_laptop, has_nvidia, etc.)
+- [x] **Post-install checklist** — added to install.sh
+- [x] **Yazi config** — full Gruvbox config (yazi.toml, keymap.toml, theme.toml, init.lua)
+- [x] **DNS setup script** — setup-dns to route systemd-resolved through AdGuardHome
+- [x] **GTK bookmarks** — expanded with Projects, work, chezmoi dirs
+- [x] **chezmoi auto-apply** — systemd timer runs `chezmoi update --apply` every 6h
+- [x] **Neovim lazy-loading** — switched from eager to lazy-by-default with proper triggers
 
 ---
 
-## 🔵 P2 — Nice to have
+## 🟡 Still outstanding
 
-- [ ] **Add `swww` or `hyprwall` option** — wallpaper auto-fetch on first boot
-- [ ] **Add `~/.local/share/applications/` custom .desktop entries** — AppImages, scripts
-- [ ] **Add `dot_config/hypr/hyprland.conf` monitor template** — per-hostname monitor layout (eDP-1, DP-1, etc.)
-- [ ] **Add `dot_config/bottom/btop.tmpl`** — btop config to match theme
-- [ ] **Add `dot_config/kitty/kitty.conf`** — if ghostty ever needs a fallback
-- [ ] **Add `dot_config/swaync/config.json`** — notification-center alternative for when dunst is muted
-- [ ] **Prune duplicate packages** — both `pavucontrol` and `pwvucontrol` in packages.txt
+- [ ] **Noctalia QuickShell install** — Noctalia is referenced in hyprland.lua but has no automated install. Install manually:
+  ```
+  git clone https://github.com/cloudmanic/noctalia ~/.config/noctalia
+  qs -c noctalia-shell
+  ```
+
+- [ ] **Swaync config** — alternative notification center for when dunst is muted
+
+- [ ] **Hyprland windowrulev2 config migration** — some rules still in .conf (Lua API gaps), check future Hyprland releases for full Lua parity
+
+- [ ] **Prune duplicate env vars** — Wayland vars duplicated across dot_profile, dot_xprofile, and hyprland.lua. Consider consolidating to one source of truth
+
+---
+
+## 🔵 Future ideas
+
+- [ ] **Nix home-manager flake** — experimental Nix-based config alongside chezmoi
+- [ ] **Neovim LSP keymap consolidation** — move remaining LSP configs into keymaps.lua
+- [ ] **Multi-monitor kanshi profile** — dynamic monitor profiles for dock/undock
+- [ ] **Waybar config** — alternative status bar to Noctalia bar
 
 ---
 
 ## File manifest
 
 ```
-install.sh                         # Bootstrap (exists)
-packages.txt                       # Package list (needs updates ↑)
+install.sh                             # Bootstrap (updated with checklist)
+packages.txt                           # Package list (deduped)
 scripts/
-  run_once_install-packages.sh.tmpl  # Exists — installs official pacman pkgs
-  run_once_install-aur-helper.sh     # NEW — install paru/yay
-  run_once_install-aur-packages.sh   # NEW — install AUR pkgs
-  run_once_install-tpm.sh            # NEW — clone tmux plugins
-  run_once_enable-services.sh        # NEW — enable system services
-  run_once_set-default-shell.sh      # NEW — chsh to fish
-  run_once_setup-xdg-dirs.sh         # NEW — create XDG dirs
-  run_once_install-cursor-theme.sh   # NEW — Bibata + Papirus
-  run_once_setup-gpg.sh              # NEW — gpg-agent config
-dot_bashrc                           # NEW — bash fallback config
-dot_profile                          # NEW — login shell env
-dot_ssh/config.tmpl                  # NEW — SSH config template
-dot_gnupg/gpg-agent.conf             # NEW — GPG agent config
+  run_once_install-packages.sh.tmpl    # Official pacman packages
+  run_once_install-aur-helper.sh       # Install paru
+  run_once_install-aur-packages.sh     # AUR packages
+  run_once_install-tpm.sh              # Deprecated (herdr replaces tmux)
+  run_once_enable-services.sh          # Enable system services
+  run_once_set-default-shell.sh        # chsh to fish
+  run_once_setup-xdg-dirs.sh           # Create XDG dirs
+  run_once_install-cursor-theme.sh     # Bibata + Papirus
+  run_once_setup-gpg.sh               # GPG agent config
+  run_once_after_install-wallpaper.sh.tmpl  # NEW — download wallpaper
+  run_once_after_setup-firefox-chrome.sh    # NEW — deploy browser CSS
+dot_bashrc                             # Bash fallback config
+dot_profile                            # Login shell env (updated)
+dot_xprofile                           # NEW — X11 login env
+dot_inputrc                            # NEW — readline config
+dot_face                               # NEW — user avatar SVG
+dot_ssh/config.tmpl                    # SSH config template
+dot_gnupg/gpg-agent.conf               # GPG agent config
+dot_config/
+  btop/btop.conf                       # NEW — Gruvbox resource monitor
+  btop/themes/gruvbox_dark.theme       # NEW — btop theme
+  fastfetch/config.jsonc               # NEW — fetch config
+  wlogout/layout                       # NEW — session menu layout
+  wlogout/style.css                    # NEW — session menu style
+  systemd/user/*.service               # NEW — user service files
+  udiskie/config.yml                   # NEW — automount config
+  zen/browser/chrome/userChrome.css    # NEW — browser theme
 ```
-
----
-
-## New keybindings (no changes planned)
-
-Current keybinds are complete — no new bindings needed unless a new tool is added.

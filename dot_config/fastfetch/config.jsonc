@@ -1,0 +1,104 @@
+{
+  // =========================================================================
+  // fastfetch — System info fetch (Gruvbox Dark)
+  // Managed by chezmoi
+  // =========================================================================
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "version": 2,
+  "logo": {
+    "type": "small",
+    "color": {
+      "1": "blue",
+      "2": "white",
+      "3": "red",
+      "4": "yellow"
+    }
+  },
+  "display": {
+    "separator": " → ",
+    "color": {
+      "keys": "cyan",
+      "title": "green",
+      "separator": "gray"
+    }
+  },
+  "modules": [
+    { "type": "title", "format": "{6} {7}" },
+    { "type": "separator", "length": 0 },
+    {
+      "type": "custom",
+      "key": "OS",
+      "format": "Arch Linux"
+    },
+    {
+      "type": "kernel",
+      "key": "Kernel",
+      "format": "{1} {2}"
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime"
+    },
+    {
+      "type": "packages",
+      "key": "Packages",
+      "format": "{1} (pacman) + {2} (aur)"
+    },
+    {
+      "type": "shell",
+      "key": "Shell",
+      "format": "{1} {2}"
+    },
+    {
+      "type": "display",
+      "key": "Display",
+      "format": "{1}x{2} @{3}Hz"
+    },
+    {
+      "type": "wm",
+      "key": "WM",
+      "format": "{1}"
+    },
+    {
+      "type": "terminal",
+      "key": "Terminal",
+      "format": "{1} {2}"
+    },
+    { "type": "separator", "length": 0 },
+    {
+      "type": "cpu",
+      "key": "CPU",
+      "format": "{1} {2} ({3})"
+    },
+    {
+      "type": "gpu",
+      "key": "GPU",
+      "format": "{1} ({2})"
+    },
+    {
+      "type": "memory",
+      "key": "Memory",
+      "format": "{1} / {2} ({3})"
+    },
+    {
+      "type": "disk",
+      "key": "Disk",
+      "format": "{1} / {2} ({3})"
+    },
+    { "type": "separator", "length": 0 },
+    {
+      "type": "localip",
+      "key": "IP"
+    },
+    {
+      "type": "bluetooth",
+      "key": "Bluetooth",
+      "format": "{1}"
+    },
+    { "type": "separator", "length": 0 },
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# =============================================================================
+# bat config — cat alternative with syntax highlighting
+# Managed by chezmoi
+# =============================================================================
+
+# Theme
+--theme="Gruvbox-dark"
+
+# Show line numbers for non-empty lines
+--style="header,grid,numbers,changes"
+
+# Pager (use less with colors preserved)
+--pager="less -FR"
+
+# Tab width
+--tabs=2
+
+# Wrap
+--wrap="character"
+
+# Map file extensions to languages
+--map-syntax="*.conf:ini"
+--map-syntax="*.rasi:css"
+--map-syntax="*.lua:lua"
+--map-syntax="*.service:ini"
+--map-syntax="*.timer:ini"
+--map-syntax="*.toml:toml"
+--map-syntax="*.yaml:yaml"
+--map-syntax="*.yml:yaml"
+--map-syntax="*.xml:xml"
+--map-syntax="*.jsonc:json"

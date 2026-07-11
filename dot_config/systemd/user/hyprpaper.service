@@ -1,0 +1,16 @@
+# systemd user services — managed by chezmoi
+
+[Unit]
+Description=Wallpaper daemon (hyprpaper)
+Documentation=https://github.com/hyprwm/hyprpaper
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hyprpaper
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

@@ -1,0 +1,14 @@
+# chezmoi auto-apply timer — every 6 hours
+# Managed by chezmoi
+
+[Unit]
+Description=chezmoi auto-apply (every 6 hours)
+Documentation=https://chezmoi.io
+
+[Timer]
+OnCalendar=*-*-* 00,06,12,18:00:00
+Persistent=true
+RandomizedDelaySec=1800
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay [
+  <!ENTITY % userChromeCssDTD SYSTEM "chrome://branding/locale/brand.dtd">
+  %userChromeCssDTD;
+]>
+<!-- userChrome.xml — enable userChrome.css in Zen Browser / Firefox
+     Managed by chezmoi -->
+<overlay id="userChromeOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script>
+    if (window.location.href === "chrome://browser/content/browser.xhtml") {
+      const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+      const chromeDir = Services.dirsvc.get("UChrm", Ci.nsIFile);
+      const userChrome = chromeDir.clone();
+      userChrome.append("userChrome.css");
+      if (userChrome.exists()) {
+        const uri = Services.io.newFileURI(userChrome);
+        const sheet = document.createProcessingInstruction(
+          "xml-stylesheet",
+          `href="${uri.spec}" type="text/css"`
+        );
+        document.insertBefore(sheet, document.firstChild);
+      }
+    }
+  </script>
+</overlay>

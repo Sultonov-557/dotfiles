@@ -1,6 +1,20 @@
 -- Telescope — fuzzy finder
 return {
   "nvim-telescope/telescope.nvim",
+  cmd = "Telescope",
+  keys = {
+    { "<leader><space>", desc = "Find files" },
+    { "<leader>ff", desc = "Find files" },
+    { "<leader>fg", desc = "Live grep" },
+    { "<leader>fb", desc = "Buffers" },
+    { "<leader>fh", desc = "Help tags" },
+    { "<leader>fr", desc = "Recent files" },
+    { "<leader>fk", desc = "Keymaps" },
+    { "<leader>fq", desc = "Quickfix" },
+    { "<leader>fs", desc = "Treesitter symbols" },
+    { "<leader>fd", desc = "Diagnostics" },
+    { "<leader>f.", desc = "Resume" },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",

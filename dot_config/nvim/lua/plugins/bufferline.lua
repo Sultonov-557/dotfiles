@@ -1,6 +1,7 @@
 -- Bufferline — tab bar for buffers
 return {
   "akinsho/bufferline.nvim",
+  event = "UIEnter",
   version = "*",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {

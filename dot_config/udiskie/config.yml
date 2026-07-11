@@ -1,0 +1,29 @@
+# Udiskie — Automatic mount daemon config
+# Managed by chezmoi
+
+# Device management
+program_idle: true
+program_name: udiskie
+tray: auto
+notify: true
+automount: true
+smart_tray: true
+
+# Mount options
+mount_options:
+  - nosuid
+  - nodev
+  - noexec
+  - noatime
+  - uid=%u
+  - gid=%g
+  - fmask=0022
+  - dmask=0022
+
+# Recency
+recent_files: true
+recent_files_count: 20
+
+# File manager on mount
+file_manager: nautilus
+terminal: ghostty

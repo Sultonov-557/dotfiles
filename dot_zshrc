@@ -57,6 +57,9 @@ export EDITOR=nvim
 export VISUAL=nvim
 export MANPAGER='nvim +Man!'
 
+# bat theme
+export BAT_THEME="Gruvbox-dark"
+
 # ── Prompt ──────────────────────────────────────────────────────────────────
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"

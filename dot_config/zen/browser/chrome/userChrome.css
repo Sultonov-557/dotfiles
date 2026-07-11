@@ -1,0 +1,106 @@
+/* ===========================================================================
+ * userChrome.css — Firefox / Zen Browser (Gruvbox Dark)
+ * Place in: ~/.mozilla/firefox/<profile>/chrome/
+ * or:       ~/.zen/browser/<profile>/chrome/
+ * Managed by chezmoi
+ * =========================================================================== */
+
+/* Hide tab bar when only one tab is open (use with Tree Style Tab) */
+#tabbrowser-tabs {
+  visibility: collapse !important;
+}
+
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* Title bar */
+#titlebar {
+  visibility: collapse !important;
+}
+
+/* URL bar — Gruvbox Dark */
+#urlbar-background {
+  background-color: #282828 !important;
+  border-color: #504945 !important;
+}
+
+#urlbar:focus-within #urlbar-background {
+  border-color: #b8bb26 !important;
+  background-color: #1d2021 !important;
+}
+
+#urlbar-input {
+  color: #ebdbb2 !important;
+}
+
+/* Navigation toolbar */
+#nav-bar {
+  background-color: #1d2021 !important;
+  border-bottom: 1px solid #3c3836 !important;
+}
+
+/* Sidebar (Tree Style Tab, Sidebery) */
+#sidebar-box {
+  background-color: #282828 !important;
+}
+
+#sidebar-box #sidebar {
+  background-color: #282828 !important;
+}
+
+/* Bookmarks toolbar */
+#PersonalToolbar {
+  background-color: #1d2021 !important;
+  color: #ebdbb2 !important;
+}
+
+/* Selected tab */
+.tab-background[selected="true"] {
+  background-color: #504945 !important;
+  border-color: #b8bb26 !important;
+}
+
+/* Unselected tabs */
+.tab-background:not([selected="true"]) {
+  background-color: #282828 !important;
+}
+
+.tab-text {
+  color: #ebdbb2 !important;
+}
+
+/* Scrollbars */
+:root {
+  scrollbar-color: #504945 #282828 !important;
+}
+
+/* Context menus */
+menupopup, popup {
+  --menu-background-color: #282828 !important;
+  --menu-color: #ebdbb2 !important;
+  --menuitem-hover-background-color: #504945 !important;
+}
+
+/* Find bar */
+#findbar {
+  background-color: #282828 !important;
+  color: #ebdbb2 !important;
+}
+
+/* Status panel */
+#statuspanel-label {
+  background-color: #282828 !important;
+  color: #928374 !important;
+  border-color: #504945 !important;
+}
+
+/* Download button */
+#downloads-button {
+  fill: #83a598 !important;
+}
+
+/* Library window */
+window:not([chromehidden~="toolbar"]) #toolbar-menubar {
+  background-color: #1d2021 !important;
+}

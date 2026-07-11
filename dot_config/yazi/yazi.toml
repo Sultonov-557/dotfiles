@@ -1,0 +1,77 @@
+# =============================================================================
+# Yazi — Terminal file manager config (Gruvbox Dark)
+# Managed by chezmoi
+# =============================================================================
+
+[manager]
+sort_by = "modified"
+sort_dir_first = true
+sort_reverse = false
+linemode = "size"
+show_hidden = false
+show_symlink = true
+
+[preview]
+tab_size = 2
+max_width = 600
+max_height = 900
+cache_dir = "/tmp/yazi-cache"
+
+[open]
+rules = [
+  # Archives
+  { name = "*.tar.gz",  use = "tar -xzf \"$@\" && echo 'Extracted'" },
+  { name = "*.tar.bz2", use = "tar -xjf \"$@\" && echo 'Extracted'" },
+  { name = "*.zip",     use = "unzip -o \"$@\" -d \"${@:r}\" && echo 'Extracted'" },
+  { name = "*.rar",     use = "unrar x \"$@\" \"${@:r}/\" && echo 'Extracted'" },
+  # Images
+  { name = "*.png",  use = "imv \"$@\"",   for = "unix" },
+  { name = "*.jpg",  use = "imv \"$@\"",   for = "unix" },
+  { name = "*.jpeg", use = "imv \"$@\"",   for = "unix" },
+  { name = "*.gif",  use = "imv \"$@\"",   for = "unix" },
+  { name = "*.svg",  use = "imv \"$@\"",   for = "unix" },
+  { name = "*.bmp",  use = "imv \"$@\"",   for = "unix" },
+  # Video
+  { name = "*.mp4",  use = "mpv \"$@\"",   for = "unix" },
+  { name = "*.mkv",  use = "mpv \"$@\"",   for = "unix" },
+  { name = "*.webm", use = "mpv \"$@\"",   for = "unix" },
+  { name = "*.avi",  use = "mpv \"$@\"",   for = "unix" },
+  # Audio
+  { name = "*.mp3",  use = "mpv \"$@\"",   for = "unix" },
+  { name = "*.flac", use = "mpv \"$@\"",   for = "unix" },
+  { name = "*.wav",  use = "mpv \"$@\"",   for = "unix" },
+  { name = "*.ogg",  use = "mpv \"$@\"",   for = "unix" },
+  # Documents
+  { name = "*.pdf",  use = "zathura \"$@\"", for = "unix" },
+  { name = "*.djvu", use = "zathura \"$@\"", for = "unix" },
+  # Text / code
+  { name = "*.md",   use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.txt",  use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.lua",  use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.sh",   use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.py",   use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.rs",   use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.go",   use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.toml", use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.yaml", use = "nvim \"$@\"",   for = "unix" },
+  { name = "*.json", use = "nvim \"$@\"",   for = "unix" },
+]
+
+[opener]
+# Default openers
+text = [ "nvim \"$@\"" ]
+image = [ "imv \"$@\"" ]
+video = [ "mpv \"$@\"" ]
+audio = [ "mpv \"$@\"" ]
+pdf = [ "zathura \"$@\"" ]
+
+[status]
+show_perm = false
+show_owner = false
+show_group = false
+show_filetype = true
+show_mtime = true
+
+[which]
+show_help = false
+sort_by = "none"

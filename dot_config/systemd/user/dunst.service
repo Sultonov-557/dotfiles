@@ -1,0 +1,17 @@
+# systemd user services — managed by chezmoi
+
+[Unit]
+Description=Dunst notification daemon
+Documentation=https://dunst-project.org
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.Notifications
+ExecStart=/usr/bin/dunst
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target

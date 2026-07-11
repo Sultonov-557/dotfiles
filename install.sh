@@ -39,3 +39,12 @@ fi
 
 echo ""
 echo ":: Done! If any run_once scripts failed (e.g. sudo), re-run: chezmoi apply"
+echo ""
+echo ":: Post-install checklist:"
+echo "::  1. Wallpapers — run_once_install-wallpaper.sh downloads defaults"
+echo "::  2. Browser CSS — run_once_after_setup-firefox-chrome.sh deploys theme"
+echo "::  3. Noctalia QuickShell — install manually from github.com/cloudmanic/noctalia"
+echo "::     Then: qs -c noctalia-shell to start the shell/bar/control center"
+echo "::  4. Systemd user services — enable with:"
+echo "::     systemctl --user enable --now cliphist hyprpaper dunst polkit-gnome"
+echo "::  5. Set up GPG keys if needed: gpg --full-generate-key"
