@@ -42,10 +42,10 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0.93,
-        "barType": "framed",
+        "backgroundOpacity": 0.8,
+        "barType": "floating",
         "capsuleColorKey": "none",
-        "capsuleOpacity": 1,
+        "capsuleOpacity": 0,
         "contentPadding": 2,
         "density": "default",
         "displayMode": "always_visible",
@@ -74,7 +74,7 @@
         "showCapsule": true,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
-        "useSeparateOpacity": false,
+        "useSeparateOpacity": true,
         "widgetSpacing": 6,
         "widgets": {
             "center": [
@@ -622,16 +622,16 @@
         "fontDefaultScale": 1,
         "fontFixed": "monospace",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.93,
+        "panelBackgroundOpacity": 0,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
         "settingsPanelMode": "attached",
-        "settingsPanelSideBarCardStyle": false,
+        "settingsPanelSideBarCardStyle": true,
         "tooltipsEnabled": true,
         "translucentWidgets": false
     },
     "wallpaper": {
-        "automationEnabled": false,
+        "automationEnabled": true,
         "directory": "/home/sultonov/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
@@ -652,8 +652,8 @@
         "showHiddenFiles": false,
         "skipStartupTransition": false,
         "solidColor": "#1a1a2e",
-        "sortOrder": "name",
-        "transitionDuration": 1500,
+        "sortOrder": "random",
+        "transitionDuration": 500,
         "transitionEdgeSmoothness": 0.05,
         "transitionType": [
             "fade",
