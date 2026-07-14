@@ -168,6 +168,10 @@ map("n", "<leader>f.", function()
   telescope().resume()
 end, { desc = "Resume last picker" })
 
+-- ── Lazygit ──────────────────────────────────────────────────────────────────
+
+map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "LazyGit (toggle)" })
+
 -- ── Trouble ───────────────────────────────────────────────────────────────────
 
 map("n", "<leader>xx", function()
