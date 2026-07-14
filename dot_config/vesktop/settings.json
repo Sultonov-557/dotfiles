@@ -1,0 +1,19 @@
+{
+  "minimizeToTray": true,
+  "startMinimized": false,
+  "hardwareAcceleration": true,
+  "discordBranch": "stable",
+  "useWayland": true,
+  "enableCustomTitleBar": false,
+  "trayIcon": true,
+  "arRPC": true,
+  "voiceMulticast": true,
+  "splashThemes": false,
+  "splashBranch": "main",
+  "autoplayGifs": false,
+  "modTitlebarTweaks": false,
+  "inAppNotifications": true,
+  "macosAppNotifyFix": false,
+  "translucent": false,
+  "win32Transparency": false
+}

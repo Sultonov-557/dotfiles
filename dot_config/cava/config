@@ -1,0 +1,39 @@
+[general]
+bars = 0
+bar_width = 2
+bar_spacing = 1
+autosens = 1
+sensitivity = 100
+
+[input]
+method = pipewire
+source = auto
+sample_rate = 48000
+channels = 2
+
+[output]
+method = noncurses
+channels = mono
+mono_option = average
+orientation = bottom
+
+[color]
+background = '#1e1e2e'
+foreground = '#b4befe'
+gradient = 1
+gradient_color_1 = '#b4befe'
+gradient_color_2 = '#cba6f7'
+gradient_color_3 = '#f5c2e7'
+gradient_color_4 = '#f38ba8'
+
+[smoothing]
+noise_reduction = 77
+monstercat = 1
+waves = 0
+
+[eq]
+1 = 1.5
+2 = 1.2
+3 = 1.0
+4 = 0.8
+5 = 0.6

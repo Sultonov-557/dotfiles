@@ -110,6 +110,8 @@ qalculate-gtk
 wlogout
 obs-studio
 yazi
+spotify-launcher
+spicetify-cli  # AUR
 
 # ── System ────────────────────────────────────────────────────────────────────
 ufw

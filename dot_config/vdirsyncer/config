@@ -1,0 +1,23 @@
+# Vdirsyncer config — syncs CalDAV/CardDAV calendars and contacts
+# https://vdirsyncer.pimutils.org/en/stable/config.html
+
+# Uncomment and configure for your CalDAV provider:
+
+# [general]
+# status_path = ~/.local/share/vdirsyncer/status/
+
+# [pair caldav]
+# a = "caldav_local"
+# b = "caldav_remote"
+# collections = ["from a", "from b"]
+
+# [storage caldav_local]
+# type = "filesystem"
+# path = ~/.calendars/
+# fileext = ".ics"
+
+# [storage caldav_remote]
+# type = "caldav"
+# url = "https://your-caldav-server.com"
+# username = "your@email.com"
+# password.fetch = ["command", "secret-tool", "lookup", "keyring-name"]

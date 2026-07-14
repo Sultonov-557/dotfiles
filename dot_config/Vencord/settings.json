@@ -1,0 +1,143 @@
+{
+  "notices": [],
+  "plugins": {
+    "BetterRoleColors": {
+      "enabled": true
+    },
+    "BetterVolume": {
+      "enabled": true
+    },
+    "CallTimer": {
+      "enabled": true
+    },
+    "CopyUserURLs": {
+      "enabled": true
+    },
+    "CrashHandler": {
+      "enabled": true
+    },
+    "FavoriteEmojiFirst": {
+      "enabled": true
+    },
+    "FriendInvites": {
+      "enabled": true
+    },
+    "GameActivityToggle": {
+      "enabled": true
+    },
+    "ImageZoom": {
+      "enabled": true
+    },
+    "MessageLogger": {
+      "enabled": true
+    },
+    "MessageTags": {
+      "enabled": true
+    },
+    "MoreUserTags": {
+      "enabled": true
+    },
+    "MuteNewGuild": {
+      "enabled": true
+    },
+    "NoBlockedMessages": {
+      "enabled": true
+    },
+    "NoF1": {
+      "enabled": true
+    },
+    "NoMosaic": {
+      "enabled": true
+    },
+    "NoRPC": {
+      "enabled": true
+    },
+    "NoTrack": {
+      "enabled": true
+    },
+    "NormalizeChannelNames": {
+      "enabled": true
+    },
+    "Notifications": {
+      "enabled": true
+    },
+    "OnePingPerDM": {
+      "enabled": true
+    },
+    "OpenInApp": {
+      "enabled": true
+    },
+    "PermissionViewer": {
+      "enabled": true
+    },
+    "PlatformIndicators": {
+      "enabled": true
+    },
+    "PreviewMessage": {
+      "enabled": true
+    },
+    "RelationshipNotifier": {
+      "enabled": true
+    },
+    "ReplaceGoogleSearch": {
+      "enabled": true
+    },
+    "ServerInfo": {
+      "enabled": true
+    },
+    "ShikiCodeblocks": {
+      "enabled": true
+    },
+    "ShowHiddenChannels": {
+      "enabled": true
+    },
+    "ShowTimeoutDuration": {
+      "enabled": true
+    },
+    "SilentMessageToggle": {
+      "enabled": true
+    },
+    "SortFriendRequests": {
+      "enabled": true
+    },
+    "ThemeLinks": {
+      "enabled": true
+    },
+    "TypingTweaks": {
+      "enabled": true
+    },
+    "UnlimitedAccounts": {
+      "enabled": true
+    },
+    "UnsuppressEmbeds": {
+      "enabled": true
+    },
+    "UrbanDictionary": {
+      "enabled": true
+    },
+    "UserVoiceShow": {
+      "enabled": true
+    },
+    "ValidUser": {
+      "enabled": true
+    },
+    "ViewIcons": {
+      "enabled": true
+    },
+    "VoiceMessages": {
+      "enabled": true
+    },
+    "WebhookManager": {
+      "enabled": true
+    },
+    "WhoPosted": {
+      "enabled": true
+    }
+  },
+  "themeLinks": [
+    "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+  ],
+  "enabledThemes": [
+    "catppuccin-mocha"
+  ]
+}

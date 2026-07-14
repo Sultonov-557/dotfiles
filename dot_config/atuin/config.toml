@@ -1,0 +1,19 @@
+# Atuin config
+# https://docs.atuin.sh
+
+enter_accept = true
+filter_mode = "global"
+search_mode = "fuzzy"
+style = "compact"
+inline_height = 8
+show_preview = true
+
+[search]
+filters = ["global", "host", "session", "directory"]
+
+[stats]
+common_prefix = ["sudo"]
+ignored_commands = ["cd", "ls", "vi"]
+
+[sync]
+records = true
