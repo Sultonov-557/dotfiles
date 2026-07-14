@@ -1,0 +1,26 @@
+# =============================================================================
+# caddy.service — User systemd unit for Caddy web server
+# Managed by chezmoi
+# =============================================================================
+# Enable: systemctl --user enable --now caddy
+# Logs:   journalctl --user -fu caddy
+#
+# NOTE: Privileged port 80/443 requires CAP_NET_BIND_SERVICE or sudo.
+# Use port 8080 for unprivileged reverse proxy.
+
+[Unit]
+Description=Caddy web server (user-level)
+Documentation=https://caddyserver.com/docs/
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/caddy run --config %h/.config/caddy/Caddyfile
+ExecReload=/usr/bin/caddy reload --config %h/.config/caddy/Caddyfile
+TimeoutStopSec=5
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

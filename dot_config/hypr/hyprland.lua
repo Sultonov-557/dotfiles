@@ -209,7 +209,7 @@ hl.bind(mainMod .. " + Return",        hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Return",hl.dsp.exec_cmd(terminal .. " --working-directory=~/"))
 
 -- --- Most used apps (one-key access) ---
-hl.bind(mainMod .. " + W",             hl.dsp.exec_cmd("zen"), { description = "Zen browser" })
+hl.bind(mainMod .. " + W",             hl.dsp.exec_cmd("zen-browser"), { description = "Zen browser" })
 hl.bind(mainMod .. " + A",             hl.dsp.exec_cmd("obsidian"), { description = "Obsidian" })
 hl.bind(mainMod .. " + G",             hl.dsp.exec_cmd("steam"), { description = "Steam" })
 hl.bind(mainMod .. " + E",             hl.dsp.exec_cmd(fileManager))
@@ -327,7 +327,8 @@ hl.bind(mainMod .. " + SHIFT + O",     hl.dsp.exec_cmd(noci .. " monitors off"),
 -- =============================================================================
 
 -- Floating windows
-hl.window_rule({ name = "float-pip",    match = { title = "^(Picture-in-Picture)$" },     float = true })
+-- Picture-in-Picture (float handled here; pin+size+center in hyprland.conf)
+hl.window_rule({ name = "float-pip", match = { title = "^(Picture-in-Picture)$" }, float = true })
 hl.window_rule({ name = "float-dropdown", match = { class = "^(dropdown)$" }, float = true, no_blur = true, })
 hl.window_rule({ name = "ws-dropdown", match = { class = "^(dropdown)$" }, workspace = "special:dropdown" })
 hl.window_rule({ name = "float-volume", match = { title = "^(Volume Control)$" },          float = true })

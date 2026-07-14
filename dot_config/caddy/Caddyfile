@@ -1,0 +1,16 @@
+# =============================================================================
+# Caddyfile — User-level Caddy config
+# Managed by chezmoi
+# =============================================================================
+# Run: caddy run --config ~/.config/caddy/Caddyfile
+# Or enable: systemctl --user enable --now caddy
+#
+# Uncomment to serve Glance dashboard on port 8080:
+# :8080 {
+#     reverse_proxy localhost:7477
+# }
+
+# Default: serve nothing, just validate config
+:0 {
+    respond "Caddy is running (user-level)"
+}

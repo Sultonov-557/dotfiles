@@ -1,0 +1,164 @@
+{
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "glm-5:cloud": {
+          "name": "glm-5:cloud"
+        },
+        "main": {
+          "name": "main"
+        }
+      }
+    },
+    "9router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "9router",
+      "options": {
+        "baseURL": "http://127.0.0.1:20128/v1"
+      },
+      "models": {
+        "main": {
+          "name": "main"
+        }
+      }
+    },
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LiteLLM",
+      "options": {
+        "baseURL": "http://litellm.home/v1",
+        "apiKey": "{file:~/.config/sops/age/keys.txt}"
+      },
+      "models": {
+        "main": {
+          "name": "LiteLLM Main"
+        }
+      }
+    }
+  },
+  "default_agent": "orchestrator",
+  "agent": {
+    "build": { "disable": true },
+    "plan": { "disable": true },
+    "general": { "disable": true },
+    "explore": { "disable": true },
+    "orchestrator": {
+      "description": "Coordinate planning, implementation, and review subagents",
+      "mode": "primary",
+      "prompt": "You are the orchestrator. Coordinate subagents to complete tasks efficiently.\n\nGuidelines:\n- Break complex tasks into smaller steps handled by appropriate subagents\n- Use explorer for research, planner for planning, implementer for coding, reviewer for checking\n- Save important findings to memory after each research task\n- Ask clarifying questions instead of assuming intent\n- Provide meaningful feedback to users about progress and decisions",
+      "permission": {
+        "task": {
+          "*": "deny",
+          "planner": "allow",
+          "explorer": "allow",
+          "implementer": "allow",
+          "reviewer": "allow"
+        }
+      }
+    },
+    "planner": {
+      "description": "Create concrete implementation plans with constraints",
+      "mode": "subagent",
+      "prompt": "You are the planner. Create detailed implementation plans.\n\nGuidelines:\n- First explore the codebase to understand existing patterns\n- Save research findings to memory after exploration\n- Specify exact files, functions, and changes needed\n- Include verification steps in the plan\n- Ask questions if requirements are unclear",
+      "tools": {
+        "edit": false,
+        "write": false,
+        "patch": false,
+        "bash": false
+      }
+    },
+    "explorer": {
+      "description": "Fast repository exploration and codebase discovery",
+      "mode": "subagent",
+      "prompt": "You are the explorer. Research codebase and find relevant code.\n\nGuidelines:\n- Search thoroughly for patterns, conventions, and related code\n- Save key findings to memory using memory_remember\n- Report exact file paths and line numbers\n- Don't assume context, ask if something is unclear\n- Provide specific, actionable findings",
+      "tools": {
+        "edit": false,
+        "write": false,
+        "patch": false
+      }
+    },
+    "implementer": {
+      "description": "Implement approved changes following project conventions",
+      "mode": "subagent",
+      "prompt": "You are the implementer. Write code following project conventions.\n\nGuidelines:\n- Study existing code in the target files before editing\n- Match the coding style of the surrounding code\n- Write clean, meaningful code with appropriate naming\n- Don't assume requirements, ask for clarification if unclear\n- Provide brief summary after completing changes"
+    },
+    "reviewer": {
+      "description": "Review edits for correctness, risk, and style",
+      "mode": "subagent",
+      "prompt": "You are the reviewer. Check code quality and correctness.\n\nGuidelines:\n- Verify code follows project conventions and style\n- Check for potential bugs, security issues, or edge cases\n- Ensure meaningful variable/function names\n- Ask if something seems off rather than assuming intent\n- Provide constructive, specific feedback",
+      "tools": {
+        "edit": false,
+        "write": false,
+        "patch": false
+      }
+    }
+  },
+  "permission": {
+    "bash": "allow",
+    "edit": "allow",
+    "read": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "list": "allow",
+    "lsp": "allow",
+    "google_search": "allow",
+    "websearch": "allow",
+    "webfetch": "allow",
+    "question": "allow",
+    "memory": "allow",
+    "todowrite": "allow",
+    "todoread": "allow",
+    "skill": {
+      "*": "ask",
+      "nix-*": "allow",
+      "git-*": "allow",
+      "docker-*": "allow"
+    },
+    "task": {
+      "*": "ask",
+      "planner": "allow",
+      "explorer": "allow",
+      "implementer": "allow",
+      "reviewer": "allow"
+    }
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  },
+  "watcher": {
+    "ignore": [
+      ".git/**",
+      "node_modules/**",
+      "result/**"
+    ]
+  },
+  "plugin": [
+    "opencode-pty",
+    "@gotgenes/opencode-agent-identity",
+    "opencode-antigravity-auth",
+    "opencode-multi-openai-codex-auth",
+    "opencode-agent-skills",
+    "opencode-websearch",
+    "@nick-vi/opencode-type-inject",
+    "@0xsero/open-queue",
+    "@tarquinen/opencode-dcp",
+    "@morphllm/opencode-morph-plugin",
+    "@ramtinj95/opencode-tokenscope",
+    "@kdco/notify",
+    "@zenobius/opencode-skillful",
+    "@plannotator/opencode",
+    "@spoons-and-mirrors/subtask2",
+    "opencode-memory",
+    "opencode-agent-memory",
+    "opencode-git-context",
+    "opencode-mystatus",
+    "open-trees"
+  ]
+}

@@ -131,3 +131,118 @@ papirus-icon-theme
 # grimblast-git (if not in official repos)
 # wl-screenrec
 # rofi-emoji
+
+# ── From old NixOS config (migrated) ─────────────────────────────────────────
+# Gaming
+steam
+gamescope
+gamemode
+lutris
+wine
+wine-gecko
+wine-mono
+
+# Disk & System
+gparted
+baobab
+ncdu
+mission-center
+
+# Communication (comment out if not wanted)
+telegram-desktop
+discord
+thunderbird
+
+# Network
+nmap
+wireshark-qt
+tcpdump
+tailscale
+doggo
+
+# CLI tools
+htop
+procs
+thefuck
+hyperfine
+lnav
+television
+xh
+hurl
+
+# Keyboard firmware
+qmk
+# via — AUR: via-bin
+
+# Torrent
+qbittorrent
+
+# Power management
+power-profiles-daemon
+thermald
+upower
+
+# Printing extras
+hplip
+sane
+simple-scan
+
+# Office
+libreoffice-fresh
+
+# Calendar
+khal
+vdirsyncer
+
+# Disk imaging
+# caligula — AUR: caligula-git
+
+# ── Web Servers & Dashboards ────────────────────────────────────────────────
+caddy
+glance
+
+# Audio extras
+pulsemixer
+easyeffects
+
+# ── AI / ML ──────────────────────────────────────────────────────────────────
+ollama
+ollama-cuda
+opencode
+opencode-desktop
+
+# ── Pentesting / Security (from old NixOS config) ────────────────────────────
+nmap
+wireshark-qt
+tcpdump
+hydra
+john
+hashcat
+# wordlists — AUR: wordlists (rockyou, etc.)
+metasploit
+bettercap
+ettercap
+amass
+sherlock
+subfinder
+nuclei
+netcat-openbsd
+inetutils
+burpsuite
+# caido — AUR: caido-bin
+wifite2
+whatweb
+katana
+assetfinder
+dnsx
+# websploit — AUR: websploit-git
+
+# ── Databases (from old NixOS config) ───────────────────────────────────────
+postgresql
+postgresql-libs
+redis
+
+# ─── Kubernetes / Containers (from old NixOS config) ────────────────────────
+# kubectl
+# minikube
+# kind

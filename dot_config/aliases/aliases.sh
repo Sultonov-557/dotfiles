@@ -193,3 +193,19 @@ alias speedwget='wget -O /dev/null http://speedtest.tele2.net/100MB.zip'
 alias flushdns='sudo resolvectl flush-caches'
 alias ports-mine='ss -tulpn | grep -E ":(3000|5173|8080|8443)"' # common dev ports
 alias net-int='ip link show'                                    # network interfaces
+
+# ── Navigation QoL (from old NixOS config) ────────────────────────────────────
+alias bk='cd -'            # go back to previous directory
+alias e='exit'             # shortest exit
+alias copy='cp -i'         # safe copy (ask before overwrite)
+alias move='mv -i'         # safe move (ask before overwrite)
+alias diff='diff -u'       # unified diff by default
+alias tailf='tail -f'      # follow log files
+alias watch='watch -n 1'   # watch every 1 second by default
+
+# ── System Monitoring (from old NixOS config) ────────────────────────────────
+alias ht='htop'            # interactive process viewer
+alias pm='procs'           # modern process listing
+
+# ── Docker extras ────────────────────────────────────────────────────────────
+alias dstop='docker stop $(docker ps -q)'  # stop all running containers

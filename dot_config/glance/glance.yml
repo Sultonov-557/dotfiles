@@ -1,0 +1,139 @@
+# =============================================================================
+# Glance Dashboard — config.yml
+# Managed by chezmoi
+# =============================================================================
+# Docs: https://github.com/nicedoc/glance
+# Run: glance --config ~/.config/glance/glance.yml
+# Auto-start: systemctl --user enable --now glance
+
+server:
+  host: 0.0.0.0
+  port: 7477
+  baseUrl: /
+
+theme:
+  backgroundOpacity: 0.4
+  blur: true
+  accent: "#b8bb26"     # Gruvbox green
+  background: "#282828"   # Gruvbox bg
+  primary: "#ebdbb2"      # Gruvbox fg
+  secondary: "#a89984"    # Gruvbox gray
+  success: "#98971a"      # Gruvbox green
+  danger: "#cc241d"       # Gruvbox red
+  info: "#458588"         # Gruvbox blue
+  font:
+    family: JetBrainsMono Nerd Font
+
+widgets:
+  # ── Welcome ──────────────────────────────────────────────────────────────
+  - type: header
+    text: Good {greeting}, sultonov
+
+  # ─── Time & Date ──────────────────────────────────────────────────────────
+  - type: clock
+    time:
+      twelvehour: false
+      format: HH:mm
+    date:
+      format: dddd, MMMM Do
+
+  # ── Search ────────────────────────────────────────────────────────────────
+  - type: search
+    label: "  Search"
+    searchEngine: "https://startpage.com/sp/search?query={query}"
+    shortcuts:
+      - title: Google
+        url: "https://google.com/search?q={query}"
+      - title: YouTube
+        url: "https://youtube.com/results?search_query={query}"
+      - title: GitHub
+        url: "https://github.com/search?q={query}"
+      - title: NixOS Packages
+        url: "https://search.nixos.org/packages?query={query}"
+      - title: Arch Wiki
+        url: "https://wiki.archlinux.org/index.php?search={query}"
+      - title: Reddit
+        url: "https://reddit.com/search?q={query}"
+
+  # ── Bookmarks ─────────────────────────────────────────────────────────────
+  - type: group
+    widgets:
+      - type: bookmarks
+        name: "  Favorites"
+        links:
+          - title: GitHub
+            url: https://github.com
+            icon: github
+          - title: Gmail
+            url: https://mail.google.com
+            icon: email
+          - title: YouTube
+            url: https://youtube.com
+            icon: youtube
+          - title: Reddit
+            url: https://reddit.com
+            icon: reddit
+
+      - type: bookmarks
+        name: "  Dev"
+        links:
+          - title: Stack Overflow
+            url: https://stackoverflow.com
+            icon: stackoverflow
+          - title: Arch Wiki
+            url: https://wiki.archlinux.org
+            icon: archlinux
+          - title: Arch Packages
+            url: https://archlinux.org/packages
+            icon: package
+          - title: AUR
+            url: https://aur.archlinux.org
+            icon: aur
+
+      - type: bookmarks
+        name: "  AI & Services"
+        links:
+          - title: Hermes Agent
+            url: https://hermes-agent.nousresearch.com/docs
+            icon: robot
+          - title: ChatGPT
+            url: https://chat.openai.com
+            icon: openai
+          - title: Claude
+            url: https://claude.ai
+            icon: claude
+          - title: Ollama (local)
+            url: http://localhost:11434
+            icon: server
+
+  # ── Weather ───────────────────────────────────────────────────────────────
+  - type: weather
+    location: Tashkent, Uzbekistan
+    units: metric
+    hideHeader: false
+
+  # ── RSS Feeds ──────────────────────────────────────────────────────────────
+  - type: rss
+    name: "  News"
+    limit: 5
+    collapseAfter: 0
+    cache: 30m
+    feeds:
+      - url: https://news.ycombinator.com/rss
+      - url: https://www.archlinux.org/feeds/news
+
+  - type: rss
+    name: "  GitHub"
+    limit: 5
+    collapseAfter: 0
+    cache: 30m
+    feeds:
+      - url: https://github.com/NousResearch/hermes-agent/releases.atom
+
+  # ── System Monitor ─────────────────────────────────────────────────────────
+  - type: monitor
+    name: "  System"
+    cache: 30s
+    sites:
+      - title: Local
+        url: http://localhost:7477

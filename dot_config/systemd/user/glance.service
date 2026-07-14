@@ -1,0 +1,20 @@
+# =============================================================================
+# glance.service — User systemd unit for Glance dashboard
+# Managed by chezmoi
+# =============================================================================
+# Enable: systemctl --user enable --now glance
+# Logs:   journalctl --user -fu glance
+
+[Unit]
+Description=Glance self-hosted dashboard
+Documentation=https://github.com/nicedoc/glance
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/glance --config %h/.config/glance/glance.yml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
