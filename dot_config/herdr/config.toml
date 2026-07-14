@@ -89,10 +89,7 @@ key = "prefix+\\"
 type = "shell"
 command = "herdr-navigator split right"
 
-[[keys.command]]
-key = "prefix+minus"
-type = "shell"
-command = "herdr-navigator split down"
+
 
 # --- herdr-plus plugin bindings
 [keys.indexed]
