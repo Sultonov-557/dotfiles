@@ -2,7 +2,7 @@
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
-  version = false, -- latest
+  version = "0.2.0", -- stable release
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
