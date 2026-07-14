@@ -168,6 +168,11 @@ map("n", "<leader>f.", function()
   telescope().resume()
 end, { desc = "Resume last picker" })
 
+-- <leader>/ is a quick shorthand for live grep
+map("n", "<leader>/", function()
+  telescope().live_grep()
+end, { desc = "Live grep" })
+
 -- ── Lazygit ──────────────────────────────────────────────────────────────────
 
 map("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "LazyGit (toggle)" })
