@@ -8,14 +8,12 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  opts = {
-    floating_window_winblend = 3,
-    floating_window_scaling_factor = 0.95,
-    floating_window_corner_color = "#b4befe",
-    floating_window_use_alpha = true,
-    use_custom_config_file_path = false,
-    show_number = false,
-    show_relative_number = false,
-    show_hidden_files = true,
-  },
+  -- Config via vim globals (plugin has no setup() function)
+  init = function()
+    vim.g.lazygit_floating_window_winblend = 3
+    vim.g.lazygit_floating_window_scaling_factor = 0.95
+    vim.g.lazygit_floating_window_corner_color = "#b4befe"
+    vim.g.lazygit_floating_window_use_alpha = true
+    vim.g.lazygit_show_hidden_files = true
+  end,
 }
