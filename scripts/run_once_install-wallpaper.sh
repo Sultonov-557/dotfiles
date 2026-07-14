@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 # =============================================================================
 # run_once_install-wallpaper.sh
-# Wallpapers are bundled in dotfiles/dot_pictures/Wallpapers/
-# and deployed automatically by chezmoi (files apply before run_once scripts).
+# Wallpapers are deployed via git submodule (orangci/walls-catppuccin-mocha)
+# at Pictures/Wallpapers/catppuccin-mocha/
 # =============================================================================
 set -euo pipefail
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
-PRIMARY_WALL="$WALLPAPER_DIR/gruvbox.png"
+WALLS_SUBMODULE="$WALLPAPER_DIR/catppuccin-mocha"
 
-if [ -f "$PRIMARY_WALL" ]; then
-  echo ":: Wallpapers deployed to $WALLPAPER_DIR"
-  echo ":: Available: gruvbox.png, catppuccin.png, everforest.png, nord.png"
+if [ -d "$WALLS_SUBMODULE" ]; then
+  COUNT=$(find "$WALLS_SUBMODULE" -type f \( -name "*.jpg" -o -name "*.png" \) 2>/dev/null | wc -l)
+  echo ":: Catppuccin Mocha wallpapers deployed ($COUNT wallpapers)"
+  echo ":: Location: $WALLS_SUBMODULE/"
 else
-  echo ":: Wallpapers not deployed yet — run 'chezmoi apply' again or copy manually"
-  echo ":: Expected location: $WALLPAPER_DIR/"
+  echo ":: Wallpaper submodule not initialized — run:"
+  echo "    cd ~/.local/share/chezmoi && git submodule update --init --depth 1"
+  echo "  then 'chezmoi apply' to deploy"
 fi
 
 exit 0

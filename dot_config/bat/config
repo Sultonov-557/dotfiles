@@ -4,7 +4,7 @@
 # =============================================================================
 
 # Theme
---theme="Gruvbox-dark"
+--theme="Catppuccin Mocha"
 
 # Show line numbers for non-empty lines
 --style="header,grid,numbers,changes"

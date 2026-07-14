@@ -57,4 +57,4 @@ require("lazy").setup({
 })
 
 -- Load colorscheme
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme("catppuccin")

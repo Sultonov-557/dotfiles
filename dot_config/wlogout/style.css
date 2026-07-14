@@ -1,5 +1,5 @@
 /* ===========================================================================
- * Wlogout — Style (Gruvbox Dark)
+ * Wlogout — Style (Catppuccin Mocha)
  * Managed by chezmoi
  * =========================================================================== */
 
@@ -9,15 +9,15 @@
 }
 
 window {
-    background-color: rgba(40, 40, 40, 0.85);
-    border: 2px solid #504945;
+    background-color: rgba(30, 30, 46, 0.85);
+    border: 2px solid #45475a;
     border-radius: 16px;
 }
 
 button {
-    background-color: #282828;
-    color: #ebdbb2;
-    border: 2px solid #504945;
+    background-color: #1e1e2e;
+    color: #bac2de;
+    border: 2px solid #45475a;
     border-radius: 12px;
     background-repeat: no-repeat;
     background-position: center;
@@ -29,16 +29,16 @@ button {
 }
 
 button:hover {
-    background-color: #3c3836;
-    border-color: #b8bb26;
-    color: #b8bb26;
+    background-color: #313244;
+    border-color: #b4befe;
+    color: #b4befe;
     outline: none;
 }
 
 button:focus {
-    background-color: #504945;
-    border-color: #83a598;
-    color: #83a598;
+    background-color: #45475a;
+    border-color: #89b4fa;
+    color: #89b4fa;
 }
 
 /* Individual button overrides */

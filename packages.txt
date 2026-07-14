@@ -127,7 +127,7 @@ lz4
 # ── AUR (uncomment per machine) ───────────────────────────────────────────────
 bibata-cursor-theme
 papirus-icon-theme
-# gruvbox-dark-gtk
+# catppuccin-gtk-theme-mocha
 # grimblast-git (if not in official repos)
 # wl-screenrec
 # rofi-emoji

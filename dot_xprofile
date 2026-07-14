@@ -25,9 +25,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export NIXOS_OZONE_WL=1
 
 # Theme
-export GTK_THEME=Gruvbox-Dark
+export GTK_THEME=Catppuccin-Mocha-Standard-Lavender-Dark
 export QT_STYLE_OVERRIDE=kvantum
-export BAT_THEME=Gruvbox-dark
+export BAT_THEME=Catppuccin\ Mocha
 
 # Cursor
 export XCURSOR_THEME=Bibata-Modern-Classic

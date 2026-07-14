@@ -1,5 +1,5 @@
 # =============================================================================
-# Yazi — Gruvbox Dark theme
+# Yazi — Catppuccin Mocha theme
 # Managed by chezmoi
 # =============================================================================
 
@@ -10,102 +10,102 @@ use = "catppuccin-mocha"
 # Normal mode
 separator_open = ""
 separator_close = ""
-separator_style = { fg = "#504945", bg = "#282828" }
+separator_style = { fg = "#45475a", bg = "#1e1e2e" }
 
 # Modes
-mode_normal = { fg = "#282828", bg = "#b8bb26" }
-mode_select = { fg = "#282828", bg = "#83a598" }
-mode_unset = { fg = "#282828", bg = "#928374" }
+mode_normal = { fg = "#1e1e2e", bg = "#b4befe" }
+mode_select = { fg = "#1e1e2e", bg = "#89b4fa" }
+mode_unset = { fg = "#1e1e2e", bg = "#6c7086" }
 
 # Progress
-progress_label = { fg = "#ebdbb2", bg = "#504945" }
-progress_normal = { fg = "#b8bb26", bg = "#504945" }
+progress_label = { fg = "#cdd6f4", bg = "#45475a" }
+progress_normal = { fg = "#b4befe", bg = "#45475a" }
 
 # Permissions
-permissions_t = { fg = "#fabd2f" }
-permissions_r = { fg = "#b8bb26" }
-permissions_w = { fg = "#fb4934" }
-permissions_x = { fg = "#83a598" }
-permissions_s = { fg = "#d3869b" }
+permissions_t = { fg = "#f9e2af" }
+permissions_r = { fg = "#a6e3a1" }
+permissions_w = { fg = "#f38ba8" }
+permissions_x = { fg = "#89b4fa" }
+permissions_s = { fg = "#cba6f7" }
 
 [manager]
 # Preview
-preview_hovered = { fg = "#ebdbb2", bg = "#3c3836" }
+preview_hovered = { fg = "#cdd6f4", bg = "#313244" }
 
 # Tabs
-tab_active = { fg = "#1d2021", bg = "#b8bb26" }
-tab_inactive = { fg = "#928374", bg = "#282828" }
+tab_active = { fg = "#11111b", bg = "#b4befe" }
+tab_inactive = { fg = "#6c7086", bg = "#1e1e2e" }
 tab_width = 1
 
 # Borders
-border_style = { fg = "#504945" }
+border_style = { fg = "#45475a" }
 border_symbol = "│"
 
 # Synthesis
-synt_dir = { fg = "#83a598", bold = true }
-synt_exec = { fg = "#b8bb26", bold = true }
-synt_link = { fg = "#d3869b", bold = true }
-synt_socket = { fg = "#8ec07c" }
-synt_pipe = { fg = "#8ec07c" }
-synt_block = { fg = "#fe8019" }
-synt_char = { fg = "#fe8019" }
-synt_other = { fg = "#ebdbb2" }
+synt_dir = { fg = "#89b4fa", bold = true }
+synt_exec = { fg = "#a6e3a1", bold = true }
+synt_link = { fg = "#cba6f7", bold = true }
+synt_socket = { fg = "#94e2d5" }
+synt_pipe = { fg = "#94e2d5" }
+synt_block = { fg = "#fab387" }
+synt_char = { fg = "#fab387" }
+synt_other = { fg = "#cdd6f4" }
 
 # Selection
-selected = { fg = "#fabd2f", underline = true }
-cut = { fg = "#fb4934", underline = true }
+selected = { fg = "#f9e2af", underline = true }
+cut = { fg = "#f38ba8", underline = true }
 
 # Find
-find_key = { fg = "#b8bb26", bold = true }
-find_pos = { fg = "#1d2021", bg = "#fabd2f" }
+find_key = { fg = "#a6e3a1", bold = true }
+find_pos = { fg = "#1e1e2e", bg = "#f9e2af" }
 
 # Highlight
-hovered = { fg = "#ebdbb2", bg = "#3c3836" }
+hovered = { fg = "#cdd6f4", bg = "#313244" }
 
 [header]
 # Header (for the top line showing cwd, etc.)
-header_style = { fg = "#928374", bg = "#1d2021" }
-header_suffix = { fg = "#928374", bg = "#1d2021" }
+header_style = { fg = "#6c7086", bg = "#11111b" }
+header_suffix = { fg = "#6c7086", bg = "#11111b" }
 
 [which]
 # Key binding popup
 cols = 2
-mask = { bg = "#1d2021" }
-cands = { fg = "#ebdbb2", bg = "#282828" }
-cands_active = { fg = "#b8bb26", bg = "#504945" }
-rest = { fg = "#928374" }
+mask = { bg = "#11111b" }
+cands = { fg = "#cdd6f4", bg = "#1e1e2e" }
+cands_active = { fg = "#a6e3a1", bg = "#45475a" }
+rest = { fg = "#6c7086" }
 separator = "  ➜  "
 
 [help]
 # Help menu
-on = { fg = "#ebdbb2", bg = "#282828" }
-run = { fg = "#928374" }
-desc = { fg = "#83a598" }
-footer = { fg = "#928374", bg = "#1d2021" }
+on = { fg = "#cdd6f4", bg = "#1e1e2e" }
+run = { fg = "#6c7086" }
+desc = { fg = "#89b4fa" }
+footer = { fg = "#6c7086", bg = "#11111b" }
 
 [input]
 # Input bar
-border = { fg = "#83a598" }
-title = { fg = "#b8bb26" }
-value = { fg = "#ebdbb2", bg = "#282828" }
-selected = { fg = "#1d2021", bg = "#b8bb26" }
+border = { fg = "#89b4fa" }
+title = { fg = "#a6e3a1" }
+value = { fg = "#cdd6f4", bg = "#1e1e2e" }
+selected = { fg = "#1e1e2e", bg = "#b4befe" }
 
 [select]
 # Selection prompt
-border = { fg = "#fabd2f" }
-active = { fg = "#1d2021", bg = "#b8bb26" }
-inactive = { fg = "#ebdbb2", bg = "#3c3836" }
+border = { fg = "#f9e2af" }
+active = { fg = "#1e1e2e", bg = "#a6e3a1" }
+inactive = { fg = "#cdd6f4", bg = "#313244" }
 
 [notify]
 # Notifications
-title_info = { fg = "#83a598" }
-title_warn = { fg = "#fabd2f" }
-title_error = { fg = "#fb4934" }
-icon_info = { fg = "#83a598" }
-icon_warn = { fg = "#fabd2f" }
-icon_error = { fg = "#fb4934" }
+title_info = { fg = "#89b4fa" }
+title_warn = { fg = "#f9e2af" }
+title_error = { fg = "#f38ba8" }
+icon_info = { fg = "#89b4fa" }
+icon_warn = { fg = "#f9e2af" }
+icon_error = { fg = "#f38ba8" }
 
 [sort]
 # Sort indicator
-icon = { fg = "#928374" }
-icon_reverse = { fg = "#928374" }
+icon = { fg = "#6c7086" }
+icon_reverse = { fg = "#6c7086" }

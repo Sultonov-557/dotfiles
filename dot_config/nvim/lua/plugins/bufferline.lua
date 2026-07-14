@@ -36,8 +36,8 @@ return {
     },
     highlights = {
       offset_separator = {
-        fg = "#504945",
-        bg = "#1d2021",
+        fg = "#45475a",
+        bg = "#11111b",
       },
     },
   },

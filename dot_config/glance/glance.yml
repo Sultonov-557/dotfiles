@@ -14,13 +14,13 @@ server:
 theme:
   backgroundOpacity: 0.4
   blur: true
-  accent: "#b8bb26"     # Gruvbox green
-  background: "#282828"   # Gruvbox bg
-  primary: "#ebdbb2"      # Gruvbox fg
-  secondary: "#a89984"    # Gruvbox gray
-  success: "#98971a"      # Gruvbox green
-  danger: "#cc241d"       # Gruvbox red
-  info: "#458588"         # Gruvbox blue
+  accent: "#b4befe"     # Catppuccin Mocha lavender
+  background: "#1e1e2e"   # Catppuccin Mocha base
+  primary: "#cdd6f4"      # Catppuccin Mocha text
+  secondary: "#7f849c"    # Catppuccin Mocha overlay1
+  success: "#a6e3a1"      # Catppuccin Mocha green
+  danger: "#f38ba8"       # Catppuccin Mocha red
+  info: "#89b4fa"         # Catppuccin Mocha blue
   font:
     family: JetBrainsMono Nerd Font
 

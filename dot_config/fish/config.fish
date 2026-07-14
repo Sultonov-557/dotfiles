@@ -24,7 +24,7 @@ set -gx BROWSER zen-browser
 set -gx MANPAGER "nvim +Man!"
 set -gx PAGER less
 set -gx TERMINAL ghostty
-set -gx BAT_THEME "Gruvbox-dark"
+set -gx BAT_THEME "Catppuccin Mocha"
 set -gx XDG_CONFIG_HOME ~/.config
 
 # ── Starship Prompt ──────────────────────────────────────────────────────────

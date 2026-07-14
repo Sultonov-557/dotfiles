@@ -1,5 +1,5 @@
 /* ===========================================================================
- * userChrome.css — Firefox / Zen Browser (Gruvbox Dark)
+ * userChrome.css — Firefox / Zen Browser (Catppuccin Mocha)
  * Place in: ~/.mozilla/firefox/<profile>/chrome/
  * or:       ~/.zen/browser/<profile>/chrome/
  * Managed by chezmoi
@@ -19,88 +19,88 @@
   visibility: collapse !important;
 }
 
-/* URL bar — Gruvbox Dark */
+/* URL bar — Catppuccin Mocha */
 #urlbar-background {
-  background-color: #282828 !important;
-  border-color: #504945 !important;
+  background-color: #1e1e2e !important;
+  border-color: #45475a !important;
 }
 
 #urlbar:focus-within #urlbar-background {
-  border-color: #b8bb26 !important;
-  background-color: #1d2021 !important;
+  border-color: #b4befe !important;
+  background-color: #11111b !important;
 }
 
 #urlbar-input {
-  color: #ebdbb2 !important;
+  color: #cdd6f4 !important;
 }
 
 /* Navigation toolbar */
 #nav-bar {
-  background-color: #1d2021 !important;
-  border-bottom: 1px solid #3c3836 !important;
+  background-color: #11111b !important;
+  border-bottom: 1px solid #313244 !important;
 }
 
 /* Sidebar (Tree Style Tab, Sidebery) */
 #sidebar-box {
-  background-color: #282828 !important;
+  background-color: #1e1e2e !important;
 }
 
 #sidebar-box #sidebar {
-  background-color: #282828 !important;
+  background-color: #1e1e2e !important;
 }
 
 /* Bookmarks toolbar */
 #PersonalToolbar {
-  background-color: #1d2021 !important;
-  color: #ebdbb2 !important;
+  background-color: #11111b !important;
+  color: #bac2de !important;
 }
 
 /* Selected tab */
 .tab-background[selected="true"] {
-  background-color: #504945 !important;
-  border-color: #b8bb26 !important;
+  background-color: #45475a !important;
+  border-color: #b4befe !important;
 }
 
 /* Unselected tabs */
 .tab-background:not([selected="true"]) {
-  background-color: #282828 !important;
+  background-color: #1e1e2e !important;
 }
 
 .tab-text {
-  color: #ebdbb2 !important;
+  color: #bac2de !important;
 }
 
 /* Scrollbars */
 :root {
-  scrollbar-color: #504945 #282828 !important;
+  scrollbar-color: #45475a #1e1e2e !important;
 }
 
 /* Context menus */
 menupopup, popup {
-  --menu-background-color: #282828 !important;
-  --menu-color: #ebdbb2 !important;
-  --menuitem-hover-background-color: #504945 !important;
+  --menu-background-color: #1e1e2e !important;
+  --menu-color: #cdd6f4 !important;
+  --menuitem-hover-background-color: #45475a !important;
 }
 
 /* Find bar */
 #findbar {
-  background-color: #282828 !important;
-  color: #ebdbb2 !important;
+  background-color: #1e1e2e !important;
+  color: #cdd6f4 !important;
 }
 
 /* Status panel */
 #statuspanel-label {
-  background-color: #282828 !important;
-  color: #928374 !important;
-  border-color: #504945 !important;
+  background-color: #1e1e2e !important;
+  color: #6c7086 !important;
+  border-color: #45475a !important;
 }
 
 /* Download button */
 #downloads-button {
-  fill: #83a598 !important;
+  fill: #89b4fa !important;
 }
 
 /* Library window */
 window:not([chromehidden~="toolbar"]) #toolbar-menubar {
-  background-color: #1d2021 !important;
+  background-color: #11111b !important;
 }

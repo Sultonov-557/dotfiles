@@ -1,12 +1,12 @@
 # imv — Image viewer
-# Gruvbox Dark theme
+# Catppuccin Mocha theme
 # Managed by chezmoi
 
 [options]
-background=282828
+background=1e1e2e
 overlay_font=JetBrainsMono Nerd Font 11
-overlay_text_fg=ebdbb2
-overlay_text_bg=282828
-overlay_text_border=282828
+overlay_text_fg=cdd6f4
+overlay_text_bg=1e1e2e
+overlay_text_border=1e1e2e
 font=JetBrainsMono Nerd Font 11
 fullscreen=yes
