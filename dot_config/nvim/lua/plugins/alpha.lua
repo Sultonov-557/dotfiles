@@ -22,6 +22,11 @@ return {
       dashboard.section.header,
     }
 
+    return opts
+  end,
+  config = function(_, opts)
+    require("alpha").setup(opts)
+
     -- Disable colorcolumn on dashboard
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "alpha",

@@ -7,7 +7,6 @@ return {
     log_level = "error",
     auto_save_enabled = true,
     auto_restore_enabled = true,
-    auto_session_suppress_dirs = { "~/", "/tmp" },
   },
   keys = {
     { "<leader>wr", "<cmd>SessionRestore<CR>",     desc = "Restore session" },

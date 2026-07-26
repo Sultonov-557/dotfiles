@@ -10,10 +10,6 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    keys = {
-      { "<leader>e", desc = "Toggle file tree" },
-      { "<leader>E", desc = "Focus file tree" },
-    },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       filters = { dotfiles = false },
