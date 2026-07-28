@@ -19,7 +19,7 @@ return {
       { "<leader>c",  group = "Comment" },
       { "<leader>f",  group = "Telescope" },
       { "<leader>g",  group = "Git" },
-      { "<leader>t",  group = "Todo" },
+      { "<leader>t",  group = "Todo / Terminal" },
       { "<leader>x",  group = "Trouble" },
       { "<leader>w",  group = "Session" },
     },
