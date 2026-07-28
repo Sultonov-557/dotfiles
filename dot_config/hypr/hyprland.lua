@@ -21,7 +21,7 @@ local bg     = background
 --     MONITORS
 -- ------------------
 -- Per-hostname monitor layouts
--- Customize for your machines: archbook (laptop), vanguard (desktop), server
+-- Customize for your machines: archbook (laptop), vanguard (home desktop), sentinel (work desktop), server
 local hostname = io.popen("hostname"):read("*l"):gsub("%s+", "")
 
 if hostname == "archbook" then
@@ -42,6 +42,19 @@ elseif hostname == "vanguard" then
         output   = "HDMI-A-1",
         mode     = "1920x1080@60",
         position = "2560x0",
+        scale    = "1.0",
+    })
+elseif hostname == "sentinel" then
+    hl.monitor({
+        output   = "DP-1",
+        mode     = "1920x1080@100",
+        position = "1920x0",
+        scale    = "1.0",
+    })
+    hl.monitor({
+        output   = "HDMI-A-1",
+        mode     = "1920x1080@60",
+        position = "0x0",
         scale    = "1.0",
     })
 else

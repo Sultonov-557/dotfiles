@@ -44,3 +44,9 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
+
+-- Filetype detection
+vim.filetype.add({
+  extension = { caddy = "caddy" },
+  filename = { Caddyfile = "caddy" },
+})

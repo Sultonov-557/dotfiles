@@ -47,6 +47,11 @@ return {
           "yamlls",
           "taplo",
           "marksman",
+          "html",
+          "cssls",
+          "tailwindcss",
+          "clangd",
+          "dockerls",
         },
         automatic_installation = true,
         handlers = {

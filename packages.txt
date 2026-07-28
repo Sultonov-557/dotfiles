@@ -134,6 +134,36 @@ papirus-icon-theme
 # wl-screenrec
 # rofi-emoji
 
+# From nixul audit (2026-07-28) — AUR-only or unverified-on-Arch packages.
+# Uncomment what you actually use; verify exact AUR pkg names on first boot,
+# the names below are best-effort guesses based on the upstream project name.
+# google-chrome
+# niri                  # alt WM, enabled alongside Hyprland on sentinel
+# aseprite
+# blockbench
+# yandex-music
+# lutgen
+# gogdl                 # GOG downloader used by Heroic/Lutris
+# xmcl-bin              # Minecraft launcher (nix used its own xmcl flake input)
+# todoist-electron
+# worktrunk             # git worktree manager
+# harlequin             # SQL TUI client
+# usql
+# devenv
+# bruno-bin             # HTTP client GUI
+# ngrok
+# zrok
+# biome                 # or: npm i -g @biomejs/biome
+# lazydocker
+# android-studio
+# jwt-hack
+# waydroid
+# tty-clock
+# kilocode-cli          # or: npm i -g kilocode
+# codex                 # OpenAI Codex CLI — check current install method
+# gemini-cli            # Google Gemini CLI
+# navi                  # may now be in official repos — check first
+
 # ── From old NixOS config (migrated) ─────────────────────────────────────────
 # Gaming
 steam
@@ -246,5 +276,101 @@ redis
 
 # ─── Kubernetes / Containers (from old NixOS config) ────────────────────────
 # kubectl
-# minikube
-# kind
+# minikube    — verify: AUR or official, uncertain
+# kind        — verify: AUR or official, uncertain
+
+# ── NVIDIA (sentinel + vanguard only — both NVIDIA; skip on archbook/AMD) ────
+# packages.txt has no per-host conditionals, so this whole block is commented
+# rather than risk installing nvidia on the AMD laptop. Requires [multilib]
+# enabled in /etc/pacman.conf first (also needed for Steam/Proton above).
+# nvidia
+# nvidia-utils
+# nvidia-settings
+# lib32-nvidia-utils
+mesa
+# lib32-mesa  — needs multilib, see note above
+
+# CPU microcode — uncomment the one matching this machine
+# amd-ucode
+# intel-ucode
+
+# ── Wayland/system core additions (from nixul audit) ─────────────────────────
+xorg-xwayland
+rtkit
+zram-generator
+openssh
+
+# ── File managers (alternates to nautilus/yazi already above) ───────────────
+dolphin
+nemo
+thunar
+
+# ── Terminals (alternate to ghostty already above) ───────────────────────────
+alacritty
+foot
+
+# ── Media additions ───────────────────────────────────────────────────────────
+ffmpeg
+vlc
+
+# ── Companion device ─────────────────────────────────────────────────────────
+kdeconnect
+
+# ── Dev: multiplexers, runtimes, git ──────────────────────────────────────────
+zellij
+yarn
+zig
+android-tools
+
+# ── Dev: db & http clients ────────────────────────────────────────────────────
+# dbeaver     — verify: AUR or official, uncertain
+
+# ── Pentesting / Security additions ───────────────────────────────────────────
+fail2ban
+certbot   # Arch equivalent of NixOS's security.acme (internal CA / Let's Encrypt)
+# unbound     — binds port 53, conflicts with adguardhome unless scoped to
+#               127.0.0.1/::1 like nixul does. Uncomment once that's set up.
+# sops        — verify: AUR or official, uncertain
+
+# ── Containers / virtualization ───────────────────────────────────────────────
+docker
+podman
+libvirt
+# qemu-desktop — verify exact package name; Arch restructured qemu packaging
+#                (qemu-base/qemu-desktop/qemu-full/qemu-emulators-full) in 2023
+virt-manager
+
+# ── VPN ────────────────────────────────────────────────────────────────────────
+openvpn
+wireguard-tools
+
+# ── Self-hosted servers ───────────────────────────────────────────────────────
+# nginx complements caddy here, not replaces it: nixul's nginx module generates
+# an internal CA + wildcard cert and reverse-proxies the service stack below.
+# caddy (dot_config/caddy/Caddyfile) stays as the lightweight standalone option.
+nginx
+# vaultwarden  — verify: AUR or official, uncertain
+
+# ── Optional heavier self-hosted stack (uncomment what you actually run) ─────
+# dashy         — nix builds a custom derivation; on Arch, run via Docker instead
+# uptime-kuma   — run via Docker instead
+# home-assistant, litellm, open-webui, avahi, winboat — vanguard-only (home PC),
+#   not enabled on sentinel; home-assistant/litellm/open-webui are typically
+#   run via Docker rather than native packages either way
+# avahi
+# CLI extras
+# dua — Arch package is `dua-cli`, not `dua`
+dua-cli
+pamixer
+lsof
+
+# ── Linters/formatters (needed by dot_config/nvim/lua/plugins/{lint,conform}.lua) ──
+shellcheck
+hadolint
+luacheck
+golangci-lint
+stylua
+vale
+yamllint
+python-black # nix/pip name is "black"; Arch package is prefixed "python-"
+# prettier — not in official repos; install via `npm i -g prettier` (nodejs/npm above)

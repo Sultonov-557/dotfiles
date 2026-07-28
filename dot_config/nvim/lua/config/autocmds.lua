@@ -45,22 +45,10 @@ autocmd("BufWritePre", {
   end,
 })
 
--- Format on save (async, only if an LSP client is attached)
-autocmd("BufWritePre", {
-  group = augroup("FormatOnSave", { clear = true }),
-  pattern = "*",
-  callback = function()
-    local clients = vim.lsp.get_clients({
-      bufnr = 0,
-      filter = function(client)
-        return client.supports_method("textDocument/formatting")
-      end,
-    })
-    if #clients > 0 then
-      vim.lsp.buf.format({ bufnr = 0, async = false })
-    end
-  end,
-})
+-- Format on save is handled by conform.nvim (plugins/conform.lua), which
+-- falls back to the attached LSP client's formatter when no dedicated
+-- formatter is configured for the filetype — replaces the old raw-LSP-only
+-- autocmd that used to live here.
 
 -- Close some filetypes with <q>
 autocmd("FileType", {

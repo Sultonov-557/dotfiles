@@ -209,3 +209,32 @@ alias pm='procs'           # modern process listing
 
 # ── Docker extras ────────────────────────────────────────────────────────────
 alias dstop='docker stop $(docker ps -q)'  # stop all running containers
+
+# ── From nixul (nix) audit (2026-07-28) ───────────────────────────────────────
+# Genuinely missing ones only — anything nix defined that's already covered
+# under a different name here (eza-based ls family, gstash* family, etc.) or
+# is Nix-package-manager-specific (n/ni/ns/nr/nb/nl/no/nf/ng/ndc/niv,
+# cleannix) was intentionally skipped.
+alias dus='du -sh'
+alias glast='git log -1 --oneline'
+alias gs='git status'         # nix's name for this; gst above is the pre-existing one
+alias gdc='git diff --cached' # synonym for gds above
+alias curl='curl -sL'
+alias wget='wget -q'
+alias di='docker images'
+alias dpa='docker ps -a'
+alias dex='docker exec -it'
+alias dl='docker logs -f'
+alias dpull='docker pull'
+alias nr='npm run'
+alias nx='npx'
+alias br='bun run'
+alias bi='bun install'
+alias ba='bun add'
+alias bt='bun test'
+alias j='jq'
+alias jp='jq .'
+alias js='jq -r .'
+alias untargz='tar -xzf'
+alias untarbz2='tar -xjf'
+alias c='wl-copy' # nix used xclip (X11); this system is Wayland-only

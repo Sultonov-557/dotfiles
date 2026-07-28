@@ -11,7 +11,8 @@
 
 | Hostname | Type   | GPU     | Monitors |
 |----------|--------|---------|----------|
-| vanguard | Desktop | NVIDIA  | DP-1 (2560x1440@165) + HDMI-A-1 (1920x1080@60) |
+| vanguard | Desktop (home) | NVIDIA  | DP-1 (2560x1440@165) + HDMI-A-1 (1920x1080@60) |
+| sentinel | Desktop (work) | NVIDIA  | DP-1 (1920x1080@100) + HDMI-A-1 (1920x1080@60) |
 | archbook | Laptop | AMD     | eDP-1 (1920x1080@144) |
 | server   | Server | -       | Headless |
 

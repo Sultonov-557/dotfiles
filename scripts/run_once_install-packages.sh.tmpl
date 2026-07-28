@@ -17,16 +17,25 @@ echo ":: Installing packages from packages.txt..."
 echo ""
 
 OFFICIAL_PKGS=()
+in_aur_section=false
 
 while IFS= read -r line || [ -n "$line" ]; do
   # Trim whitespace
   line="${line#"${line%%[![:space:]]*}"}"
   line="${line%"${line##*[![:space:]]}"}"
 
-  # Stop at the AUR section heading (handled by run_once_install-aur-packages.sh).
-  # Must check the raw line before the comment-skip below, since the heading
-  # itself is a comment line and would otherwise be silently skipped.
-  [[ "$line" == \#*AUR* ]] && break
+  # Track the bounded AUR section (handled by run_once_install-aur-packages.sh)
+  # so lines after it still get processed as official packages. Must check the
+  # raw line before the comment-skip below, since heading lines are comments
+  # and would otherwise be silently skipped without ever toggling state.
+  if [[ "$line" == \#*AUR* ]]; then
+    in_aur_section=true
+    continue
+  fi
+  if $in_aur_section && [[ "$line" == \#*──* ]]; then
+    in_aur_section=false
+  fi
+  $in_aur_section && continue
 
   # Skip empty lines and comments
   [[ -z "$line" ]] || [[ "$line" == \#* ]] && continue
