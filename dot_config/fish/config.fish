@@ -37,11 +37,6 @@ if command -q zoxide
   zoxide init fish | source
 end
 
-# ── Atuin (shell history) ────────────────────────────────────────────────────
-if command -q atuin
-  atuin init fish | source
-end
-
 # ── Direnv (per-project env vars) ─────────────────────────────────────────
 if command -q direnv
   direnv hook fish | source
@@ -69,6 +64,13 @@ if command -q fzf
 
   # Initialize fzf keybindings for fish (Ctrl+T, Ctrl+R, Alt+C)
   fzf --fish | source
+end
+
+# ── Atuin (shell history) ────────────────────────────────────────────────────
+# Sourced after fzf so atuin's Ctrl+R keybind wins (fzf keeps Ctrl+T/Alt+C,
+# no conflict there).
+if command -q atuin
+  atuin init fish | source
 end
 
 # ── Yazi (terminal file manager) ─────────────────────────────────────────────
