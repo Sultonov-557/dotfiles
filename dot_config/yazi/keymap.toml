@@ -3,7 +3,7 @@
 # Managed by chezmoi
 # =============================================================================
 
-[manager]
+[mgr]
 prepend_keymap = [
   # Vim-style navigation
   { on = "h", run = "leave", desc = "Go back" },

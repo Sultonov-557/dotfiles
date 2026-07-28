@@ -130,6 +130,20 @@ Leader: `<space>`.
 | `<leader>h` | Clear search highlight |
 | `n` / `N` / `*` / `#` | Search navigation, centered |
 
+### Comment — `c` group
+
+| Chord | Action |
+|---|---|
+| `<leader>cc` / `<leader>cb` | Toggle comment / block comment (current line) |
+| `<leader>c{motion}` / `<leader>C{motion}` | Comment/uncomment over a motion (normal + visual) — line-wise / block-wise |
+| `<leader>cO` / `<leader>co` | Add comment above / below |
+| `<leader>cA` | Add comment at end of line |
+
+`gc` / `gb` also appear in `comment.lua`'s lazy-load `keys` table, but
+Comment.nvim's `opleader` config (set to `<leader>c` / `<leader>C` above)
+replaces the plugin's default `gc`/`gb` mapping rather than adding to it — so
+those two are lazy-load triggers only, not working bindings.
+
 ### LSP
 
 | Chord | Action |
@@ -217,6 +231,7 @@ Prefix: `Ctrl+g`.
 | `Ctrl+Shift+T` | New tab |
 | `Ctrl+Shift+W` | Close tab |
 | `Ctrl+Shift+R` | Rename tab |
+| `Ctrl+1-9` | Jump to tab N |
 | `Ctrl+H/J/K/L` | Cross-app pane nav (herdr ↔ Neovim splits) |
 | `Ctrl+Alt+H/J/K/L` | Cross-app pane nav, alternate dispatch (herdr-navigator) |
 
@@ -231,6 +246,7 @@ Prefix: `Ctrl+g`.
 | `w` | Workspace picker |
 | `v` | Split vertical |
 | `-` | Split horizontal |
+| `\` | Split right (herdr-navigator) |
 | `x` | Close pane |
 | `z` | Zoom pane |
 | `r` | Resize mode — documented exception, see below |
@@ -287,4 +303,5 @@ Not customized further; see the design spec's non-goals.
 | Neovim | Split-resize on arrows, not `Ctrl+hjkl` | `Ctrl+hjkl` is already claimed by cross-boundary Neovim↔herdr pane navigation |
 | rofi / Telescope | No raw `hjkl` navigation | Both are text-filter list widgets — typing `h`/`l` must insert those characters. `Ctrl+j`/`Ctrl+k` already covers row navigation in both |
 | wlogout | Bound to `SUPER+Ctrl+Escape`, separate from the primary `SUPER+Escape` session menu | Kept as an explicit manual fallback for when Noctalia/QuickShell isn't running, rather than left unreachable |
+| `power-menu` script | Third manual/CLI-invokable session-menu alternative (rofi-based) alongside wlogout | Not bound to a keybind — invoke directly from a terminal or script when you want the rofi UI specifically |
 | `dot_local/bin` scripts (`volume`, `brightness`, `caffeine`, `dnd`, `perfmode`) | Exist alongside noctalia-IPC-bound keybind equivalents | Independently useful as CLI tools (e.g. scriptable from `flowstart`) — a second invocation path, not a fallback for the keybind path |
