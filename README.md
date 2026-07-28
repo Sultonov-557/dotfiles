@@ -28,7 +28,7 @@
 | **Editor** | Neovim (lazy.nvim) | - |
 | **Launcher** | rofi | - |
 | **Notifications** | dunst | swaync (alternative) |
-| **Session menu** | wlogout | - |
+| **Session menu** | Noctalia (`SUPER+Escape`) | wlogout (`SUPER+Ctrl+Escape`, alternative) |
 | **Browser** | Zen Browser | Firefox |
 | **File manager** | yazi (CLI) | nvim-tree (editor) |
 | **Media** | mpv, imv, zathura | - |
@@ -131,33 +131,11 @@ This runs `install.sh` which:
 
 ## Keybindings
 
-Managed in `dot_config/hypr/hyprland.lua`. The main modifier is `SUPER` (Windows key).
-
-| Binding | Action |
-|---------|--------|
-| `SUPER + SPACE` | App launcher |
-| `SUPER + SHIFT + SPACE` | Command launcher |
-| `SUPER + Return` | Terminal |
-| `SUPER + W` | Zen Browser |
-| `SUPER + A` | Obsidian |
-| `SUPER + E` | File manager |
-| `SUPER + Q` | Close window |
-| `SUPER + F` | Fullscreen |
-| `SUPER + V` | Toggle float |
-| `SUPER + H/J/K/L` | Focus direction |
-| `SUPER + SHIFT + H/J/K/L` | Move window |
-| `SUPER + CTRL + H/J/K/L` | Resize |
-| `SUPER + 1-0` | Switch workspace |
-| `SUPER + SHIFT + 1-0` | Move window to workspace |
-| `SUPER + S` | Scratchpad toggle |
-| `SUPER + C` | Clipboard picker |
-| `SUPER + D` | Control center |
-| `Print` | Screenshot region |
-| `SHIFT + Print` | Screenshot full |
-| `F12` | Dropdown terminal |
-| `SUPER + Escape` | Power menu |
-| `SUPER + SHIFT + F12` | Focus mode |
-| `XF86Audio*` / `XF86MonBrightness*` | Media/brightness keys |
+Every keybind across every tool — Hyprland, Neovim, herdr, Yazi, fish/atuin —
+follows one shared convention: HJKL as the universal directional axis, with
+modifiers layered by action-class (base = focus, `+Shift` = move, `+Ctrl` =
+resize). See [`KEYBINDS.md`](KEYBINDS.md) for the full cross-tool reference
+and the documented exceptions.
 
 ## Neovim
 
