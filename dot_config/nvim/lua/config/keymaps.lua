@@ -32,6 +32,10 @@ map("t", "<Esc>", "<C-\\><C-n>", opts)
 map("t", "jk", "<C-\\><C-n>", opts)
 
 -- Resize splits
+-- Arrows, not Ctrl+hjkl: Ctrl+hjkl is already claimed by herdr_nav.lua for
+-- cross-boundary navigation between Neovim splits and herdr panes. This is
+-- a documented exception to the HJKL convention (see KEYBINDS.md), not an
+-- oversight.
 map("n", "<C-Left>", "<C-w><", { desc = "Decrease split width" })
 map("n", "<C-Right>", "<C-w>>", { desc = "Increase split width" })
 map("n", "<C-Up>", "<C-w>+", { desc = "Increase split height" })

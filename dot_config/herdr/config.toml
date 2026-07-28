@@ -6,9 +6,11 @@ auto_switch = false
 [keys]
 prefix = "ctrl+g"
 
-# Tab operations — direct bindings, no prefix needed (frictionless)
-next_tab = "ctrl+shift+right"
-previous_tab = "ctrl+shift+left"
+# Tab operations — direct bindings, no prefix needed (frictionless).
+# hjkl (not arrows) to match every other directional binding in this file
+# (pane focus, workspace switch) and the system-wide HJKL convention.
+next_tab = "ctrl+shift+l"
+previous_tab = "ctrl+shift+h"
 new_tab = "ctrl+shift+t"
 close_tab = "ctrl+shift+w"
 rename_tab = "ctrl+shift+r"

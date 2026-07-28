@@ -28,7 +28,7 @@ permissions_w = { fg = "#f38ba8" }
 permissions_x = { fg = "#89b4fa" }
 permissions_s = { fg = "#cba6f7" }
 
-[manager]
+[mgr]
 # Preview
 preview_hovered = { fg = "#cdd6f4", bg = "#313244" }
 

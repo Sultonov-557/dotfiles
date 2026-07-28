@@ -197,6 +197,13 @@ hl.animation({ leaf = "windowsMove",      enabled = true, speed = 4.79,  bezier 
 -- =============================================================================
 --     KEYBINDINGS
 -- =============================================================================
+-- Constitution (full cross-tool reference: KEYBINDS.md):
+--   1. HJKL is the universal directional axis.
+--   2. Modifiers layer by action-class on top of HJKL: base = primary
+--      (focus), +SHIFT = secondary (move), +CTRL = tertiary (resize).
+--   New bindings should fit one of these layers, or +ALT (misc/layout),
+--   before inventing a new pattern.
+-- =============================================================================
 local mainMod      = "SUPER"
 local terminal     = "ghostty"
 local fileManager  = "nautilus"
@@ -220,7 +227,6 @@ hl.bind(mainMod .. " + ALT + X",       hl.dsp.exec_cmd("cliphist delete-prime &&
 
 -- --- Screenshots ---
 hl.bind("Print",                         hl.dsp.exec_cmd("screenshot region"))
-hl.bind(mainMod .. " + SHIFT + S",       hl.dsp.exec_cmd("screenshot region"), { description = "Screenshot region" })
 hl.bind("SHIFT + Print",               hl.dsp.exec_cmd("screenshot full"))
 hl.bind("CTRL + Print",                hl.dsp.exec_cmd("screenshot copy"))
 hl.bind("CTRL + SHIFT + Print",        hl.dsp.exec_cmd("screenshot active"))
@@ -232,7 +238,7 @@ hl.bind(mainMod .. " + SHIFT + F",     hl.dsp.window.fullscreen({ mode = 1 }))
 hl.bind(mainMod .. " + V",             hl.dsp.window.float({ action = "toggle" }), { description = "Toggle float" })
 hl.bind(mainMod .. " + SHIFT + V",     hl.dsp.window.pin())
 hl.bind(mainMod .. " + P",             hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J",             hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + ALT + J",       hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + T",             hl.dsp.layout("dwindle"))
 hl.bind(mainMod .. " + SHIFT + T",     hl.dsp.layout("master"))
 hl.bind(mainMod .. " + O",             hl.dsp.layout("orientationnext"))
@@ -296,8 +302,9 @@ hl.bind("XF86AudioPrev",        hl.dsp.exec_cmd(noci .. " media previous"),   { 
 hl.bind("XF86AudioPlay",        hl.dsp.exec_cmd(noci .. " media playPause"),  { locked = true })
 hl.bind("XF86AudioStop",        hl.dsp.exec_cmd(noci .. " media stop"),       { locked = true })
 
--- --- Lock screen ---
-hl.bind(mainMod .. " + CTRL + L",         hl.dsp.exec_cmd(noci .. " sessionMenu lock"), { description = "Lock screen" })
+-- --- Exit Hyprland ---
+-- Lock lives in the session menu (SUPER+Escape, option 1) — SUPER+CTRL+L is
+-- reserved for window resize (+x), see the "Resize windows" block above.
 hl.bind(mainMod .. " + CTRL + SHIFT + L", hl.dsp.exec_cmd("hyprctl dispatch exit"))
 
 -- --- Flow / Utility (via noctalia IPC) ---
@@ -307,6 +314,7 @@ hl.bind(mainMod .. " + SHIFT + I",     hl.dsp.exec_cmd(noci .. " idleInhibitor t
 hl.bind(mainMod .. " + SHIFT + D",     hl.dsp.exec_cmd(noci .. " notifications toggleDND"), { description = "Toggle Do Not Disturb" })
 hl.bind(mainMod .. " + SHIFT + P",     hl.dsp.exec_cmd(noci .. " powerProfile cycle"), { description = "Toggle performance mode" })
 hl.bind(mainMod .. " + Escape",        hl.dsp.exec_cmd(noci .. " sessionMenu toggle"), { description = "Power menu" })
+hl.bind(mainMod .. " + CTRL + Escape", hl.dsp.exec_cmd("wlogout"), { description = "Session menu (fallback, no Noctalia)" })
 hl.bind(mainMod .. " + SHIFT + F12",   hl.dsp.exec_cmd("focus"), { description = "Toggle focus mode" })
 
 -- --- Dropdown terminal (quake-style) ---

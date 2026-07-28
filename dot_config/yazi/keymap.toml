@@ -3,12 +3,12 @@
 # Managed by chezmoi
 # =============================================================================
 
-[manager]
+[mgr]
 prepend_keymap = [
   # Vim-style navigation
   { on = "h", run = "leave", desc = "Go back" },
-  { on = "j", run = "arrow -1", desc = "Move down" },
-  { on = "k", run = "arrow 1", desc = "Move up" },
+  { on = "j", run = "arrow 1", desc = "Move down" },
+  { on = "k", run = "arrow -1", desc = "Move up" },
   { on = "l", run = "enter", desc = "Enter directory / open file" },
   { on = "J", run = "half_down", desc = "Half page down" },
   { on = "K", run = "half_up", desc = "Half page up" },
@@ -33,8 +33,8 @@ prepend_keymap = [
   # Search & filter
   { on = "/", run = "find", desc = "Search files" },
   { on = "f", run = "filter", desc = "Filter files" },
-  { on = "n", run = "find_prev", desc = "Next match" },
-  { on = "N", run = "find_next", desc = "Prev match" },
+  { on = "n", run = "find_next", desc = "Next match" },
+  { on = "N", run = "find_prev", desc = "Prev match" },
 
   # Sorting
   { on = "s", run = "sort", desc = "Toggle sort" },
