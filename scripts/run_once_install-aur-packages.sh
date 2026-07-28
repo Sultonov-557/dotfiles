@@ -23,19 +23,21 @@ while IFS= read -r line || [ -n "$line" ]; do
   line="${line#"${line%%[![:space:]]*}"}"
   line="${line%"${line##*[![:space:]]}"}"
 
-  [[ -z "$line" ]] || [[ "$line" == \#* ]] && continue
-  [[ "$line" == *──* ]] && continue
-
-  # Detect AUR section
-  if [[ "$line" == *"AUR"* ]]; then
+  # Detect the AUR section heading. Must check the raw line before the
+  # comment-skip below, since the heading itself is a comment line and
+  # would otherwise be silently skipped without ever setting the flag.
+  if [[ "$line" == \#*AUR* ]]; then
     in_aur_section=true
     continue
   fi
 
-  # If we hit a new section after AUR, stop
-  if $in_aur_section && [[ "$line" == "# ──"* ]]; then
+  # If we hit the next section heading after AUR, stop
+  if $in_aur_section && [[ "$line" == \#*──* ]]; then
     break
   fi
+
+  [[ -z "$line" ]] || [[ "$line" == \#* ]] && continue
+  [[ "$line" == *──* ]] && continue
 
   if $in_aur_section; then
     line="${line%%#*}"
