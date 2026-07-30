@@ -99,6 +99,22 @@ hl.config({
 
         resize_on_border = true,
         layout = "dwindle",
+
+        hover_icon_on_border    = true,
+        extend_border_grab_area = 15,
+    },
+
+    cursor = {
+        inactive_timeout   = 3,
+        no_hardware_cursors = 1, -- prevents GPU driver issues
+    },
+
+    binds = {
+        pass_mouse_when_bound   = false,
+        scroll_event_delay      = 300,
+        workspace_back_and_forth = true,
+        allow_workspace_cycles  = true,
+        movefocus_cycles_fullscreen = false,
     },
 
     decoration = {
@@ -108,18 +124,28 @@ hl.config({
         active_opacity   = 1.0,
         inactive_opacity = 0.90,
 
+        fullscreen_opacity = 1.0,
+
         shadow = {
-            enabled      = true,
-            range        = 12,
-            render_power = 3,
-            color        = "rgba(11111bff)",
+            enabled        = true,
+            range          = 12,
+            render_power   = 3,
+            color          = "rgba(11111bff)",
+            color_inactive = "rgba(181825ee)",
+            offset         = "0 4",
+            scale          = 0.97,
         },
 
         blur = {
-            enabled   = true,
-            size      = 6,
-            passes    = 3,
-            vibrancy  = 0.1696,
+            enabled           = true,
+            size              = 6,
+            passes            = 3,
+            vibrancy          = 0.1696,
+            noise             = 0.01,
+            contrast          = 0.9,
+            brightness        = 1.0,
+            new_optimizations = true,
+            xray              = false,
         },
     },
 
@@ -142,17 +168,30 @@ hl.config({
 
         touchpad = {
             natural_scroll = true,
+            scroll_factor  = 0.8,
         },
+
+        numlock_by_default          = true,
+        float_switch_override_focus = 2,
     },
 })
 
 -- --- Layouts ---
 hl.config({
     dwindle = {
-        preserve_split = true,
+        preserve_split         = true,
+        smart_split            = false,
+        smart_resizing         = true,
+        special_scale_factor   = 0.8,
+        split_width_multiplier = 1.0,
+        force_split            = 0,
     },
     master = {
-        new_status = "master",
+        new_status           = "master",
+        mfact                = 0.55,
+        special_scale_factor = 0.8,
+        orientation          = "left",
+        new_on_top           = true, -- from NixOS config
     },
 })
 
@@ -161,6 +200,17 @@ hl.config({
     misc = {
         force_default_wallpaper = -1,
         disable_hyprland_logo   = true,
+
+        disable_splash_rendering    = true,
+        initial_workspace_tracking  = 0,
+        mouse_move_enables_dpms     = true,
+        key_press_enables_dpms      = true,
+        enable_swallow              = true,
+        swallow_regex               = "^(kitty|ghostty|alacritty)$",
+        vrr                         = 0,
+        disable_autoreload          = false,
+        animate_manual_resizes      = true,
+        animate_mouse_windowdragging = true,
     },
 })
 
@@ -348,8 +398,8 @@ hl.bind(mainMod .. " + SHIFT + O",     hl.dsp.exec_cmd(noci .. " monitors off"),
 -- =============================================================================
 
 -- Floating windows
--- Picture-in-Picture (float handled here; pin+size+center in hyprland.conf)
-hl.window_rule({ name = "float-pip", match = { title = "^(Picture-in-Picture)$" }, float = true })
+-- Picture-in-Picture
+hl.window_rule({ name = "float-pip", match = { title = "^(Picture-in-Picture)$" }, float = true, pin = true, size = "480 270", center = true })
 hl.window_rule({ name = "float-dropdown", match = { class = "^(dropdown)$" }, float = true, no_blur = true, })
 hl.window_rule({ name = "ws-dropdown", match = { class = "^(dropdown)$" }, workspace = "special:dropdown" })
 hl.window_rule({ name = "float-volume", match = { title = "^(Volume Control)$" },          float = true })
@@ -370,10 +420,17 @@ hl.window_rule({ name = "float-xdg-portal", match = { class = "^(xdg-desktop-por
 -- No blur for launchers (no_blur is supported in Lua API)
 hl.window_rule({ name = "noblur-rofi", match = { class = "^(rofi)$" }, no_blur = true })
 hl.window_rule({ name = "noblur-wofi", match = { class = "^(wofi)$" }, no_blur = true })
+hl.window_rule({ name = "noblur-deadlock-overlay", match = { title = "^(deadlocked_overlay)$" }, no_blur = true })
 
 -- Workspace assignments
 hl.window_rule({ name = "ws-terminal", match = { class = "^(ghostty)$" },  workspace = "1" })
 hl.window_rule({ name = "ws-browsers", match = { class = "^(firefox|floorp|brave|chromium)$" }, workspace = "2" })
+
+-- Browser opacity
+hl.window_rule({ name = "opacity-browsers", match = { class = "^(floorp|firefox|brave|zen)$" }, opacity = "0.95 0.85" })
+
+-- No border on fullscreen windows
+hl.window_rule({ name = "noborder-fullscreen", match = { fullscreen = true }, border_size = 0 })
 
 -- Fix XWayland empty windows
 hl.window_rule({
