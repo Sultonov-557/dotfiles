@@ -2,138 +2,133 @@
 # Glance Dashboard — config.yml
 # Managed by chezmoi
 # =============================================================================
-# Docs: https://github.com/nicedoc/glance
-# Run: glance --config ~/.config/glance/glance.yml
+# Docs: https://github.com/glanceapp/glance
+# Run: glance -config ~/.config/glance/glance.yml
 # Auto-start: systemctl --user enable --now glance
 
 server:
   host: 0.0.0.0
   port: 7477
-  baseUrl: /
+  base-url: /
 
 theme:
-  backgroundOpacity: 0.4
+  background-opacity: 0.4
   blur: true
-  accent: "#b4befe"     # Catppuccin Mocha lavender
+  accent: "#b4befe"       # Catppuccin Mocha lavender
   background: "#1e1e2e"   # Catppuccin Mocha base
   primary: "#cdd6f4"      # Catppuccin Mocha text
   secondary: "#7f849c"    # Catppuccin Mocha overlay1
   success: "#a6e3a1"      # Catppuccin Mocha green
   danger: "#f38ba8"       # Catppuccin Mocha red
   info: "#89b4fa"         # Catppuccin Mocha blue
-  font:
-    family: JetBrainsMono Nerd Font
+  custom-css-file: ""
 
-widgets:
-  # ── Welcome ──────────────────────────────────────────────────────────────
-  - type: header
-    text: Good {greeting}, sultonov
+pages:
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+            time-format: "HH:mm"
 
-  # ─── Time & Date ──────────────────────────────────────────────────────────
-  - type: clock
-    time:
-      twelvehour: false
-      format: HH:mm
-    date:
-      format: dddd, MMMM Do
+          - type: search
+            placeholder: "  Search"
+            search-engine: "https://startpage.com/sp/search?query={QUERY}"
+            bangs:
+              - title: Google
+                shortcut: "!g"
+                url: "https://google.com/search?q={QUERY}"
+              - title: YouTube
+                shortcut: "!yt"
+                url: "https://youtube.com/results?search_query={QUERY}"
+              - title: GitHub
+                shortcut: "!gh"
+                url: "https://github.com/search?q={QUERY}"
+              - title: NixOS Packages
+                shortcut: "!nix"
+                url: "https://search.nixos.org/packages?query={QUERY}"
+              - title: Arch Wiki
+                shortcut: "!aw"
+                url: "https://wiki.archlinux.org/index.php?search={QUERY}"
+              - title: Reddit
+                shortcut: "!r"
+                url: "https://reddit.com/search?q={QUERY}"
 
-  # ── Search ────────────────────────────────────────────────────────────────
-  - type: search
-    label: "  Search"
-    searchEngine: "https://startpage.com/sp/search?query={query}"
-    shortcuts:
-      - title: Google
-        url: "https://google.com/search?q={query}"
-      - title: YouTube
-        url: "https://youtube.com/results?search_query={query}"
-      - title: GitHub
-        url: "https://github.com/search?q={query}"
-      - title: NixOS Packages
-        url: "https://search.nixos.org/packages?query={query}"
-      - title: Arch Wiki
-        url: "https://wiki.archlinux.org/index.php?search={query}"
-      - title: Reddit
-        url: "https://reddit.com/search?q={query}"
+          - type: weather
+            location: Tashkent, Uzbekistan
+            units: metric
+            hour-format: 24h
 
-  # ── Bookmarks ─────────────────────────────────────────────────────────────
-  - type: group
-    widgets:
-      - type: bookmarks
-        name: "  Favorites"
-        links:
-          - title: GitHub
-            url: https://github.com
-            icon: github
-          - title: Gmail
-            url: https://mail.google.com
-            icon: email
-          - title: YouTube
-            url: https://youtube.com
-            icon: youtube
-          - title: Reddit
-            url: https://reddit.com
-            icon: reddit
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              - type: bookmarks
+                title: "  Favorites"
+                links:
+                  - title: GitHub
+                    url: https://github.com
+                    icon: si:github
+                  - title: Gmail
+                    url: https://mail.google.com
+                    icon: si:gmail
+                  - title: YouTube
+                    url: https://youtube.com
+                    icon: si:youtube
+                  - title: Reddit
+                    url: https://reddit.com
+                    icon: si:reddit
 
-      - type: bookmarks
-        name: "  Dev"
-        links:
-          - title: Stack Overflow
-            url: https://stackoverflow.com
-            icon: stackoverflow
-          - title: Arch Wiki
-            url: https://wiki.archlinux.org
-            icon: archlinux
-          - title: Arch Packages
-            url: https://archlinux.org/packages
-            icon: package
-          - title: AUR
-            url: https://aur.archlinux.org
-            icon: aur
+              - type: bookmarks
+                title: "  Dev"
+                links:
+                  - title: Stack Overflow
+                    url: https://stackoverflow.com
+                    icon: si:stackoverflow
+                  - title: Arch Wiki
+                    url: https://wiki.archlinux.org
+                    icon: si:archlinux
+                  - title: Arch Packages
+                    url: https://archlinux.org/packages
+                    icon: si:archlinux
+                  - title: AUR
+                    url: https://aur.archlinux.org
+                    icon: si:archlinux
 
-      - type: bookmarks
-        name: "  AI & Services"
-        links:
-          - title: Hermes Agent
-            url: https://hermes-agent.nousresearch.com/docs
-            icon: robot
-          - title: ChatGPT
-            url: https://chat.openai.com
-            icon: openai
-          - title: Claude
-            url: https://claude.ai
-            icon: claude
-          - title: Ollama (local)
-            url: http://localhost:11434
-            icon: server
+              - type: bookmarks
+                title: "  AI & Services"
+                links:
+                  - title: Hermes Agent
+                    url: https://hermes-agent.nousresearch.com/docs
+                  - title: ChatGPT
+                    url: https://chat.openai.com
+                    icon: si:openai
+                  - title: Claude
+                    url: https://claude.ai
+                  - title: Ollama (local)
+                    url: http://localhost:11434
 
-  # ── Weather ───────────────────────────────────────────────────────────────
-  - type: weather
-    location: Tashkent, Uzbekistan
-    units: metric
-    hideHeader: false
+          - type: rss
+            title: "  News"
+            limit: 5
+            collapse-after: 0
+            cache: 30m
+            feeds:
+              - url: https://news.ycombinator.com/rss
+              - url: https://www.archlinux.org/feeds/news
 
-  # ── RSS Feeds ──────────────────────────────────────────────────────────────
-  - type: rss
-    name: "  News"
-    limit: 5
-    collapseAfter: 0
-    cache: 30m
-    feeds:
-      - url: https://news.ycombinator.com/rss
-      - url: https://www.archlinux.org/feeds/news
+          - type: rss
+            title: "  GitHub"
+            limit: 5
+            collapse-after: 0
+            cache: 30m
+            feeds:
+              - url: https://github.com/NousResearch/hermes-agent/releases.atom
 
-  - type: rss
-    name: "  GitHub"
-    limit: 5
-    collapseAfter: 0
-    cache: 30m
-    feeds:
-      - url: https://github.com/NousResearch/hermes-agent/releases.atom
-
-  # ── System Monitor ─────────────────────────────────────────────────────────
-  - type: monitor
-    name: "  System"
-    cache: 30s
-    sites:
-      - title: Local
-        url: http://localhost:7477
+      - size: small
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Local

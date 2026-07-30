@@ -54,11 +54,8 @@ This runs `install.sh` which:
 ### Post-install checklist
 
 - **Wallpaper** — `run_once_install-wallpaper.sh` downloads a default
-- **Noctalia** — not auto-installed. Clone + run:
-  ```bash
-  git clone https://github.com/cloudmanic/noctalia ~/.config/noctalia
-  qs -c noctalia-shell
-  ```
+- **Noctalia** — `noctalia-shell` installs from the `cachyos` repo via
+  packages.txt; config is deployed to `~/.config/noctalia` by chezmoi
 - **AdGuardHome** — install + configure:
   ```bash
   sudo pacman -S adguardhome

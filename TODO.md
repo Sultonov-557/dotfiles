@@ -7,6 +7,45 @@ This file tracks remaining nice-to-haves and future ideas.
 
 ---
 
+## 🔴 2026-07-30 — chezmoi apply wasn't installing many configured programs
+
+User reported `noctalia-shell` and `herdr` missing after `chezmoi apply`.
+Root causes turned out to be three separate, compounding bugs:
+
+- **The 2026-07-28 AUR-section fix was incomplete.** The heading-detection
+  glob `\#*AUR*` matched *any* comment line containing the substring "AUR",
+  not just the real `# ── AUR ──` heading — there are ~10 such lines
+  scattered through packages.txt (`# wl-screenrec  # AUR — already
+  listed...`, `# via — AUR: via-bin`, `# hadolint  # AUR (hadolint-bin)...`,
+  etc.). Each false trigger flips both install scripts into "AUR mode"
+  until the next `──`-containing line, silently dropping every real
+  official package in between. Net effect: only 163 of 199 listed
+  packages were ever installed, including `wl-clipboard`, `cliphist`,
+  `qbittorrent`, `khal`/`vdirsyncer`, the entire pentesting toolkit
+  (`metasploit`, `nuclei`, `sherlock`, etc.), and every linter
+  (`stylua`, `vale`, `yamllint`, `python-black`...) added for
+  `lint.lua`/`conform.lua`. Fixed by requiring the real box-drawing `──`
+  alongside "AUR" (`\#*──*AUR*`) so only the actual heading matches.
+- **`run_once_install-aur-packages.sh` was never templated.** It used
+  `{{ .chezmoi.sourceDir }}` but lacked the `.tmpl` extension, so chezmoi
+  never rendered it — the script always saw the literal, un-substituted
+  template string as its path, silently found no file there, and exited
+  0 ("packages.txt not found, skipping"). No AUR package has ever
+  installed via chezmoi apply on this repo. Fixed by renaming to
+  `run_onchange_install-aur-packages.sh.tmpl`.
+- **Both install scripts were `run_once_`**, keyed on the script's own
+  content hash — independent of packages.txt. Adding a package to
+  packages.txt silently did nothing on the next apply since the script
+  itself hadn't changed. Renamed both to `run_onchange_*.sh.tmpl` with a
+  `packages.txt hash: {{ include "packages.txt" | sha256sum }}` comment
+  embedded in each, so they re-run whenever packages.txt's contents change.
+- `herdr` was never actually in packages.txt (config was ported, the
+  package never was) — added `herdr-bin` to the AUR section.
+- `noctalia-shell` was also missing from packages.txt; README documented
+  an outdated manual git-clone+`qs` step. All 4 machines are confirmed
+  CachyOS, and `noctalia-shell` is a real package in the `cachyos` repo
+  (not AUR) — added to the official section, README's manual step removed.
+
 ## 🔴 2026-07-28 — nixul (NixOS) parity audit
 
 Cross-referenced every module enabled on nixul hosts `sentinel` (work PC,
@@ -215,12 +254,6 @@ already works (single Gruvbox theme, no abstraction layer).
 
 ## 🟡 Still outstanding
 
-- [ ] **Noctalia QuickShell install** — Noctalia is referenced in hyprland.lua but has no automated install. Install manually:
-  ```
-  git clone https://github.com/cloudmanic/noctalia ~/.config/noctalia
-  qs -c noctalia-shell
-  ```
-
 - [ ] **Swaync config** — alternative notification center for when dunst is muted
 
 - [ ] **Hyprland windowrulev2 config migration** — some rules still in .conf (Lua API gaps), check future Hyprland releases for full Lua parity
@@ -244,9 +277,9 @@ already works (single Gruvbox theme, no abstraction layer).
 install.sh                             # Bootstrap (updated with checklist)
 packages.txt                           # Package list (deduped)
 scripts/
-  run_once_install-packages.sh.tmpl    # Official pacman packages
-  run_once_install-aur-helper.sh       # Install paru
-  run_once_install-aur-packages.sh     # AUR packages
+  run_onchange_install-packages.sh.tmpl     # Official pacman packages
+  run_once_install-aur-helper.sh            # Install paru
+  run_onchange_install-aur-packages.sh.tmpl # AUR packages
   run_once_install-tpm.sh              # Deprecated (herdr replaces tmux)
   run_once_enable-services.sh          # Enable system services
   run_once_set-default-shell.sh        # chsh to fish

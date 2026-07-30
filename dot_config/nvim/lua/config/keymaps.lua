@@ -17,10 +17,7 @@ map("c", "<C-e>", "<End>", opts)
 map("c", "<C-b>", "<Left>", opts)
 map("c", "<C-f>", "<Right>", opts)
 
--- Quick file navigation
-map("n", "<leader><space>", function()
-  require("telescope.builtin").find_files()
-end, vim.tbl_extend("force", opts, { desc = "Find files" }))
+-- Quick file navigation: <leader><space> is defined in plugins/telescope.lua
 
 map("n", "<tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
@@ -137,54 +134,40 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 map("n", "<leader>E", "<cmd>NvimTreeFocus<CR>", { desc = "Focus file tree" })
 
 -- ── Telescope ─────────────────────────────────────────────────────────────────
+-- All Telescope bindings (including <leader><space>) live in the plugin spec
+-- itself: dot_config/nvim/lua/plugins/telescope.lua's `keys` table. They can't
+-- be defined here too — see the comment on that `keys` table for why.
 
-local function telescope()
-  return require("telescope.builtin")
+-- ── Buffers — <leader>b group ────────────────────────────────────────────────
+
+local function close_buffer(buf)
+  local ok, err = pcall(vim.api.nvim_buf_delete, buf, {})
+  if not ok then
+    vim.notify(err, vim.log.levels.WARN)
+  end
 end
 
-map("n", "<leader>ff", function()
-  telescope().find_files()
-end, { desc = "Find files" })
+map("n", "<leader>bx", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
 
-map("n", "<leader>fg", function()
-  telescope().live_grep()
-end, { desc = "Live grep" })
+map("n", "<leader>bo", function()
+  local current = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current and vim.bo[buf].buflisted then
+      close_buffer(buf)
+    end
+  end
+end, { desc = "Close other buffers" })
 
-map("n", "<leader>fb", function()
-  telescope().buffers()
-end, { desc = "Buffers" })
+map("n", "<leader>ba", function()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buflisted then
+      close_buffer(buf)
+    end
+  end
+end, { desc = "Close all buffers" })
 
-map("n", "<leader>fh", function()
-  telescope().help_tags()
-end, { desc = "Help tags" })
-
-map("n", "<leader>fr", function()
-  telescope().oldfiles()
-end, { desc = "Recent files" })
-
-map("n", "<leader>fk", function()
-  telescope().keymaps()
-end, { desc = "Keymaps" })
-
-map("n", "<leader>fq", function()
-  telescope().quickfix()
-end, { desc = "Quickfix" })
-
-map("n", "<leader>fs", function()
-  telescope().treesitter()
-end, { desc = "Treesitter symbols" })
-
-map("n", "<leader>fd", function()
-  telescope().diagnostics()
-end, { desc = "Diagnostics" })
-
-map("n", "<leader>f.", function()
-  telescope().resume()
-end, { desc = "Resume last picker" })
-
-map("n", "<leader>/", function()
-  telescope().live_grep()
-end, { desc = "Live grep" })
+map("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
+map("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 
 -- ── Lazygit ──────────────────────────────────────────────────────────────────
 

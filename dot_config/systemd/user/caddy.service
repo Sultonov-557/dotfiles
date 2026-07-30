@@ -11,8 +11,12 @@
 [Unit]
 Description=Caddy web server (user-level)
 Documentation=https://caddyserver.com/docs/
-After=network.target network-online.target
-Requires=network-online.target
+# network-online.target doesn't exist in the user systemd instance (it's a
+# system-level target) — a hard Requires= on it made the unit fail to start
+# outright ("Unit network-online.target not found"). network.target is also
+# not-found at user level, but as a soft After= that's harmless (matches
+# glance.service, which already only uses After= and starts fine).
+After=network.target
 
 [Service]
 Type=notify

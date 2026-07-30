@@ -5,7 +5,6 @@ enter_accept = true
 filter_mode = "global"
 search_mode = "fuzzy"
 style = "compact"
-inline_height = 8
 show_preview = true
 
 # Match fish's vi-mode (fish_vi_key_bindings in config.fish) so hjkl/Esc

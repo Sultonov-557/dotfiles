@@ -188,6 +188,19 @@ Inside a picker: `Ctrl+J`/`Ctrl+K` move the selection, `Ctrl+C` closes. Raw
 `hjkl` isn't bound — the prompt line is a text filter, typing `h`/`l` must
 insert those characters, not navigate.
 
+### Buffers — `b` group
+
+| Chord | Action |
+|---|---|
+| `<leader>bx` | Close current buffer |
+| `<leader>bo` | Close other buffers |
+| `<leader>ba` | Close all buffers |
+| `<leader>bn` / `<leader>bp` | Next / previous buffer (also `Tab` / `Shift+Tab`) |
+
+`<leader>bo` / `<leader>ba` skip unlisted buffers and warn (not force-delete)
+on any buffer with unsaved changes, so in-progress edits are never silently
+discarded.
+
 ### Trouble — `x` group
 
 | Chord | Action |
@@ -227,7 +240,7 @@ Prefix: `Ctrl+g`.
 
 | Chord | Action |
 |---|---|
-| `Ctrl+Shift+H` / `Ctrl+Shift+L` | Prev / next tab |
+| `Ctrl+Shift+H` / `Ctrl+Shift+L` (or `Ctrl+Shift+Left` / `Ctrl+Shift+Right`) | Prev / next tab |
 | `Ctrl+Shift+T` | New tab |
 | `Ctrl+Shift+W` | Close tab |
 | `Ctrl+Shift+R` | Rename tab |

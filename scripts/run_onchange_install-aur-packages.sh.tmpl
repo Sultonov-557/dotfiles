@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Install AUR packages from packages.txt (AUR section)
+# Install AUR packages from packages.txt (AUR section).
+# run_onchange: re-runs whenever packages.txt's contents change, not just once.
+# packages.txt hash: {{ include "packages.txt" | sha256sum }}
 set -euo pipefail
 
 if ! command -v paru &>/dev/null; then
@@ -26,7 +28,7 @@ while IFS= read -r line || [ -n "$line" ]; do
   # Detect the AUR section heading. Must check the raw line before the
   # comment-skip below, since the heading itself is a comment line and
   # would otherwise be silently skipped without ever setting the flag.
-  if [[ "$line" == \#*AUR* ]]; then
+  if [[ "$line" == \#*──*AUR* ]]; then
     in_aur_section=true
     continue
   fi

@@ -13,14 +13,10 @@ http:
 
 users:
   - name: admin
-    # Password is set via initial setup wizard OR
-    # generate with: docker run --rm adguard/adguardhome hash -p <your-password>
-    # Default: no password set — visit http://localhost:9000 after install
 
 auth_attempts: 5
 block_auth_min: 15
 
-# --- DNS ---
 dns:
   bind_hosts:
     - 0.0.0.0
@@ -32,7 +28,6 @@ dns:
   blocking_ipv6: ""
   blocked_response_ttl: 10
   parental_block_host: "family-block.dns.adguard.com"
-  safebrowsing_block_host: "standard-block.dns.adguard.com"
   ratelimit: 20
   ratelimit_whitelist: []
   refuse_any: true
@@ -81,6 +76,16 @@ dns:
     - fd00::/8
   use_private_ptr_resolvers: true
   local_ptr_upstreams: []
+
+# --- Local DNS rewrites ---
+# Mirrors what's live (added via the API: POST /control/rewrite/add) — kept
+# here as the versioned record. 192.168.3.66 is this machine's LAN IP
+# (DHCP-assigned); if the lease changes, these break silently until updated.
+rewrites:
+  - domain: glance.home
+    answer: 127.0.0.1
+  - domain: adguard.home
+    answer: 127.0.0.1
 
 # --- Filtering ---
 filtering:
