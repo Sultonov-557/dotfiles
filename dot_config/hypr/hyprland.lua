@@ -527,7 +527,7 @@ if hl.plugin.hyprglass then
     edge_thickness = 0.15,
     tint_color = 0xFFFFFF00,
     lens_distortion = 1,
-    brightness = 1,
+    brightness = 0.7,
     contrast = 1,
     saturation = 1,
     vibrancy = 1,
