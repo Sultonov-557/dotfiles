@@ -14,3 +14,7 @@ sourceDir = "{{ .chezmoi.homeDir }}/dotfiles"
     is_server = '{{ eq .chezmoi.hostname "server" }}'
     has_nvidia = '{{ if or (eq .chezmoi.hostname "vanguard") (eq .chezmoi.hostname "sentinel") }}true{{ else }}false{{ end }}'
     gpu_driver = '{{ if or (eq .chezmoi.hostname "vanguard") (eq .chezmoi.hostname "sentinel") }}nvidia{{ else }}amd{{ end }}'
+    # Prompted once (only during `chezmoi init`/`chezmoi init --apply`), cached
+    # here — this file is chezmoi's local state, not part of the git repo.
+    # Used by dot_config/glance/glance.yml.tmpl for the dns-stats widget.
+    adguard_password = '{{ promptStringOnce . "adguard_password" "AdGuard Home admin password (blank to skip DNS stats widget)" "" }}'

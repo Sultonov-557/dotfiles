@@ -1,0 +1,181 @@
+# =============================================================================
+# Glance Dashboard — config.yml
+# Managed by chezmoi
+# =============================================================================
+# Docs: https://github.com/glanceapp/glance
+# Run: glance -config ~/.config/glance/glance.yml
+# Auto-start: systemctl --user enable --now glance
+#
+# NOTE: this is a .tmpl because the AdGuard Home password is a secret.
+# `promptStringOnce` below asks for it once (only during `chezmoi apply` in
+# an interactive terminal) and caches it in ~/.config/chezmoi/chezmoi.toml,
+# which is NOT part of this git repo. The rendered ~/.config/glance/glance.yml
+# will have the real password in it — that file is gitignored-by-nature
+# (it's a chezmoi *target*, not a source file) so it never gets committed.
+
+server:
+  host: 0.0.0.0
+  port: 7477
+  base-url: /
+  assets-path: {{ .chezmoi.homeDir }}/.config/glance/assets
+
+theme:
+  # Catppuccin Mocha, HSL (H S L, space-separated — glance's theme schema
+  # as of v0.8.x; the old hex + background-opacity + blur keys used here
+  # previously were silently ignored, ie. the "themed" look never applied)
+  background-color: "240 21 15"   # Base
+  primary-color: "232 97 85"      # Lavender (accent/links)
+  positive-color: "115 54 76"     # Green
+  negative-color: "343 81 75"     # Red
+  contrast-multiplier: 1.1
+  custom-css-file: /assets/glass.css
+
+pages:
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+            time-format: "HH:mm"
+
+          - type: search
+            placeholder: "  Search"
+            search-engine: "https://startpage.com/sp/search?query={QUERY}"
+            bangs:
+              - title: Google
+                shortcut: "!g"
+                url: "https://google.com/search?q={QUERY}"
+              - title: YouTube
+                shortcut: "!yt"
+                url: "https://youtube.com/results?search_query={QUERY}"
+              - title: GitHub
+                shortcut: "!gh"
+                url: "https://github.com/search?q={QUERY}"
+              - title: NixOS Packages
+                shortcut: "!nix"
+                url: "https://search.nixos.org/packages?query={QUERY}"
+              - title: Arch Wiki
+                shortcut: "!aw"
+                url: "https://wiki.archlinux.org/index.php?search={QUERY}"
+              - title: Reddit
+                shortcut: "!r"
+                url: "https://reddit.com/search?q={QUERY}"
+
+          - type: weather
+            location: Tashkent, Uzbekistan
+            units: metric
+            hour-format: 24h
+
+          - type: monitor
+            title: "  Services"
+            cache: 1m
+            sites:
+              - title: Glance
+                url: https://glance.home
+                allow-insecure: true
+              - title: AdGuard Home
+                url: https://adguard.home
+                allow-insecure: true
+
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              # NOTE: bookmarks' schema is `groups: [{title, links: [...]}]`,
+              # not bare `title`/`links` on the widget itself — the old
+              # config used the wrong shape (same schema-drift issue as
+              # theme: below) so these never actually rendered any links.
+              - type: bookmarks
+                groups:
+                  - title: "  Favorites"
+                    links:
+                      - title: GitHub
+                        url: https://github.com
+                        icon: si:github
+                      - title: Gmail
+                        url: https://mail.google.com
+                        icon: si:gmail
+                      - title: YouTube
+                        url: https://youtube.com
+                        icon: si:youtube
+                      - title: Reddit
+                        url: https://reddit.com
+                        icon: si:reddit
+
+              - type: bookmarks
+                groups:
+                  - title: "  Home Lab"
+                    links:
+                      - title: Glance
+                        url: https://glance.home
+                        icon: si:homeassistant
+                      - title: AdGuard Home
+                        url: https://adguard.home
+                        icon: si:adguard
+
+              - type: bookmarks
+                groups:
+                  - title: "  Dev"
+                    links:
+                      - title: Stack Overflow
+                        url: https://stackoverflow.com
+                        icon: si:stackoverflow
+                      - title: Arch Wiki
+                        url: https://wiki.archlinux.org
+                        icon: si:archlinux
+                      - title: Arch Packages
+                        url: https://archlinux.org/packages
+                        icon: si:archlinux
+                      - title: AUR
+                        url: https://aur.archlinux.org
+                        icon: si:archlinux
+
+              - type: bookmarks
+                groups:
+                  - title: "  AI & Services"
+                    links:
+                      - title: Hermes Agent
+                        url: https://hermes-agent.nousresearch.com/docs
+                      - title: ChatGPT
+                        url: https://chat.openai.com
+                        icon: si:openai
+                      - title: Claude
+                        url: https://claude.ai
+                      - title: Ollama (local)
+                        url: http://localhost:11434
+
+          - type: rss
+            title: "  News"
+            limit: 5
+            collapse-after: 0
+            cache: 30m
+            feeds:
+              - url: https://news.ycombinator.com/rss
+              - url: https://www.archlinux.org/feeds/news
+
+          - type: rss
+            title: "  GitHub"
+            limit: 5
+            collapse-after: 0
+            cache: 30m
+            feeds:
+              - url: https://github.com/NousResearch/hermes-agent/releases.atom
+
+      - size: small
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Local
+
+          {{- if and (hasKey . "adguard_password") .adguard_password }}
+          - type: dns-stats
+            title: "  DNS Stats"
+            service: adguard
+            url: http://localhost:9000
+            username: admin
+            password: "{{ .adguard_password }}"
+            hide-graph: false
+            hide-top-domains: false
+          {{- end }}

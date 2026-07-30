@@ -1,0 +1,22 @@
+/* Glass/transparent effect for widget cards.
+ * glance v0.8.x's theme config has no native opacity/blur property (that
+ * was removed from the old hex-color theme schema this repo used to run) —
+ * this recreates it by overriding the generated CSS variables with alpha
+ * channels and adding backdrop-filter on the widget cards. */
+
+:root {
+    /* Literal HSLA (not derived from glance's internal --bghs/--bgl calc
+     * chain — that formula uses an operator `strings` dropped when this
+     * was reverse-engineered from the binary, so it's not trustworthy to
+     * replicate exactly). Matches the Catppuccin Mocha Base hue/sat
+     * (240, 21%) used for theme.background-color, just translucent. */
+    --color-widget-background: hsla(240, 21%, 18%, 0.55);
+    --color-widget-background-hsl-values: 240, 21%, 18%;
+    --color-widget-background-highlight: hsla(240, 21%, 22%, 0.6);
+    --color-popover-background: hsla(240, 21%, 21%, 0.85);
+}
+
+.widget {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
