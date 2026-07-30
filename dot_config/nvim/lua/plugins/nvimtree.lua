@@ -1,4 +1,21 @@
 -- Nvim-tree — file explorer (replaces netrw)
+
+-- Keep nvim-tree's defaults, but realign the create/copy/yank keys to match
+-- yazi's scheme (this user's TUI file manager) so muscle memory carries over:
+-- yazi uses c=create, y=yank(copy), p=paste, d=delete, r=rename.
+local function on_attach(bufnr)
+  local api = require("nvim-tree.api")
+  api.config.mappings.default_on_attach(bufnr)
+
+  local opts = function(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  vim.keymap.set("n", "c", api.fs.create, opts("Create File Or Directory"))
+  vim.keymap.set("n", "y", api.fs.copy.node, opts("Copy (yank)"))
+  vim.keymap.set("n", "gn", api.fs.copy.filename, opts("Copy Name"))
+end
+
 return {
   -- Disable neo-tree (LazyVim default explorer, unused now)
   {
@@ -12,7 +29,11 @@ return {
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-      filters = { dotfiles = false },
+      on_attach = on_attach,
+      filters = {
+        dotfiles = true, -- hidden by default, toggle with Shift+H
+        exclude = { ".env" }, -- always shown regardless of dotfile/gitignore filters
+      },
       disable_netrw = true,
       hijack_netrw = true,
       hijack_cursor = true,
