@@ -286,8 +286,10 @@ hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd(terminal .. " --working-
 -- --- Most used apps (one-key access) ---
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("zen-browser"), { description = "Zen browser" })
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("obsidian"), { description = "Obsidian" })
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("steam"), { description = "Steam" })
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("lutris"), { description = "Lutris" })
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("Telegram"), { description = "Telegram" })
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("spotify-launcher"), { description = "Spotify" })
 
 -- --- Clipboard ---
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(noci .. " launcher clipboard"), { description = "Clipboard picker" })
@@ -311,8 +313,8 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }), { descrip
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.pin())
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + ALT + J", hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + T", hl.dsp.layout("dwindle"))
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.layout("master"))
+hl.bind(mainMod .. " + ALT + T", hl.dsp.layout("dwindle"))
 hl.bind(mainMod .. " + O", hl.dsp.layout("orientationnext"))
 
 -- --- Focus movement ---
@@ -404,9 +406,6 @@ hl.bind(
   { description = "Session menu (fallback, no Noctalia)" }
 )
 hl.bind(mainMod .. " + SHIFT + F12", hl.dsp.exec_cmd("focus"), { description = "Toggle focus mode" })
-
--- --- Dropdown terminal (quake-style) ---
-hl.bind("F12", hl.dsp.exec_cmd("ghostty --class=dropdown"), { description = "Dropdown terminal" })
 
 -- --- Emoji picker ---
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd(noci .. " launcher emoji"), { description = "Emoji picker" })

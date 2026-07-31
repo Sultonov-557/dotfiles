@@ -65,6 +65,18 @@ map("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Force quit" })
 
 -- Clear search highlights
 map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+
+-- ── Windows — <leader>w group ────────────────────────────────────────────────
+-- Session control lives under <leader>s (auto-session.lua); <leader>w is
+-- reserved for window management.
+
+map("n", "<leader>ws", "<C-w>s", { desc = "Split horizontal" })
+map("n", "<leader>wv", "<C-w>v", { desc = "Split vertical" })
+map("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
+map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
+map("n", "<leader>ww", "<C-w>w", { desc = "Cycle windows" })
+map("n", "<leader>w=", "<C-w>=", { desc = "Equalize window sizes" })
 
 -- ── LSP ──────────────────────────────────────────────────────────────────────
 -- These use vim.lsp.buf.* which is always available (no-op without a client).

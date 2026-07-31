@@ -53,7 +53,7 @@ Modifier: `SUPER`.
 | `SUPER+V` / `SUPER+Shift+V` | Toggle float / pin |
 | `SUPER+P` | Pseudotile |
 | `SUPER+Alt+J` | Toggle split layout |
-| `SUPER+T` / `SUPER+Shift+T` | Layout dwindle / master |
+| `SUPER+Alt+T` / `SUPER+Shift+T` | Layout dwindle / master |
 | `SUPER+O` | Cycle orientation |
 
 ### Apps / launchers
@@ -65,8 +65,10 @@ Modifier: `SUPER`.
 | `SUPER+Return` / `SUPER+Shift+Return` | Terminal / terminal in `~/` |
 | `SUPER+W` | Zen browser |
 | `SUPER+A` | Obsidian |
-| `SUPER+G` | Steam |
+| `SUPER+G` | Lutris |
 | `SUPER+E` | File manager |
+| `SUPER+T` | Telegram |
+| `SUPER+M` | Spotify |
 | `SUPER+C` | Clipboard picker |
 | `SUPER+Alt+X` | Clear clipboard |
 
@@ -97,7 +99,6 @@ Modifier: `SUPER`.
 | `SUPER+Shift+D` | Toggle Do Not Disturb |
 | `SUPER+Shift+P` | Cycle power profile |
 | `SUPER+Shift+F12` | Toggle focus mode |
-| `F12` | Dropdown terminal (quake-style) |
 | `SUPER+.` | Emoji picker |
 | `SUPER+X` | Switch QuickShell config |
 | `SUPER+D` | Toggle control center |
@@ -127,7 +128,7 @@ Leader: `<space>`.
 | `jk` / `kj` (insert) | Escape |
 | `Ctrl+S` | Save |
 | `<leader>q` / `<leader>Q` | Save & quit / force quit |
-| `<leader>h` | Clear search highlight |
+| `<leader>h` / `Esc` (normal) | Clear search highlight |
 | `n` / `N` / `*` / `#` | Search navigation, centered |
 
 ### Comment — `c` group
@@ -219,12 +220,22 @@ discarded.
 | `<leader>tT` | Todo (Telescope) |
 | `<leader>tn` / `<leader>tp` | Next / prev todo |
 
-### Session — `w` group
+### Window — `w` group
 
 | Chord | Action |
 |---|---|
-| `<leader>wr` / `<leader>ws` | Restore / save session |
-| `<leader>wd` / `<leader>wl` | Delete / search session |
+| `<leader>ws` / `<leader>wv` | Split horizontal / vertical |
+| `<leader>wc` | Close window |
+| `<leader>wo` | Close other windows (only) |
+| `<leader>ww` | Cycle windows |
+| `<leader>w=` | Equalize window sizes |
+
+### Session — `s` group
+
+| Chord | Action |
+|---|---|
+| `<leader>sr` / `<leader>ss` | Restore / save session |
+| `<leader>sd` / `<leader>sl` | Delete / search session |
 
 ### File tree
 

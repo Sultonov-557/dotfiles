@@ -21,7 +21,8 @@ return {
       { "<leader>g",  group = "Git" },
       { "<leader>t",  group = "Todo / Terminal" },
       { "<leader>x",  group = "Trouble" },
-      { "<leader>w",  group = "Session" },
+      { "<leader>w",  group = "Window" },
+      { "<leader>s",  group = "Session" },
     },
   },
 }

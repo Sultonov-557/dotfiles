@@ -9,9 +9,9 @@ return {
     auto_restore_enabled = true,
   },
   keys = {
-    { "<leader>wr", "<cmd>SessionRestore<CR>",     desc = "Restore session" },
-    { "<leader>ws", "<cmd>SessionSave<CR>",         desc = "Save session" },
-    { "<leader>wd", "<cmd>SessionDelete<CR>",       desc = "Delete session" },
-    { "<leader>wl", "<cmd>SessionSearch<CR>",       desc = "Search sessions" },
+    { "<leader>sr", "<cmd>SessionRestore<CR>",     desc = "Restore session" },
+    { "<leader>ss", "<cmd>SessionSave<CR>",         desc = "Save session" },
+    { "<leader>sd", "<cmd>SessionDelete<CR>",       desc = "Delete session" },
+    { "<leader>sl", "<cmd>SessionSearch<CR>",       desc = "Search sessions" },
   },
 }
