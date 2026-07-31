@@ -20,3 +20,6 @@ ignored_commands = ["cd", "ls", "vi"]
 
 [sync]
 records = true
+
+[theme]
+name = "catppuccin"
