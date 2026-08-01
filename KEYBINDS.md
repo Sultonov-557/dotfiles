@@ -66,7 +66,7 @@ Modifier: `SUPER`.
 | `SUPER+W` | Zen browser |
 | `SUPER+A` | Obsidian |
 | `SUPER+G` | Lutris |
-| `SUPER+E` | File manager |
+| `SUPER+E` | Nautilus (file manager) |
 | `SUPER+T` | Telegram |
 | `SUPER+M` | Spotify |
 | `SUPER+C` | Clipboard picker |
