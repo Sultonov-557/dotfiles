@@ -1,7 +1,27 @@
 # =============================================================================
-# packages.txt — Curated list of packages for this system
-# One package per line. Lines starting with # are comments.
-# Used by: scripts/install-packages.sh
+# packages.txt - curated package list for this system
+#
+# One package per line. Comments start with "#"; an inline "# ..." after a
+# package name is stripped before install. Blank lines and the boxed section
+# titles below are ignored.
+#
+# How this file is installed (see scripts/run_onchange_install-packages.sh.tmpl
+# and scripts/run_onchange_install-aur-packages.sh.tmpl):
+#   - Both are chezmoi run_onchange scripts, so they re-run automatically
+#     whenever this file's contents change - no manual trigger needed.
+#   - Every line is installed via `pacman -S`, EXCEPT the single block that
+#     starts at the boxed "AUR" title near the end of this file and runs to
+#     EOF - that block is installed via `paru` instead (needed for AUR-only
+#     packages). Keeping it last means the block can never be closed early
+#     by a following title, so don't add a titled section after it.
+#   - CRITICAL: both scripts detect a boxed section title by its box-drawing
+#     dash characters, not by "#" alone. Don't reuse that glyph in prose
+#     elsewhere in this file, and never let a boxed title lose its leading
+#     "#" - either mistake silently breaks the boundary (the AUR block gets
+#     skipped entirely, or a stray line gets fed to pacman/paru as a literal
+#     package name and install fails with "target not found").
+#   - Uncomment a line to add it on next apply; comment one out to stop
+#     tracking it (this does not uninstall it).
 # =============================================================================
 
 # ── Core ──────────────────────────────────────────────────────────────────────
@@ -26,18 +46,19 @@ hyprpicker
 xdg-desktop-portal-hyprland
 polkit-gnome
 grimblast-git
-noctalia-shell # Wayland shell/bar (cachyos repo); config in dot_config/noctalia
+noctalia-shell # Wayland shell/bar; config in dot_config/noctalia
 
 # ── Fonts ─────────────────────────────────────────────────────────────────────
 ttf-jetbrains-mono-nerd
 ttf-firacode-nerd
 noto-fonts-emoji
-ttf-font-awesome
+woff2-font-awesome
 noto-fonts
 noto-fonts-cjk
 
 # ── Development ───────────────────────────────────────────────────────────────
 neovim
+tree-sitter-cli # needed by nvim-treesitter and kulala.nvim to build parsers
 lazygit
 ripgrep
 fd
@@ -54,24 +75,27 @@ nodejs
 npm
 python
 python-pip
-# rustup — run `rustup default stable` after install
-rustup
+rustup # run `rustup default stable` after install
 go
+vim # alt editor to neovim
+micro # terminal text editor
+meld # diff/merge tool
 
 # ── Screenshots & Screen Recording ────────────────────────────────────────────
 grim
 slurp
 swappy
-# wl-screenrec  # AUR — already listed in the AUR section below
 imagemagick
 wl-clipboard
 cliphist
+tesseract-data-eng # OCR english language data
 
 # ── Audio & Brightness ────────────────────────────────────────────────────────
 pipewire
 wireplumber
 pipewire-audio
 pipewire-pulse
+pipewire-alsa
 playerctl
 brightnessctl
 helvum
@@ -80,11 +104,14 @@ pavucontrol
 # ── Network & Bluetooth ───────────────────────────────────────────────────────
 networkmanager
 network-manager-applet
-adguardhome  # DNS-level ad blocker (systemd service, not Docker)
+adguardhome # DNS-level ad blocker (systemd service, not Docker)
 blueman
 bluez
 bluez-utils
 iwd
+cloudflare-warp-bin
+tailscale
+doggo
 
 # ── Notifications ─────────────────────────────────────────────────────────────
 dunst
@@ -96,11 +123,12 @@ rofi-emoji
 
 # ── Apps ──────────────────────────────────────────────────────────────────────
 nautilus
+ffmpegthumbnailer # video thumbnails in nautilus
 obsidian
 btop
 fastfetch
 firefox
-zen-browser
+zen-browser-bin
 mpv
 imv
 zathura
@@ -112,9 +140,28 @@ wlogout
 obs-studio
 yazi
 spotify-launcher
+localsend
+
+# ── File managers (alternates to nautilus/yazi above) ───────────────────────
+dolphin
+nemo
+thunar
+
+# ── Terminals (alternate to ghostty above) ───────────────────────────────────
+alacritty
+foot
+
+# ── Media ─────────────────────────────────────────────────────────────────────
+ffmpeg
+vlc
+vlc-plugins-all
 
 # ── System ────────────────────────────────────────────────────────────────────
 ufw
+ufw-extras
+reflector
+pacman-contrib
+plocate
 tumbler
 cups
 ipp-usb
@@ -122,142 +169,61 @@ print-manager
 poppler
 gnome-keyring
 unrar
-p7zip
+7zip
 unzip
+zip
 lz4
+dua-cli # pkg name differs from upstream project name "dua"
+pamixer
+lsof
+mesa
+# lib32-mesa — needs [multilib] enabled in /etc/pacman.conf first
+# amd-ucode  # CPU microcode — uncomment the one matching this machine
+# intel-ucode
 
-# ── AUR (uncomment per machine) ───────────────────────────────────────────────
-bibata-cursor-theme
-papirus-icon-theme
-herdr-bin # terminal multiplexer, replaces tmux; config in dot_config/herdr
-glance-bin # self-hosted dashboard; config in dot_config/glance, reverse-proxied via Caddy
-spicetify-cli # no -bin variant in AUR; compiles Go+pnpm on install, customizes Spotify client
-# catppuccin-gtk-theme-mocha
-# grimblast-git (if not in official repos)
-# wl-screenrec
-# rofi-emoji
+# ── NVIDIA (sentinel + vanguard only; skip on archbook/AMD) ─────────────────
+# packages.txt has no per-host conditionals, so this whole block stays
+# commented rather than risk installing nvidia on the AMD laptop. Needs
+# [multilib] enabled in /etc/pacman.conf first (also needed for Steam/Proton).
+# nvidia
+# nvidia-utils
+# nvidia-settings
+# lib32-nvidia-utils
 
-# Pentesting/recon — were miscategorized as official, "target not found" on install
-amass-bin
-sherlock # no -bin variant in AUR
-subfinder-bin
-nuclei-bin
-burpsuite # no -bin variant; upstream package just wraps a prebuilt .jar
-whatweb # no -bin variant; Ruby script, nothing to build
-katana-bin # plain "katana" in AUR is Foundry's VFX tool, NOT this crawler — bin is the only correct pkg
-assetfinder # no -bin variant in AUR
-dnsx-bin
+# ── Wayland/system core ───────────────────────────────────────────────────────
+xorg-xwayland
+rtkit
+zram-generator
+openssh
 
-# From nixul audit (2026-07-28) — AUR-only or unverified-on-Arch packages.
-# Uncomment what you actually use; verify exact AUR pkg names on first boot,
-# the names below are best-effort guesses based on the upstream project name.
-# google-chrome
-# niri                  # alt WM, enabled alongside Hyprland on sentinel
-# aseprite
-# blockbench
-# yandex-music
-# lutgen
-# gogdl                 # GOG downloader used by Heroic/Lutris
-# xmcl-bin              # Minecraft launcher (nix used its own xmcl flake input)
-# todoist-electron
-# worktrunk             # git worktree manager
-# harlequin             # SQL TUI client
-# usql
-# devenv
-# bruno-bin             # HTTP client GUI
-# ngrok
-# zrok
-# biome                 # or: npm i -g @biomejs/biome
-# lazydocker
-# android-studio
-# jwt-hack
-# waydroid
-# tty-clock
-# kilocode-cli          # or: npm i -g kilocode
-# codex                 # OpenAI Codex CLI — check current install method
-# gemini-cli            # Google Gemini CLI
-# navi                  # may now be in official repos — check first
+# ── Companion device ─────────────────────────────────────────────────────────
+kdeconnect
 
-# ── From old NixOS config (migrated) ─────────────────────────────────────────
-# Gaming
-steam
-gamescope
-gamemode
-lutris
-wine
-wine-gecko
-wine-mono
+# ── Dev: multiplexers, runtimes ───────────────────────────────────────────────
+zellij
+yarn
+zig
+android-tools
 
-# Disk & System
-gparted
-baobab
-ncdu
-mission-center
-
-# Communication (comment out if not wanted)
-telegram-desktop
-discord
-thunderbird
-
-# Network
-nmap
-wireshark-qt
-tcpdump
-tailscale
-doggo
-
-# CLI tools
-htop
-procs
-thefuck
-hyperfine
-lnav
-television
-xh
-hurl
-
-# Keyboard firmware
-qmk
-# via — AUR: via-bin
-
-# Torrent
-qbittorrent
-
-# Power management
-power-profiles-daemon
-thermald
-upower
-
-# Printing extras
-hplip
-sane
-simple-scan
-
-# Office
-libreoffice-fresh
-
-# Calendar
-khal
-vdirsyncer
-
-# Disk imaging
-# caligula — AUR: caligula-git
-
-# ── Web Servers & Dashboards ────────────────────────────────────────────────
-caddy
-# glance-bin — AUR, see the bounded AUR section above
-
-# Audio extras
-pulsemixer
-easyeffects
+# ── Linters/formatters (dot_config/nvim/lua/plugins/{lint,conform}.lua) ──────
+shellcheck
+# hadolint-bin # AUR — install via paru once paru itself is bootstrapped
+luacheck
+golangci-lint
+stylua
+vale
+yamllint
+python-black # pip/nix name is "black"; Arch package is prefixed "python-"
+# prettier — not in official repos; `npm i -g prettier` instead
 
 # ── AI / ML ──────────────────────────────────────────────────────────────────
 ollama
 ollama-cuda
 opencode
-# opencode-desktop  # AUR — install via paru once run_once_install-aur-helper.sh has run
+claude-code
+# opencode-desktop  # AUR — install via paru once paru itself is bootstrapped
 
-# ── Pentesting / Security (from old NixOS config) ────────────────────────────
+# ── Pentesting / Security ─────────────────────────────────────────────────────
 nmap
 wireshark-qt
 tcpdump
@@ -268,77 +234,28 @@ hashcat
 metasploit
 bettercap
 ettercap
-openbsd-netcat # was "netcat-openbsd" — that's the AUR/upstream project name, Arch's official package is "openbsd-netcat"
+openbsd-netcat # upstream/AUR calls this "netcat-openbsd"; Arch's is "openbsd-netcat"
 inetutils
 # caido — AUR: caido-bin
-wifite # was "wifite2" — Arch's official "wifite" package is already wifite2 upstream (2:2.8.2)
+wifite # Arch's "wifite" package is already wifite2 upstream (2:2.8.2)
 # websploit — AUR: websploit-git
+jadx # Android Dex/APK to Java source decompiler
+fail2ban
+certbot
+# unbound — binds port 53, conflicts with adguardhome unless scoped to
+#           127.0.0.1/::1. Uncomment once that's set up.
+# sops — verify: AUR or official, uncertain
 
-# ── Databases (from old NixOS config) ───────────────────────────────────────
+# ── Databases ──────────────────────────────────────────────────────────────────
 postgresql
 postgresql-libs
-redis
+valkey
 dbeaver # GUI client for postgres/mysql/sqlite/etc — official package, not AUR
 
-# ─── Kubernetes / Containers (from old NixOS config) ────────────────────────
+# ── Kubernetes / Containers ───────────────────────────────────────────────────
 # kubectl
-# minikube    — verify: AUR or official, uncertain
-# kind        — verify: AUR or official, uncertain
-
-# ── NVIDIA (sentinel + vanguard only — both NVIDIA; skip on archbook/AMD) ────
-# packages.txt has no per-host conditionals, so this whole block is commented
-# rather than risk installing nvidia on the AMD laptop. Requires [multilib]
-# enabled in /etc/pacman.conf first (also needed for Steam/Proton above).
-# nvidia
-# nvidia-utils
-# nvidia-settings
-# lib32-nvidia-utils
-mesa
-# lib32-mesa  — needs multilib, see note above
-
-# CPU microcode — uncomment the one matching this machine
-# amd-ucode
-# intel-ucode
-
-# ── Wayland/system core additions (from nixul audit) ─────────────────────────
-xorg-xwayland
-rtkit
-zram-generator
-openssh
-
-# ── File managers (alternates to nautilus/yazi already above) ───────────────
-dolphin
-nemo
-thunar
-
-# ── Terminals (alternate to ghostty already above) ───────────────────────────
-alacritty
-foot
-
-# ── Media additions ───────────────────────────────────────────────────────────
-ffmpeg
-vlc
-
-# ── Companion device ─────────────────────────────────────────────────────────
-kdeconnect
-
-# ── Dev: multiplexers, runtimes, git ──────────────────────────────────────────
-zellij
-yarn
-zig
-android-tools
-
-# ── Dev: db & http clients ────────────────────────────────────────────────────
-# dbeaver     — verify: AUR or official, uncertain
-
-# ── Pentesting / Security additions ───────────────────────────────────────────
-fail2ban
-certbot   # Arch equivalent of NixOS's security.acme (internal CA / Let's Encrypt)
-# unbound     — binds port 53, conflicts with adguardhome unless scoped to
-#               127.0.0.1/::1 like nixul does. Uncomment once that's set up.
-# sops        — verify: AUR or official, uncertain
-
-# ── Containers / virtualization ───────────────────────────────────────────────
+# minikube — verify: AUR or official, uncertain
+# kind     — verify: AUR or official, uncertain
 docker
 podman
 libvirt
@@ -350,33 +267,113 @@ virt-manager
 openvpn
 wireguard-tools
 
-# ── Self-hosted servers ───────────────────────────────────────────────────────
-# nginx complements caddy here, not replaces it: nixul's nginx module generates
-# an internal CA + wildcard cert and reverse-proxies the service stack below.
-# caddy (dot_config/caddy/Caddyfile) stays as the lightweight standalone option.
-nginx
-# vaultwarden  — verify: AUR or official, uncertain
-
-# ── Optional heavier self-hosted stack (uncomment what you actually run) ─────
-# dashy         — nix builds a custom derivation; on Arch, run via Docker instead
+# ── Web Servers & Self-hosted services ────────────────────────────────────────
+caddy
+# glance-bin — AUR, see the bounded AUR section below
+nginx # complements caddy, doesn't replace it — reverse-proxies the stack below
+# vaultwarden — verify: AUR or official, uncertain
+# dashy         — run via Docker instead of a custom package
 # uptime-kuma   — run via Docker instead
-# home-assistant, litellm, open-webui, avahi, winboat — vanguard-only (home PC),
-#   not enabled on sentinel; home-assistant/litellm/open-webui are typically
-#   run via Docker rather than native packages either way
+# home-assistant, litellm, open-webui, avahi, winboat — home-PC-only stack,
+#   typically run via Docker rather than native packages
 # avahi
-# CLI extras
-# dua — Arch package is `dua-cli`, not `dua`
-dua-cli
-pamixer
-lsof
 
-# ── Linters/formatters (needed by dot_config/nvim/lua/plugins/{lint,conform}.lua) ──
-shellcheck
-# hadolint  # AUR (hadolint-bin) — install via paru once run_once_install-aur-helper.sh has run
-luacheck
-golangci-lint
-stylua
-vale
-yamllint
-python-black # nix/pip name is "black"; Arch package is prefixed "python-"
-# prettier — not in official repos; install via `npm i -g prettier` (nodejs/npm above)
+# ── Gaming ─────────────────────────────────────────────────────────────────────
+steam
+gamescope
+gamemode
+lutris
+wine
+wine-gecko
+wine-mono
+
+# ── Disk & System tools ───────────────────────────────────────────────────────
+gparted
+baobab
+ncdu
+mission-center
+# caligula — AUR: caligula-git
+
+# ── Communication (comment out what you don't want) ──────────────────────────
+telegram-desktop
+discord
+thunderbird
+
+# ── CLI tools ──────────────────────────────────────────────────────────────────
+htop
+procs
+thefuck
+hyperfine
+lnav
+television
+xh
+hurl
+glances
+duf
+cava
+
+# ── Keyboard firmware ─────────────────────────────────────────────────────────
+qmk
+# via — AUR: via-bin
+
+# ── Torrent ────────────────────────────────────────────────────────────────────
+qbittorrent
+
+# ── Power management ──────────────────────────────────────────────────────────
+power-profiles-daemon
+thermald
+upower
+
+# ── Printing extras ───────────────────────────────────────────────────────────
+hplip
+sane
+simple-scan
+
+# ── Office ─────────────────────────────────────────────────────────────────────
+libreoffice-fresh
+
+# ── Calendar ───────────────────────────────────────────────────────────────────
+khal
+vdirsyncer
+
+# ── Audio extras ───────────────────────────────────────────────────────────────
+pulsemixer
+easyeffects
+
+# ── AUR (uncomment per machine; installed via paru, see header) ──────────────
+bibata-cursor-theme
+papirus-icon-theme
+herdr-bin # terminal multiplexer, replaces tmux; config in dot_config/herdr
+glance-bin # self-hosted dashboard; config in dot_config/glance, reverse-proxied via Caddy
+spicetify-cli # no -bin variant in AUR; compiles Go+pnpm on install
+spicetify-marketplace-bin # extension/theme marketplace for spicetify
+omnyssh-bin # TUI SSH dashboard & server manager
+warpgui-bin # GUI for Cloudflare WARP (pairs with cloudflare-warp-bin above, official pkg)
+bun-bin # JS runtime/bundler/test-runner, alt to nodejs/npm
+pi-coding-agent-bin # coding agent CLI (prebuilt binary)
+docker-compose-git
+google-chrome
+bruno-bin # HTTP client GUI
+amass-bin
+sherlock # no -bin variant in AUR
+subfinder-bin
+nuclei-bin
+burpsuite # no -bin variant; upstream package just wraps a prebuilt .jar
+whatweb # no -bin variant; Ruby script, nothing to build
+katana-bin # plain "katana" in AUR is Foundry's VFX tool, NOT this crawler
+assetfinder # no -bin variant in AUR
+dnsx-bin
+aseprite
+blockbench-bin
+yandex-music-bin
+xmcl-launcher
+worktrunk-bin    # git worktree manager
+harlequin    # SQL TUI client
+harlequin-postgres
+usql-bin
+ngrok
+zrok-bin
+lazydocker-bin
+android-studio
+jwt-hack
+waydroid-git
