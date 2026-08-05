@@ -1,64 +1,96 @@
 {
-  "sources": [
-    {
-      "enabled": true,
-      "name": "Official Noctalia Plugins",
-      "url": "https://github.com/noctalia-dev/noctalia-plugins"
-    }
-  ],
-  "states": {
-    "cloudflare-warp": {
-      "enable": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+    "sources": [
+        {
+            "enabled": true,
+            "name": "Noctalia Plugins",
+            "url": "https://github.com/noctalia-dev/noctalia-plugins"
+        }
+    ],
+    "states": {
+        "assistant-panel": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "cloudflare-warp": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "currency-exchange": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "deskvis": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "fancy-audiovisualizer": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "git-companion": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "hyprland-steam-overlay": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "kaomoji-provider": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "kde-connect": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "latency-monitor": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "lyrics-fetch": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "mini-docker": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "notes-scratchpad": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "pomodoro": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "screen-toolkit": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "tamagotchi": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "timer": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "todo": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "translator": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "video-wallpaper": {
+            "enabled": null,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "weather-indicator": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        }
     },
-    "kaomoji-provider": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "kde-connect": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "latency-monitor": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "lyrics-fetch": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "notes-scratchpad": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "pomodoro": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "screen-toolkit": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "timer": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "todo": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "translator": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "video-wallpaper": {
-      "enable": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    },
-    "weather-indicator": {
-      "enabled": true,
-      "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-    }
-  },
-  "version": 1
+    "version": 2
 }
