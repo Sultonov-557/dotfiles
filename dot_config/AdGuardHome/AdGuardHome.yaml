@@ -19,7 +19,7 @@ block_auth_min: 15
 
 dns:
   bind_hosts:
-    - 0.0.0.0
+    - 127.0.0.1
   port: 53
   protection_enabled: true
   filtering_enabled: true

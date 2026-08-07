@@ -535,3 +535,5 @@ if hl.plugin.hyprglass then
     adaptive_boost = 0,
   })
 end
+
+require("hyprland-gui")
