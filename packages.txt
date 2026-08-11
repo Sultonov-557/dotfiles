@@ -87,7 +87,7 @@ slurp
 swappy
 imagemagick
 wl-clipboard
-cliphist
+# cliphist # replaced by vicinae's built-in clipboard watcher, see AUR section
 tesseract-data-eng # OCR english language data
 
 # ── Audio & Brightness ────────────────────────────────────────────────────────
@@ -118,8 +118,8 @@ dunst
 libnotify
 
 # ── Launcher ──────────────────────────────────────────────────────────────────
-rofi
-rofi-emoji
+rofi # dmenu backend for dot_local/bin/{power-menu,shells}; app-launcher role moved to vicinae
+# rofi-emoji # replaced by vicinae, see AUR section
 
 # ── Apps ──────────────────────────────────────────────────────────────────────
 nautilus
@@ -152,7 +152,6 @@ alacritty
 foot
 
 # ── Media ─────────────────────────────────────────────────────────────────────
-ffmpeg
 vlc
 vlc-plugins-all
 
@@ -343,6 +342,7 @@ easyeffects
 # ── AUR (uncomment per machine; installed via paru, see header) ──────────────
 bibata-cursor-theme
 papirus-icon-theme
+vicinae-bin # app launcher, clipboard manager, emoji picker; replaces rofi/cliphist
 herdr-bin # terminal multiplexer, replaces tmux; config in dot_config/herdr
 glance-bin # self-hosted dashboard; config in dot_config/glance, reverse-proxied via Caddy
 spicetify-cli # no -bin variant in AUR; compiles Go+pnpm on install

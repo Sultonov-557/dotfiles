@@ -83,10 +83,6 @@
             "enabled": true,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
         },
-        "video-wallpaper": {
-            "enabled": null,
-            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-        },
         "weather-indicator": {
             "enabled": true,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"

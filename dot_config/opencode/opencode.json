@@ -212,7 +212,7 @@
     "@nick-vi/opencode-type-inject",
     "@tarquinen/opencode-dcp",
     "@franlol/opencode-md-table-formatter@0.0.3",
-    "oh-my-opencode",
+    "oh-my-openagent",
     "@0xsero/open-queue",
     "micode",
     "@plannotator/opencode",

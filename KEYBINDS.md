@@ -60,8 +60,7 @@ Modifier: `SUPER`.
 
 | Chord | Action |
 |---|---|
-| `SUPER+Space` | App launcher |
-| `SUPER+Shift+Space` | Command launcher |
+| `SUPER+Space` | App launcher (vicinae) |
 | `SUPER+Return` / `SUPER+Shift+Return` | Terminal / terminal in `~/` |
 | `SUPER+W` | Zen browser |
 | `SUPER+A` | Obsidian |
@@ -69,8 +68,7 @@ Modifier: `SUPER`.
 | `SUPER+E` | Nautilus (file manager) |
 | `SUPER+T` | Telegram |
 | `SUPER+M` | Spotify |
-| `SUPER+C` | Clipboard picker |
-| `SUPER+Alt+X` | Clear clipboard |
+| `SUPER+C` | Clipboard picker (vicinae) |
 
 ### Screenshots
 
@@ -85,8 +83,7 @@ Modifier: `SUPER`.
 
 | Chord | Action |
 |---|---|
-| `SUPER+Escape` | Session menu (Noctalia) — includes lock, suspend, reboot, shutdown |
-| `SUPER+Ctrl+Escape` | Session menu fallback (wlogout — use if Noctalia/QuickShell isn't running) |
+| `SUPER+Escape` | Session menu (`power-menu` script, rofi-based) — lock, logout, suspend, reboot, shutdown |
 | `SUPER+Ctrl+Shift+L` | Exit Hyprland |
 
 ### Flow / utility
@@ -99,16 +96,21 @@ Modifier: `SUPER`.
 | `SUPER+Shift+D` | Toggle Do Not Disturb |
 | `SUPER+Shift+P` | Cycle power profile |
 | `SUPER+Shift+F12` | Toggle focus mode |
-| `SUPER+.` | Emoji picker |
-| `SUPER+X` | Switch QuickShell config |
-| `SUPER+D` | Toggle control center |
+| `SUPER+.` | Emoji picker (vicinae) |
+| `SUPER+X` | Switch QuickShell config (`shells` script, rofi-based) |
 | `SUPER+Shift+O` | Turn off monitors |
-| `XF86Audio*` / `XF86MonBrightness*` | Media/volume/brightness (via Noctalia IPC) |
+| `XF86Audio*` / `XF86MonBrightness*` | Media/volume/brightness |
 
-Standalone CLI equivalents also exist in `dot_local/bin/` (`volume`,
-`brightness`, `caffeine`, `dnd`, `perfmode`) for scripting or manual terminal
-use — a second, independent invocation path, not a fallback for the keybind
-path.
+`SUPER+Shift+I`/`D`/`P` and the `XF86Audio*`/`XF86MonBrightness*` keys all
+call plain `dot_local/bin/` scripts (`caffeine`, `dnd`, `powerprofile`,
+`volume`, `brightness`) or `playerctl` directly — no shell/bar IPC involved,
+so these keep working regardless of which QuickShell config (or none) is
+running. `perfmode` has no bound keybind; it's a standalone CLI-only tool.
+
+`SUPER+Shift+Space` (Noctalia's command launcher) and `SUPER+D` (Noctalia's
+control center) are unbound — both were Noctalia-shell UI features with no
+equivalent in other shells. Rebind them once you land on a shell that has (or
+doesn't need) an equivalent.
 
 ## Neovim (`dot_config/nvim/lua/config/keymaps.lua` + plugin files)
 
@@ -313,11 +315,13 @@ Prefix: `Ctrl+g`.
 - fzf keeps `Ctrl+T` (file search) and `Alt+C` (cd); atuin is sourced after
   fzf in `config.fish`, so it — not fzf — owns `Ctrl+R`.
 
-## rofi
+## vicinae
 
-No custom keybind overrides — its compiled-in defaults already include
-`Ctrl+j`/`Ctrl+k` for row navigation, matching Telescope's convention above.
-Not customized further; see the design spec's non-goals.
+App launcher, clipboard history, and emoji picker — see the Hyprland table
+above for the bound chords (`SUPER+Space`, `SUPER+C`, `SUPER+.`). No custom
+in-app keybind overrides beyond that; its default row navigation isn't raw
+`hjkl` since the search box is a text filter (matching Telescope's convention
+above).
 
 ## Documented exceptions
 
@@ -325,7 +329,6 @@ Not customized further; see the design spec's non-goals.
 |---|---|---|
 | herdr | Modal resize (`prefix+r`, then `hjkl`) instead of a held `+Ctrl+hjkl` chord | Better UX for repeated resizing in a terminal mux; `Ctrl+hjkl` is already claimed by pane navigation |
 | Neovim | Split-resize on arrows, not `Ctrl+hjkl` | `Ctrl+hjkl` is already claimed by cross-boundary Neovim↔herdr pane navigation |
-| rofi / Telescope | No raw `hjkl` navigation | Both are text-filter list widgets — typing `h`/`l` must insert those characters. `Ctrl+j`/`Ctrl+k` already covers row navigation in both |
-| wlogout | Bound to `SUPER+Ctrl+Escape`, separate from the primary `SUPER+Escape` session menu | Kept as an explicit manual fallback for when Noctalia/QuickShell isn't running, rather than left unreachable |
-| `power-menu` script | Third manual/CLI-invokable session-menu alternative (rofi-based) alongside wlogout | Not bound to a keybind — invoke directly from a terminal or script when you want the rofi UI specifically |
-| `dot_local/bin` scripts (`volume`, `brightness`, `caffeine`, `dnd`, `perfmode`) | Exist alongside noctalia-IPC-bound keybind equivalents | Independently useful as CLI tools (e.g. scriptable from `flowstart`) — a second invocation path, not a fallback for the keybind path |
+| vicinae / Telescope | No raw `hjkl` navigation | Both are text-filter list widgets — typing `h`/`l` must insert those characters, so row navigation relies on each tool's own default bindings instead (`Ctrl+j`/`Ctrl+k` in Telescope; vicinae's compiled-in defaults) |
+| wlogout | Installed but not bound to any keybind | Kept as a manual-invoke fallback session menu if `power-menu`/rofi ever breaks — run it directly from a terminal |
+| `perfmode` script | Installed but not bound to any keybind | Standalone CLI-only tool (e.g. scriptable from `flowstart`) — no keybind equivalent exists |

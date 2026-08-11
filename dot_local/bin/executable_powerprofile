@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# =============================================================================
+# powerprofile — Cycle power profile
+# =============================================================================
+# Usage: powerprofile
+# Depends: power-profiles-daemon (powerprofilesctl), notify-send
+set -euo pipefail
+
+PROFILES=(performance balanced power-saver)
+
+CURRENT=$(powerprofilesctl get)
+
+NEXT="${PROFILES[0]}"
+for i in "${!PROFILES[@]}"; do
+  if [ "${PROFILES[$i]}" = "$CURRENT" ]; then
+    NEXT="${PROFILES[$(( (i + 1) % ${#PROFILES[@]} ))]}"
+    break
+  fi
+done
+
+powerprofilesctl set "$NEXT"
+notify-send "Power Profile" "$NEXT" -t 2000
