@@ -3,6 +3,7 @@ return {
   -- Mason: LSP/DAP/linter installer UI
   {
     "mason-org/mason.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       ui = {
         icons = {
@@ -18,78 +19,62 @@ return {
   -- mason-lspconfig: bridge between Mason and lspconfig
   {
     "williamboman/mason-lspconfig.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
     },
-    opts = function()
-      local lspconfig = require("lspconfig")
-
-      -- Default capabilities (merge with cmp if available)
-      local function default_capabilities()
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        local ok, cmp_caps = pcall(require, "cmp_nvim_lsp")
-        if ok then
-          capabilities = cmp_caps.default_capabilities()
-        end
-        return capabilities
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "pyright",
+        "ts_ls",
+        "rust_analyzer",
+        "gopls",
+        "bashls",
+        "jsonls",
+        "yamlls",
+        "taplo",
+        "marksman",
+        "html",
+        "cssls",
+        "tailwindcss",
+        "clangd",
+        "dockerls",
+      },
+    },
+    config = function(_, opts)
+      -- Default capabilities for all servers (merge with cmp if available)
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local ok, cmp_caps = pcall(require, "cmp_nvim_lsp")
+      if ok then
+        capabilities = cmp_caps.default_capabilities()
       end
+      vim.lsp.config("*", { capabilities = capabilities })
 
-      return {
-        ensure_installed = {
-          "lua_ls",
-          "pyright",
-          "ts_ls",
-          "rust_analyzer",
-          "gopls",
-          "bashls",
-          "jsonls",
-          "yamlls",
-          "taplo",
-          "marksman",
-          "html",
-          "cssls",
-          "tailwindcss",
-          "clangd",
-          "dockerls",
+      -- Per-server overrides
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+          },
         },
-        automatic_installation = true,
-        handlers = {
-          -- Default handler for all servers
-          function(server_name)
-            lspconfig[server_name].setup({
-              capabilities = default_capabilities(),
-            })
-          end,
-          -- Per-server overrides
-          ["lua_ls"] = function()
-            lspconfig.lua_ls.setup({
-              capabilities = default_capabilities(),
-              settings = {
-                Lua = {
-                  runtime = { version = "LuaJIT" },
-                  diagnostics = { globals = { "vim" } },
-                  workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true),
-                    checkThirdParty = false,
-                  },
-                  telemetry = { enable = false },
-                },
-              },
-            })
-          end,
-          ["rust_analyzer"] = function()
-            lspconfig.rust_analyzer.setup({
-              capabilities = default_capabilities(),
-              settings = {
-                ["rust-analyzer"] = {
-                  check = { command = "clippy" },
-                },
-              },
-            })
-          end,
+      })
+      vim.lsp.config("rust_analyzer", {
+        settings = {
+          ["rust-analyzer"] = {
+            check = { command = "clippy" },
+          },
         },
-      }
+      })
+
+      require("mason-lspconfig").setup(opts)
     end,
   },
 }
