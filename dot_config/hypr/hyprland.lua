@@ -470,7 +470,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("blueman-applet")
   hl.exec_cmd("vicinae server")
   hl.exec_cmd("dunst")
-  hl.exec_cmd("dms run")
+  hl.exec_cmd("qs -c noctalia-shell")
   hl.exec_cmd("sleep 3 && hyprctl reload")
 end)
 
