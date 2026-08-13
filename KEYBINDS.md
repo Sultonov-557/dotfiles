@@ -232,13 +232,6 @@ discarded.
 | `<leader>ww` | Cycle windows |
 | `<leader>w=` | Equalize window sizes |
 
-### Session — `s` group
-
-| Chord | Action |
-|---|---|
-| `<leader>sr` / `<leader>ss` | Restore / save session |
-| `<leader>sd` / `<leader>sl` | Delete / search session |
-
 ### File tree
 
 | Chord | Action |

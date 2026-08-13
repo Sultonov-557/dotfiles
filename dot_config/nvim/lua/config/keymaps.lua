@@ -68,8 +68,6 @@ map("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" 
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- ── Windows — <leader>w group ────────────────────────────────────────────────
--- Session control lives under <leader>s (auto-session.lua); <leader>w is
--- reserved for window management.
 
 map("n", "<leader>ws", "<C-w>s", { desc = "Split horizontal" })
 map("n", "<leader>wv", "<C-w>v", { desc = "Split vertical" })

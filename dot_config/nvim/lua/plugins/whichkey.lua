@@ -22,7 +22,6 @@ return {
       { "<leader>t",  group = "Todo / Terminal" },
       { "<leader>x",  group = "Trouble" },
       { "<leader>w",  group = "Window" },
-      { "<leader>s",  group = "Session" },
     },
   },
 }
