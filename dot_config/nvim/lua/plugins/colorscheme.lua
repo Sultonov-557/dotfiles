@@ -48,11 +48,6 @@ return {
           indentscope_color = "mauve",
         },
         noice = true,
-        symbols_outline = true,
-        dap = {
-          enabled = true,
-          enable_ui = true,
-        },
       },
       highlight_overrides = {
         mocha = {

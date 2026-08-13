@@ -13,8 +13,8 @@
 - Spec: `docs/superpowers/specs/2026-08-13-nvim-uiux-polish-design.md`.
 - Minimal/subtle visual style everywhere **except** cmdline popup (noice, fully enabled) and breadcrumbs (navic winbar, fully enabled) — both explicitly opted into by the user.
 - No new global leader keymaps; no `KEYBINDS.md` changes required by this plan.
-- No automated test suite exists for this config. "Testing" per task means: (a) a headless Neovim sanity check that the new plugin spec loads/installs without error, and (b) an interactive manual check against the exact behavior described in the spec's Testing section — do the manual check yourself by launching `nvim` before marking a task done, don't just assume it from the headless check.
-- Edits happen in `dot_config/nvim/` under the chezmoi source (`/home/sultonov/dotfiles`), **not** in live `~/.config/nvim`. The final task runs `chezmoi apply` to sync.
+- No automated test suite exists for this config. "Testing" per task means: (a) `chezmoi apply` right after editing (chezmoi source-path is this repo, confirmed — no worktree needed), then a headless Neovim sanity check against the now-synced live config, and (b) a visual check against the exact behavior described in the spec's Testing section, which only a human at a real terminal can perform — collected into one checklist handed to the user after all tasks land, not delegated to a subagent with no screen.
+- Edits happen in `dot_config/nvim/` under the chezmoi source (`/home/sultonov/dotfiles`); each task applies to live `~/.config/nvim` via `chezmoi apply` as part of its own verification, not deferred to a final task.
 - Commit after every task with a `feat:`/`fix:`/`chore:` prefix matching this repo's existing commit style (see `git log --oneline -10`).
 
 ---
@@ -290,9 +290,9 @@ return {
         if excluded_filetypes[vim.bo[args.buf].filetype] then
           return
         end
-        local navic = require("navic")
+        local navic = require("nvim-navic")
         navic.attach(client, args.buf)
-        vim.wo.winbar = "%{%v:lua.require'navic'.get_location()%}"
+        vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
       end,
     })
   end,
@@ -310,7 +310,7 @@ return {
     },
   },
   config = function(_, opts)
-    require("navic").setup(opts)
+    require("nvim-navic").setup(opts)
   end,
 }
 ```
