@@ -21,6 +21,12 @@ keybinds clear-defaults=true {
         bind "Alt 2" { GoToTab 2; }
         bind "Alt 3" { GoToTab 3; }
         bind "Alt 4" { GoToTab 4; }
+
+        // Pane navigation without unlocking (matches WM hjkl convention)
+        bind "Alt h" { MoveFocusOrTab "left"; }
+        bind "Alt j" { MoveFocus "down"; }
+        bind "Alt k" { MoveFocus "up"; }
+        bind "Alt l" { MoveFocusOrTab "right"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }

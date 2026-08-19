@@ -46,6 +46,7 @@ set font "JetBrainsMono Nerd Font 11"
 set guioptions "c"
 set statusbar-h-padding 4
 set statusbar-v-padding 4
+set selection-clipboard clipboard
 
 # --- Keybindings ---
 map j scroll-down

@@ -54,7 +54,7 @@ font-feature = liga
 window-padding-x = 8
 window-padding-y = 4
 window-save-state = always
-window-decoration = auto
+window-decoration = false
 background-opacity = 0.70
 background-blur-radius = 20
 
@@ -67,7 +67,6 @@ keybind = clear
 keybind = ctrl+shift+v=paste_from_clipboard
 confirm-close-surface = false
 mouse-hide-while-typing = true
-term = xterm-256color
 copy-on-select = clipboard
 clipboard-write = allow
 clipboard-read = allow

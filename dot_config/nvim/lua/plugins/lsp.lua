@@ -74,6 +74,9 @@ return {
         },
       })
 
+      -- mason-lspconfig v2 auto-enables installed servers via vim.lsp.config/
+      -- vim.lsp.enable (the setup_handlers API was removed), so the per-server
+      -- vim.lsp.config overrides above are picked up automatically.
       require("mason-lspconfig").setup(opts)
     end,
   },

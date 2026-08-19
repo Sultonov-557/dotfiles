@@ -133,7 +133,7 @@ alias btop='btop'
 alias uptime='uptime -p'              # pretty uptime
 alias cal='cal -3'                    # 3-month calendar
 alias w='who'                         # who is logged in
-alias path='echo $PATH | tr ":" "\n"' # readable PATH
+alias path='env | grep "^PATH=" | cut -d= -f2- | tr ":" "\n"' # readable PATH (works in fish too)
 
 # ── Process / Ports ─────────────────────────────────────────────────────────
 alias ports='ss -tulanp'

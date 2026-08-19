@@ -20,6 +20,22 @@ indent_size = 4
 [*.rs]
 indent_size = 4
 
+[*.go]
+indent_style = tab
+indent_size = 4
+
+[*.{json,jsonc}]
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{js,jsx,ts,tsx,html,css,scss}]
+indent_size = 2
+
+[*.sh]
+indent_size = 2
+
 [Makefile]
 indent_style = tab
 

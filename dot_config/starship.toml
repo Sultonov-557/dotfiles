@@ -1,20 +1,16 @@
 # Starship Prompt — Minimal Catppuccin Mocha
-format = """\
-$directory\
-$git_branch\
-$git_status\
-$line_break\
-$character\
-"""
+format = "$all"
+
 
 [directory]
 style = "fg:#bac2de"
-truncation_length = 2
+truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
 style = "fg:#89b4fa"
 format = " on [$symbol$branch]($style)"
+truncation_length = 20
 
 [git_status]
 style = "fg:#bac2de"
@@ -32,3 +28,13 @@ deleted = " ✘"
 success_symbol = "[❯](bold fg:#b4befe)"
 error_symbol = "[❯](bold fg:#f38ba8)"
 vicmd_symbol = "[❮](bold fg:#89b4fa)"
+
+[cmd_duration]
+min_time = 1_000
+format = " took [$duration](fg:#f9e2af)"
+
+[package]
+disabled = true
+
+[docker_context]
+disabled = true

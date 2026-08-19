@@ -75,3 +75,10 @@ coverage/
 *.pid.lock
 *.socket
 *.swap
+
+# --- Secrets / Environment ---
+.env
+.env.*
+.env.local
+!.env.example
+!.env.template

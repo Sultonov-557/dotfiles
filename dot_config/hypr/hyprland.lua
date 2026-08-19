@@ -107,7 +107,7 @@ hl.config({
 
   cursor = {
     inactive_timeout = 3,
-    no_hardware_cursors = 1, -- prevents GPU driver issues
+    no_hardware_cursors = 0, -- hardware cursors = lower latency (set to 1 only for NVIDIA cursor bugs)
   },
 
   binds = {
@@ -208,7 +208,7 @@ hl.config({
     key_press_enables_dpms = true,
     enable_swallow = true,
     swallow_regex = "^(kitty|ghostty|alacritty)$",
-    vrr = 0,
+    vrr = 2, -- adaptive sync for fullscreen apps (eliminates tearing)
     disable_autoreload = false,
     animate_manual_resizes = true,
     animate_mouse_windowdragging = true,
@@ -331,10 +331,10 @@ hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "u" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
 
 -- --- Resize windows ---
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.exec_cmd("hyprctl dispatch resizeactive -60 0"))
-hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 60"))
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 -60"))
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 60 0"))
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.exec_cmd("hyprctl dispatch resizeactive -60 0"), { repeating = true })
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 60"), { repeating = true })
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 -60"), { repeating = true })
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 60 0"), { repeating = true })
 
 -- --- Workspace switching ---
 for i = 1, 10 do
@@ -369,10 +369,9 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioStop", hl.dsp.exec_cmd("playerctl stop"), { locked = true })
 
--- --- Exit Hyprland ---
--- Lock lives in the session menu (SUPER+Escape, option 1) — SUPER+CTRL+L is
--- reserved for window resize (+x), see the "Resize windows" block above.
-hl.bind(mainMod .. " + CTRL + SHIFT + L", hl.dsp.exec_cmd("hyprctl dispatch exit"))
+-- --- Lock screen ---
+-- Quick lock: SUPER+BackSpace (easy to reach, hard to fat-finger)
+hl.bind(mainMod .. " + BackSpace", hl.dsp.exec_cmd("hyprlock"), { description = "Lock screen" })
 
 -- --- Flow / Utility ---
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("picker"), { description = "Color picker" })
@@ -426,6 +425,21 @@ hl.window_rule({ name = "float-nautilus", match = { class = "^(org.gnome.Nautilu
 hl.window_rule({ name = "float-blueman", match = { class = "^(blueman-manager)$" }, float = true })
 hl.window_rule({ name = "float-nm-editor", match = { class = "^(nm-connection-editor)$" }, float = true })
 hl.window_rule({ name = "float-xdg-portal", match = { class = "^(xdg-desktop-portal-gtk)$" }, float = true })
+
+-- File dialogs (Open, Save, Select, Choose)
+hl.window_rule({ name = "float-open-file", match = { title = "^(Open File)(.*)$" }, float = true })
+hl.window_rule({ name = "float-save-file", match = { title = "^(Save File)(.*)$" }, float = true })
+hl.window_rule({ name = "float-select", match = { title = "^(Select a)(.*)$" }, float = true })
+hl.window_rule({ name = "float-choose", match = { title = "^(Choose )(.*)$" }, float = true })
+hl.window_rule({ name = "float-open-folder", match = { title = "^(Open Folder)(.*)$" }, float = true })
+
+-- Dim authentication dialogs for focus
+hl.window_rule({
+  name = "dim-polkit",
+  match = { class = "^(polkit-gnome-authentication-agent-1)$" },
+  float = true,
+  pin = true,
+})
 
 -- No blur for launchers (no_blur is supported in Lua API)
 hl.window_rule({ name = "noblur-wofi", match = { class = "^(wofi)$" }, no_blur = true })

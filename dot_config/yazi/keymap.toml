@@ -17,12 +17,12 @@ prepend_keymap = [
 
   # File operations
   { on = "y", run = "yank", desc = "Yank selected files" },
-  { on = "d", run = "remove", desc = "Delete selected files" },
+  { on = "d", run = "trash", desc = "Move to trash" },
   { on = "p", run = "paste", desc = "Paste yanked files" },
   { on = "P", run = "paste_link", desc = "Paste as symlink" },
   { on = "r", run = "rename", desc = "Rame file" },
   { on = "c", run = "create", desc = "Create file / directory" },
-  { on = "D", run = "remove", desc = "Delete selected" },
+  { on = "D", run = "remove", desc = "Permanent delete" },
   { on = "Y", run = "yank", desc = "Yank (copy)" },
 
   # Selection

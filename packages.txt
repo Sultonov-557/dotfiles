@@ -56,6 +56,9 @@ woff2-font-awesome
 noto-fonts
 noto-fonts-cjk
 
+# ── Theming ────────────────────────────────────────────────────────────────────
+adw-gtk-theme # provides adw-gtk3/adw-gtk3-dark theme; fallback so GTK3 apps still get a proper dark libadwaita-style theme if the catppuccin theme name below ever fails to resolve
+
 # ── Development ───────────────────────────────────────────────────────────────
 neovim
 tree-sitter-cli # needed by nvim-treesitter and kulala.nvim to build parsers
@@ -342,6 +345,7 @@ easyeffects
 # ── AUR (uncomment per machine; installed via paru, see header) ──────────────
 bibata-cursor-theme
 papirus-icon-theme
+catppuccin-gtk-theme-mocha # no -bin variant in AUR; matches gtk-theme-name in dot_config/gtk-{3,4}.0/settings.ini
 vicinae-bin # app launcher, clipboard manager, emoji picker; replaces rofi/cliphist
 herdr-bin # terminal multiplexer, replaces tmux; config in dot_config/herdr
 glance-bin # self-hosted dashboard; config in dot_config/glance, reverse-proxied via Caddy

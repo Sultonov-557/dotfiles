@@ -25,7 +25,7 @@ map("n", "<S-tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 -- Terminal escape
 -- Note: herdr_nav.lua (after/plugin) overrides <C-h/j/k/l> for pane-aware
 -- navigation, so the window-specific mappings below are fallbacks.
-map("t", "<Esc>", "<C-\\><C-n>", opts)
+-- Esc is NOT mapped here — it needs to pass through to TUI apps (lazygit, fzf, btop, yazi).
 map("t", "jk", "<C-\\><C-n>", opts)
 
 -- Resize splits

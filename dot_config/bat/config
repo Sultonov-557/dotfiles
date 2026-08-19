@@ -29,3 +29,6 @@
 --map-syntax="*.yml:yaml"
 --map-syntax="*.xml:xml"
 --map-syntax="*.jsonc:json"
+--map-syntax=".env*:bash"
+--map-syntax="*.ignore:gitignore"
+--map-syntax="*.fish:fish"
