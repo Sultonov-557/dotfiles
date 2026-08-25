@@ -93,3 +93,5 @@ if status is-interactive
   # Vi-style keybindings
   fish_vi_key_bindings
 end
+
+thefuck --alias | source

@@ -1,0 +1,19 @@
+{
+  "lastChangelogVersion": "0.84.2",
+  "theme": "dark",
+  "defaultProvider": "freellm",
+  "defaultModel": "auto",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "npm:context-mode",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-lens",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@plannotator/pi-extension",
+    "npm:@quintinshaw/pi-dynamic-workflows",
+    "npm:pi-memory",
+    "npm:bigpowers"
+  ]
+}
