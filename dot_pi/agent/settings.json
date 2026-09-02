@@ -6,15 +6,14 @@
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
     "npm:context-mode",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-lens",
-    "npm:@juicesharp/rpiv-todo",
-    "npm:@plannotator/pi-extension",
     "npm:@quintinshaw/pi-dynamic-workflows",
     "npm:pi-memory",
     "npm:bigpowers",
-    "npm:pi-background-tasks@latest"
+    "npm:pi-background-tasks@latest",
+    "npm:pi-code",
+    "npm:@ryan_nookpi/pi-extension-cc-system-prompt"
   ]
 }
