@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.3",
   "theme": "dark",
-  "defaultProvider": "freellm",
-  "defaultModel": "auto",
+  "defaultProvider": "omniroute",
+  "defaultModel": "best-free",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",
@@ -14,6 +14,7 @@
     "npm:@plannotator/pi-extension",
     "npm:@quintinshaw/pi-dynamic-workflows",
     "npm:pi-memory",
-    "npm:bigpowers"
+    "npm:bigpowers",
+    "npm:pi-background-tasks@latest"
   ]
 }

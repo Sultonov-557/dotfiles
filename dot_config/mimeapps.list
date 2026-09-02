@@ -60,6 +60,5 @@ x-scheme-handler/chrome=zen.desktop;
 x-scheme-handler/http=zen.desktop;
 x-scheme-handler/https=zen.desktop;
 x-scheme-handler/mailto=zen.desktop;
-x-scheme-handler/hermes=hermes.desktop;
 
 [Removed Associations]
