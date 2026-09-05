@@ -223,7 +223,7 @@ ollama
 ollama-cuda
 opencode
 claude-code
-# opencode-desktop  # AUR — install via paru once paru itself is bootstrapped
+opencode-desktop  # AUR — install via paru once paru itself is bootstrapped
 
 # ── Pentesting / Security ─────────────────────────────────────────────────────
 nmap
