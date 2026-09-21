@@ -351,7 +351,7 @@ herdr-bin # terminal multiplexer, replaces tmux; config in dot_config/herdr
 glance-bin # self-hosted dashboard; config in dot_config/glance, reverse-proxied via Caddy
 spicetify-cli # no -bin variant in AUR; compiles Go+pnpm on install
 spicetify-marketplace-bin # extension/theme marketplace for spicetify
-omnyssh-bin # TUI SSH dashboard & server manager
+lazyssh-bin # TUI SSH dashboard & server manager
 warpgui-bin # GUI for Cloudflare WARP (pairs with cloudflare-warp-bin above, official pkg)
 bun-bin # JS runtime/bundler/test-runner, alt to nodejs/npm
 pi-coding-agent-bin # coding agent CLI (prebuilt binary)

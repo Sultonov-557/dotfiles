@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "best-free",
+  "model": "freellmapi/auto",
   "plugin": [
     "@zenobius/opencode-background",
     "@tarquinen/opencode-dcp@latest",
@@ -73,8 +73,17 @@
           "name": "best-free"
         }
       }
+    },
+    "freellmapi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "FreeLLMAPI",
+      "options": {
+        "baseURL": "http://localhost:3001/v1",
+        "apiKey": "freellmapi-98b0fbf0f73fdb986a07dfeb6cff3bcb3eb3b599299883ed"
+      }
     }
   },
+  "default_agent": "OpenCoder",
   "agent": {
     "explore": {
       "disable": true

@@ -46,6 +46,9 @@ x-scheme-handler/http=zen.desktop
 x-scheme-handler/https=zen.desktop
 x-scheme-handler/mailto=zen.desktop
 x-scheme-handler/hermes=hermes.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/claude=com.anthropic.Claude.desktop
+x-scheme-handler/antigravity=antigravity.desktop
 
 [Added Associations]
 application/x-extension-htm=zen.desktop;
@@ -60,5 +63,6 @@ x-scheme-handler/chrome=zen.desktop;
 x-scheme-handler/http=zen.desktop;
 x-scheme-handler/https=zen.desktop;
 x-scheme-handler/mailto=zen.desktop;
+application/x-zerosize=nvim.desktop;
 
 [Removed Associations]
