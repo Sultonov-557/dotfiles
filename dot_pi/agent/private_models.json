@@ -1,0 +1,14 @@
+{
+  "providers": {
+    "omniroute": {
+      "api": "openai-completions",
+      "apiKey": "freellmapi-98b0fbf0f73fdb986a07dfeb6cff3bcb3eb3b599299883ed",
+      "baseUrl": "http://localhost:3001/v1",
+      "models": [
+        {
+          "id": "auto"
+        }
+      ]
+    }
+  }
+}

@@ -622,7 +622,7 @@
         "monitors": [
         ],
         "normalUrgencyDuration": 8,
-        "overlayLayer": true,
+        "overlayLayer": false,
         "respectExpireTimeout": false,
         "saveToHistory": {
             "critical": true,
@@ -651,7 +651,7 @@
         "location": "bottom_center",
         "monitors": [
         ],
-        "overlayLayer": true
+        "overlayLayer": false
     },
     "plugins": {
         "autoUpdate": false,

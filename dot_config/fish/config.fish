@@ -95,3 +95,8 @@ if status is-interactive
 end
 
 thefuck --alias | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/sultonov/.lmstudio/bin
+# End of LM Studio CLI section
+
