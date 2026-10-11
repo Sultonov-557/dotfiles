@@ -25,10 +25,10 @@ fi
 # ── Determine source directory ────────────────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" 2>/dev/null && pwd || true)"
 
-if [ -d "$SCRIPT_DIR/dot_config" ] && [ -d "$SCRIPT_DIR/.git" ]; then
+if ([ -d "$SCRIPT_DIR/home/dot_config" ] || [ -d "$SCRIPT_DIR/dot_config" ]) && [ -d "$SCRIPT_DIR/.git" ]; then
   echo ":: Applying dotfiles from $SCRIPT_DIR..."
   chezmoi init --apply "$SCRIPT_DIR" || true
-elif [ -d "$HOME/.local/share/chezmoi/dot_config" ]; then
+elif [ -d "$HOME/.local/share/chezmoi/home/dot_config" ] || [ -d "$HOME/.local/share/chezmoi/dot_config" ]; then
   echo ":: Applying dotfiles..."
   chezmoi apply || true
 else
@@ -41,10 +41,9 @@ echo ""
 echo ":: Done! If any run_once scripts failed (e.g. sudo), re-run: chezmoi apply"
 echo ""
 echo ":: Post-install checklist:"
-echo "::  1. Wallpapers — run_once_install-wallpaper.sh downloads defaults"
-echo "::  2. Browser CSS — run_once_after_setup-firefox-chrome.sh deploys theme"
-echo "::  3. Noctalia QuickShell — install manually from github.com/cloudmanic/noctalia"
-echo "::     Then: qs -c noctalia-shell to start the shell/bar/control center"
-echo "::  4. Systemd user services — enable with:"
+echo "::  1. Noctalia Shell — starts automatically with Hyprland ('noctalia')"
+echo "::  2. Display manager: to switch from SDDM to greetd:"
+echo "::     sudo systemctl disable --now sddm && sudo systemctl enable --now greetd"
+echo "::  3. Systemd user services — enable with:"
 echo "::     systemctl --user enable --now hyprpaper polkit-gnome"
-echo "::  5. Set up GPG keys if needed: gpg --full-generate-key"
+echo "::  4. Set up GPG keys if needed: gpg --full-generate-key"

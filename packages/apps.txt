@@ -1,0 +1,23 @@
+# GUI and user applications
+nautilus
+ffmpegthumbnailer
+obsidian
+firefox
+zen-browser-bin
+mpv
+imv
+zathura
+zathura-pdf-mupdf
+file-roller
+udiskie
+qalculate-gtk
+obs-studio
+spotify-launcher
+localsend
+vlc
+vlc-plugins-all
+google-chrome
+telegram-desktop
+discord
+thunderbird
+libreoffice-fresh

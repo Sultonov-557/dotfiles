@@ -1,0 +1,13 @@
+# Temporary and backup files
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+.DS_Store
+
+# Local secrets or overrides
+*.local
+*.local.*
+*.key
+*.pem

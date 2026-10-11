@@ -1,0 +1,11 @@
+# Fonts, icons, and themes
+ttf-jetbrains-mono-nerd
+ttf-firacode-nerd
+noto-fonts-emoji
+woff2-font-awesome
+noto-fonts
+noto-fonts-cjk
+adw-gtk-theme
+bibata-cursor-theme
+papirus-icon-theme
+catppuccin-gtk-theme-mocha

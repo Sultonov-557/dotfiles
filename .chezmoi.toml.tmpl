@@ -1,20 +1,9 @@
-# Chezmoi per-machine template
-# This file is used to define per-machine data variables.
-# Edit the hostname conditions to match your machines.
-# Repo: https://github.com/Sultonov-557/dotfiles.git
+# Chezmoi per-machine configuration template
+# Machines: vanguard, sentinel
 
 sourceDir = "{{ .chezmoi.homeDir }}/dotfiles"
+mode = "symlink"
 
 [data]
     name = "sultonov"
     email = "sultonovzerifboy@gmail.com"
-    machine_type = '{{ if eq .chezmoi.hostname "vanguard" }}desktop{{ else if eq .chezmoi.hostname "sentinel" }}desktop{{ else if eq .chezmoi.hostname "archbook" }}laptop{{ else if eq .chezmoi.hostname "server" }}server{{ else }}unknown{{ end }}'
-    is_laptop = '{{ eq .chezmoi.hostname "archbook" }}'
-    is_desktop = '{{ or (eq .chezmoi.hostname "vanguard") (eq .chezmoi.hostname "sentinel") }}'
-    is_server = '{{ eq .chezmoi.hostname "server" }}'
-    has_nvidia = '{{ if or (eq .chezmoi.hostname "vanguard") (eq .chezmoi.hostname "sentinel") }}true{{ else }}false{{ end }}'
-    gpu_driver = '{{ if or (eq .chezmoi.hostname "vanguard") (eq .chezmoi.hostname "sentinel") }}nvidia{{ else }}amd{{ end }}'
-    # Prompted once (only during `chezmoi init`/`chezmoi init --apply`), cached
-    # here — this file is chezmoi's local state, not part of the git repo.
-    # Used by dot_config/glance/glance.yml.tmpl for the dns-stats widget.
-    adguard_password = '{{ promptStringOnce . "adguard_password" "AdGuard Home admin password (blank to skip DNS stats widget)" "" }}'

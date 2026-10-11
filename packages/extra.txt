@@ -1,0 +1,27 @@
+# Additional tools and AUR utilities
+vicinae-bin
+herdr-bin
+lazyssh-bin
+warpgui-bin
+bun-bin
+docker-compose-git
+bruno-bin
+aseprite
+blockbench-bin
+yandex-music-bin
+xmcl-launcher
+worktrunk-bin
+harlequin
+harlequin-postgres
+usql-bin
+ngrok
+zrok-bin
+lazydocker-bin
+android-studio
+waydroid-git
+cloudflare-warp-bin
+doggo
+kdeconnect
+cava
+qmk
+hplip

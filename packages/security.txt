@@ -1,0 +1,26 @@
+# Security, pentesting, and network diagnostics
+nmap
+wireshark-qt
+tcpdump
+hydra
+john
+hashcat
+metasploit
+bettercap
+ettercap
+openbsd-netcat
+inetutils
+wifite
+jadx
+fail2ban
+certbot
+amass-bin
+sherlock
+subfinder-bin
+nuclei-bin
+burpsuite
+whatweb
+katana-bin
+assetfinder
+dnsx-bin
+jwt-hack

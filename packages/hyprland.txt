@@ -1,0 +1,18 @@
+# Hyprland ecosystem and desktop environment
+hyprland
+hyprpaper
+hyprlock
+hypridle
+hyprpicker
+grimblast-git
+noctalia
+dunst
+libnotify
+rofi
+wlogout
+swappy
+grim
+slurp
+imagemagick
+wl-clipboard
+swash
