@@ -39,7 +39,7 @@ virt-manager
 postgresql
 postgresql-libs
 valkey
-dbeaver
+dbeaver-ce-bin
 steam
 gamemode
 gamescope
