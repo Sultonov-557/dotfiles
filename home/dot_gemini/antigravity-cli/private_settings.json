@@ -1,0 +1,19 @@
+{
+  "allowNonWorkspaceAccess": true,
+  "artifactReviewPolicy": "always-proceed",
+  "editorMode": "vim",
+  "model": "Gemini 3.8 Flash (Low)",
+  "notifications": true,
+  "pickerGrouping": "grouped",
+  "runningLightSpeed": "fast",
+  "showFeedbackSurvey": false,
+  "statusLine": {
+    "type": "",
+    "command": "",
+    "enabled": true
+  },
+  "toolPermission": "always-proceed",
+  "trustedWorkspaces": ["*"],
+  "verbosity": "high",
+  "vimInsertFirst": true
+}
