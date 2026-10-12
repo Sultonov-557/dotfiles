@@ -44,12 +44,6 @@
 [submodule]
 	recurse = true
 
-# --- Per-directory config includes ---
-[includeIf "gitdir:~/work/"]
-	path = ~/.config/git/config-work
-[includeIf "gitdir:~/Projects/"]
-	path = ~/.config/git/config-personal
-
 # --- Aliases ---
 [alias]
 	# Log
@@ -117,14 +111,6 @@
 	# File
 	cp = cherry-pick
 	ignored = ls-files --others -i --exclude-standard
-
-# GPG signing
-[commit]
-	gpgSign = true
-[tag]
-	gpgSign = true
-[gpg]
-	program = gpg
 
 
 [credential "https://github.com"]
