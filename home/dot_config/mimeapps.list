@@ -50,6 +50,8 @@ x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/claude=com.anthropic.Claude.desktop
 x-scheme-handler/antigravity=antigravity.desktop
 x-scheme-handler/t3code=com.t3tools.T3Code.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop
+x-scheme-handler/ton=org.telegram.desktop.desktop
 
 [Added Associations]
 application/x-extension-htm=zen.desktop;
@@ -66,5 +68,7 @@ x-scheme-handler/https=zen.desktop;
 x-scheme-handler/mailto=zen.desktop;
 application/x-zerosize=nvim.desktop;
 x-scheme-handler/t3code=com.t3tools.T3Code.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;
+x-scheme-handler/ton=org.telegram.desktop.desktop;
 
 [Removed Associations]
