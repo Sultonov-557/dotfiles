@@ -62,10 +62,14 @@ Text Muted:                #9e9eb0  (Comments, inactive labels, line numbers)
 
 Hyprland animations tuned for zero perceived lag while retaining tactile fluid motion:
 
-- **Windows Open/Close**: Fast cubic bezier with subtle spring deceleration (`easeOutQuint`, 250ms).
-- **Workspace Switching**: Smooth horizontal slide with instant damping (speed: `3.2`, bezier: `[0.2, 0.9, 0.3, 1.0]`).
-- **Layers & Popouts (DankMaterialShell / OSD)**: Fade and vertical scale (`quick`, speed: `2.0`).
-- **Active Border Glow**: Soft breathing transition between inactive (`#2b2b38`) and focused crimson (`#9b182d`).
+| Element | Style / Bezier Curve | Speed / Duration | Feel & Behavior |
+|---|---|---|---|
+| **Windows In (Spawn)** | `overshoot` (`[0.05, 0.9, 0.1, 1.05]`) | ~180ms (`speed = 3.8`) | Pops open with a crisp, tactile snap without delaying rendering. |
+| **Windows Out (Close)** | `linear` / `fastFade` | ~100ms (`speed = 1.6`) | Vanishes instantly so closed windows get out of your way immediately. |
+| **Windows Move / Resize** | `snappy` (`[0.2, 0.85, 0.32, 1.0]`) | ~200ms (`speed = 3.5`) | Tiling adjustments glide smoothly with zero trailing lag. |
+| **Workspaces Switch** | `slide` with `easeOutQuint` | ~220ms (`speed = 3.2`) | Moving workspaces feels like flipping through tactile index cards. |
+| **Special Workspaces (Scratchpad)** | `slidevert` with `quickSpring` | ~180ms (`speed = 3.0`) | Terminal & notes drop down from top like a HUD visor, then retract instantly. |
+| **Layers / Menus (Vicinae / DMS)** | `fade` + `quick` | ~120ms (`speed = 2.2`) | Menus appear as fast as your fingers hit `SUPER + Space`. |
 
 ---
 
