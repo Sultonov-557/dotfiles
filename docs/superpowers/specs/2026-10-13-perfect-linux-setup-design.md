@@ -23,12 +23,12 @@
 |---|---|---|
 | **Compositor / WM** | **Hyprland** (Lua config) | Wayland dynamic tiling, sub-millisecond input response, kinetic physics animations, scratchpads. |
 | **Desktop Shell** | **DankMaterialShell** (Quickshell + Go) | Unified modern Wayland shell: replaces Waybar, Mako/Dunst, SwayOSD, and power menus into a GPU-accelerated QML/Go architecture. |
-| **Terminal Emulator** | **Ghostty** | Native GPU rendering, low latency, truecolor fidelity, native blur and clean config format. |
+| **Terminal Emulator** | **Ghostty** | Native Zig GPU acceleration, sub-millisecond input latency, native Wayland blur (`background-blur-radius = 20`), Kitty graphics protocol for Yazi image previews, paired cleanly with `herdr`. |
 | **Interactive Shell** | **Fish** | Blazing-fast interactive auto-suggestions, rich completions, and instant startup (~15ms) without plugin bloat. |
 | **Prompt** | **Starship** | Fast Rust prompt tailored with gothic red delimiters, branch status, and execution timing. |
-| **Editor / IDE** | **Neovim (LazyVim)** | Keyboard-native development environment with LSP, treesitter, fuzzy finder, and custom gothic color overrides. |
+| **Editor / IDE** | **LazyVim (Neovim)** | Keyboard-native development environment with inline image support (`image.nvim` + Kitty graphics via Ghostty), rich markdown (`render-markdown.nvim`), seamless cross-window navigation into Hyprland, and Sanguine Obsidian highlights. |
 | **File Manager** | **Yazi** (TUI) + **Nautilus** (GUI) | Async Rust file manager with terminal image previews and vim keybindings. |
-| **Launcher & Search** | **DankSearch / Vicinae** | Integrated app launcher, clipboard manager, and fast filesystem finder. |
+| **Launcher & Command HUD** | **Vicinae** | Raycast-grade keyboard command center: unified app launching, rich clipboard history with previews, emojis, scripts, and quick calculator on `SUPER + Space` and `SUPER + C`. |
 | **Dotfiles Engine** | **Chezmoi** | Declarative configuration management with templating and clean separation of secrets and machine-specific configs. |
 
 ---
@@ -68,7 +68,26 @@ Hyprland animations tuned for zero perceived lag while retaining tactile fluid m
 
 ---
 
-## 5. Keyboard Navigation Architecture (Flow Constitution)
+## 5. Modular Hyprland Lua Architecture
+
+Rather than a single 500+ line monolithic file, Hyprland configuration is modularized into cleanly separated single-responsibility Lua modules under `home/dot_config/hypr/`:
+
+```
+home/dot_config/hypr/
+├── hyprland.lua            # Entry point loader; loads modules in strict order
+└── modules/
+    ├── monitors.lua        # Hostname-based monitor profiles (sentinel, vanguard, archbook)
+    ├── env.lua             # Wayland environment variables & cursor scale
+    ├── theme.lua           # Sanguine Obsidian borders, shadows, blur, rounding
+    ├── animations.lua      # Kinetic Snap beziers and physics curves
+    ├── keybinds.lua        # Universal HJKL navigation, scratchpads, multimedia keys
+    ├── layouts.lua         # Dwindle/Master layout behaviors and gestures
+    └── rules.lua           # Window rules, floating dialogs, scratchpad styling
+```
+
+---
+
+## 6. Keyboard Navigation Architecture (Flow Constitution)
 
 - **Universal Axis**: `H` (Left), `J` (Down), `K` (Up), `L` (Right).
 - **Modifier Hierarchy**:
@@ -76,11 +95,12 @@ Hyprland animations tuned for zero perceived lag while retaining tactile fluid m
   - `SUPER + SHIFT + [HJKL]`: Move active window in layout.
   - `SUPER + CTRL + [HJKL]`: Resize active window.
   - `SUPER + [1-9]`: Instant workspace jump.
-- **Scratchpad Muscle Memory**:
-  - `SUPER + Return`: Primary terminal.
-  - `SUPER + S`: Toggle floating terminal scratchpad.
-  - `SUPER + A`: Toggle Obsidian / notes scratchpad.
-  - `SUPER + Space`: Toggle DankMaterialShell launcher / DankSearch.
+- **Scratchpad & HUD Muscle Memory**:
+  - `SUPER + Return`: Primary Ghostty terminal.
+  - `SUPER + S`: Toggle floating terminal scratchpad (`special:terminal`).
+  - `SUPER + A`: Toggle Obsidian notes scratchpad (`special:notes`).
+  - `SUPER + Space`: Toggle Vicinae app & command launcher.
+  - `SUPER + C`: Toggle Vicinae clipboard manager with image previews.
 
 ---
 
