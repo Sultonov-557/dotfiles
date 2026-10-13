@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanguine Obsidian — Gothic Red Desktop Theme Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Theme Palette Tokens */
+      --bg-base: #0d0d12;
+      --bg-surface: #14141b;
+      --bg-surface-elevated: #1a1a24;
+      --bg-hover: #222230;
+      
+      --border-subtle: #252533;
+      --border-active: #9b182d;
+      --border-focus: #e63b5a;
+      
+      --accent-crimson: #9b182d;
+      --accent-ruby: #e63b5a;
+      --accent-wine: #5e101e;
+      --accent-glow: rgba(230, 59, 90, 0.25);
+      
+      --text-main: #e2e2e8;
+      --text-muted: #9595a8;
+      --text-dim: #606073;
+
+      --code-bg: #101017;
+      --code-keyword: #e63b5a;
+      --code-string: #d68090;
+      --code-fn: #ffffff;
+      --code-comment: #65657a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Wallpaper Background */
+    .wallpaper-backdrop {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 50% 10%, rgba(155, 24, 45, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 90% 80%, rgba(94, 16, 30, 0.2) 0%, transparent 50%),
+        url('../home/Pictures/Wallpapers/red-city.png') center/cover no-repeat;
+      filter: brightness(0.35) contrast(1.15) blur(3px);
+      transform: scale(1.03);
+      z-index: -1;
+      transition: filter 0.5s ease;
+    }
+
+    header {
+      padding: 2.5rem 3rem 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(13, 13, 18, 0.75);
+      backdrop-filter: blur(16px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-crest {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent-ruby), var(--accent-wine));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .brand-title h1 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-badge {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(155, 24, 45, 0.2);
+      border: 1px solid var(--border-active);
+      color: var(--accent-ruby);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* Section Styles */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      background: var(--accent-ruby);
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--accent-ruby);
+    }
+
+    /* Palette Swatches */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .swatch-card {
+      background: rgba(20, 20, 27, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), border-color 0.2s;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-active);
+    }
+
+    .swatch-preview {
+      height: 90px;
+      position: relative;
+    }
+
+    .swatch-info {
+      padding: 0.9rem;
+    }
+
+    .swatch-info .name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .swatch-info .hex {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Component Mockups */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: rgba(20, 20, 27, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.75rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .card.focused {
+      border-color: var(--border-active);
+      box-shadow: 0 0 25px rgba(155, 24, 45, 0.2), 0 16px 36px rgba(0,0,0,0.5);
+    }
+
+    /* Buttons Showcase */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.18s cubic-bezier(0.2, 0.9, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent-crimson);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(155, 24, 45, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-ruby);
+      box-shadow: 0 6px 20px rgba(230, 59, 90, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-active);
+      color: #fff;
+    }
+
+    .btn-subtle {
+      background: transparent;
+      color: var(--text-muted);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-subtle:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+    }
+
+    .btn-danger {
+      background: rgba(230, 59, 90, 0.15);
+      border-color: rgba(230, 59, 90, 0.3);
+      color: var(--accent-ruby);
+    }
+
+    .btn-danger:hover {
+      background: var(--accent-ruby);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(230, 59, 90, 0.4);
+    }
+
+    /* Terminal Preview */
+    .terminal-window {
+      background: var(--code-bg);
+      border: 1px solid var(--border-active);
+      border-radius: 10px;
+      overflow: hidden;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .terminal-header {
+      background: var(--bg-surface);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .term-dot.close { background: #e63b5a; }
+    .term-dot.min { background: #555566; }
+    .term-dot.max { background: #333344; }
+
+    .terminal-body {
+      padding: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .prompt-sym { color: var(--accent-ruby); font-weight: 600; }
+    .prompt-path { color: var(--text-muted); }
+    .prompt-git { color: var(--code-string); }
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: var(--accent-ruby);
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* QuickShell Bar Mockup */
+    .bar-mockup {
+      width: 100%;
+      height: 44px;
+      background: rgba(20, 20, 27, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      backdrop-filter: blur(20px);
+    }
+
+    .workspaces {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .ws-pill {
+      width: 24px;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .ws-pill.active {
+      width: 36px;
+      background: var(--accent-ruby);
+      box-shadow: 0 0 10px var(--accent-ruby);
+    }
+
+    .pill-widget {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.78rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-main);
+    }
+
+    /* Live Wallpaper Toggle */
+    .wallpaper-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wallpaper-backdrop" id="backdrop"></div>
+
+  <header>
+    <div class="brand">
+      <div class="brand-crest">Ω</div>
+      <div class="brand-title">
+        <h1>Sanguine Obsidian</h1>
+        <p>Gothic Dark Red System Theme & Flow Architecture</p>
+      </div>
+    </div>
+    <div class="status-badge">Theme Validated</div>
+  </header>
+
+  <main>
+    <!-- Palette Grid -->
+    <section>
+      <div class="section-title">Color Palette Architecture</div>
+      <div class="swatch-grid">
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #0d0d12;"></div>
+          <div class="swatch-info">
+            <div class="name">Canvas Obsidian</div>
+            <div class="hex">#0d0d12</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #14141b;"></div>
+          <div class="swatch-info">
+            <div class="name">Surface Charcoal</div>
+            <div class="hex">#14141b</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #9b182d;"></div>
+          <div class="swatch-info">
+            <div class="name">Crimson Accent</div>
+            <div class="hex">#9b182d</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #e63b5a;"></div>
+          <div class="swatch-info">
+            <div class="name">Ruby Focus</div>
+            <div class="hex">#e63b5a</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #5e101e;"></div>
+          <div class="swatch-info">
+            <div class="name">Wine Glow</div>
+            <div class="hex">#5e101e</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #e2e2e8;"></div>
+          <div class="swatch-info">
+            <div class="name">High-Read Text</div>
+            <div class="hex">#e2e2e8</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #9595a8;"></div>
+          <div class="swatch-info">
+            <div class="name">Muted Silver</div>
+            <div class="hex">#9595a8</div>
+          </div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background: #252533;"></div>
+          <div class="swatch-info">
+            <div class="name">Border Subtle</div>
+            <div class="hex">#252533</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Component Showcase Grid -->
+    <section>
+      <div class="section-title">Component & Interaction Testing</div>
+      <div class="showcase-grid">
+
+        <!-- Controls & Buttons -->
+        <div class="card focused">
+          <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">Interactive Controls & Actions</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Tactile crimson surfaces designed for quick visual target acquisition without fatiguing the eye.
+          </p>
+          
+          <div class="button-group">
+            <button class="btn btn-primary">Primary Action</button>
+            <button class="btn btn-secondary">Secondary Option</button>
+            <button class="btn btn-subtle">Subtle Action</button>
+            <button class="btn btn-danger">Critical Alert</button>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.6rem; letter-spacing: 0.05em;">
+              DankMaterialShell Top Bar Simulation
+            </div>
+            <div class="bar-mockup">
+              <div class="workspaces">
+                <div class="ws-pill active"></div>
+                <div class="ws-pill"></div>
+                <div class="ws-pill"></div>
+                <div class="ws-pill"></div>
+              </div>
+              <div class="pill-widget" style="color: var(--accent-ruby);">14:52:26 • SANGUINE</div>
+              <div style="display: flex; gap: 0.5rem;">
+                <div class="pill-widget">VOL 85%</div>
+                <div class="pill-widget" style="color: #6ee7b7;">BAT 98%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal & Code Legibility -->
+        <div class="card">
+          <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">Legibility & Contrast Check</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Notice how code and text remain soft silver/chalk while crimson is strictly reserved for syntax accents and the cursor.
+          </p>
+
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="term-dot close"></div>
+              <div class="term-dot min"></div>
+              <div class="term-dot max"></div>
+              <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">sultonov@sentinel: ~/dotfiles</span>
+            </div>
+            <div class="terminal-body">
+              <div><span class="prompt-sym">❯</span> <span class="prompt-path">~/dotfiles</span> <span class="prompt-git">on main</span> <span class="cursor"></span></div>
+              <div style="margin-top: 0.5rem; color: var(--code-comment);">-- Hyprland Kinetic Snap Animation</div>
+              <div><span style="color: var(--code-keyword);">hl.animation</span>({</div>
+              <div style="padding-left: 1.5rem;">leaf = <span style="color: var(--code-string);">"windows"</span>,</div>
+              <div style="padding-left: 1.5rem;">speed = <span style="color: var(--accent-ruby);">4.2</span>,</div>
+              <div style="padding-left: 1.5rem;">bezier = <span style="color: var(--code-string);">"easeOutQuint"</span></div>
+              <div>})</div>
+              <div style="margin-top: 0.5rem; color: #6ee7b7;">✓ Config hot-reloaded in 2.4ms</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Wallpaper Dimming / Contrast Control -->
+    <section class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Wallpaper Blend Level</h4>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Adjust ambient brightness to check dark red contrast over your wallpaper.</p>
+      </div>
+      <div class="wallpaper-controls">
+        <button class="btn btn-secondary" onclick="setDim(0.2)">Moody (20%)</button>
+        <button class="btn btn-secondary" onclick="setDim(0.35)">Balanced (35%)</button>
+        <button class="btn btn-secondary" onclick="setDim(0.55)">High Contrast (55%)</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function setDim(val) {
+      document.getElementById('backdrop').style.filter = `brightness(${val}) contrast(1.15) blur(3px)`;
+    }
+  </script>
+</body>
+</html>
