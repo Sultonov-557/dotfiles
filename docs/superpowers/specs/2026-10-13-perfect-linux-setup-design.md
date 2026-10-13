@@ -109,17 +109,36 @@ home/dot_config/hypr/
 
 ---
 
-## 6. Implementation Roadmap
+## 7. Extended Application Theming (Gothic Obsidian Suite)
 
-1. **Step 1: Quickshell & DankMaterialShell Setup**
-   - Install `quickshell` and clone/configure DankMaterialShell in `~/.config/quickshell/`.
-   - Theme DankMaterialShell to match the Sanguine Obsidian color tokens.
-2. **Step 2: Hyprland Modular Configuration**
-   - Refactor `home/dot_config/hypr/` into clean modules: `monitors.lua`, `animations.lua`, `keybinds.lua`, `theme.lua`, `rules.lua`.
-   - Implement the "Kinetic Snap" animation curves.
-3. **Step 3: Terminal & Editor Gothic Theming**
-   - Update Ghostty terminal palette to Sanguine Obsidian.
-   - Update Starship prompt to gothic crimson symbols.
-   - Align LazyVim theme / highlights for Neovim.
-4. **Step 4: Verification & Dotfiles Cleanliness**
-   - Ensure `chezmoi status` and `chezmoi apply` execute cleanly without orphaned files or hardcoded breakages.
+To prevent visual jarring when switching into daily communication and knowledge tools:
+
+1. **Obsidian**:
+   - Integrated as a HUD scratchpad (`SUPER + A`).
+   - Styled with custom CSS snippet / theme overrides: `#0d0d12` canvas, obsidian sidebar (`#14141b`), crimson accent marks (`#9b182d`), and silver text (`#e2e2e8`).
+2. **Discord (Vencord / Vesktop)**:
+   - Customized via custom CSS theme (e.g. Sanguine Midnight theme): replaces standard Discord blurple with obsidian cards, muted dark slate channels, and subtle crimson notification pills and unread indicators.
+3. **CLI Suite (Yazi, Btop, Fastfetch, Starship)**:
+   - **Yazi**: Borders and selection pills in ruby/crimson with Kitty protocol image previews.
+   - **Btop**: Graph gradients moving from wine (`#5e101e`) to ruby (`#e63b5a`) over pure black cards.
+   - **Starship**: Minimal crimson prompt arrow (`❯`) with soft silver branch indicators.
+
+---
+
+## 8. Implementation Roadmap
+
+1. **Phase 1: Hyprland Modularization & Kinetic Snap**
+   - Refactor `home/dot_config/hypr/` into modular files (`monitors.lua`, `env.lua`, `theme.lua`, `animations.lua`, `keybinds.lua`, `layouts.lua`, `rules.lua`).
+   - Implement "Kinetic Snap" physics curves and HJKL cross-window bindings.
+   - Configure scratchpads (`special:terminal` on `SUPER+S`, `special:notes` on `SUPER+A`).
+2. **Phase 2: Shell & Command Layer (DankMaterialShell + Vicinae)**
+   - Setup `quickshell` and DankMaterialShell with Sanguine Obsidian styles.
+   - Configure Vicinae for launcher (`SUPER+Space`) and clipboard manager (`SUPER+C`).
+3. **Phase 3: Terminal & Editor Flow State (Ghostty + LazyVim)**
+   - Update Ghostty config to Sanguine Obsidian palette with native blur.
+   - Enhance LazyVim with `image.nvim`, `render-markdown.nvim`, seamless Hyprland-vim navigation, and gothic theme highlights.
+4. **Phase 4: Extended Applications & Aesthetics**
+   - Apply Sanguine themes to Starship, Yazi, Btop, Obsidian, and Discord/Vesktop.
+5. **Phase 5: Verification & Dotfiles Cleanliness**
+   - Validate clean chezmoi apply, ensure zero broken symlinks, and verify sub-millisecond response across all keybindings.
+
