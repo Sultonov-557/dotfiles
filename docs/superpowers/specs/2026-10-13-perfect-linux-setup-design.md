@@ -54,6 +54,7 @@ Text Muted:                #9e9eb0  (Comments, inactive labels, line numbers)
 ### Contrast & Ergonomics Rule:
 - **Red is an indicator, never a reading background or paragraph text.**
 - Code and documentation text stay crisp chalk/silver (`#e2e2e8`) for zero eye strain.
+- **Theming Strategy**: Configurations are maintained as direct, static files per application (Ghostty config, Starship toml, Hyprland theme.lua, etc.) during this phase. This keeps iterating and trying out variations frictionless without template compilation layers.
 
 ---
 
