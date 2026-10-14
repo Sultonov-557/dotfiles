@@ -35,7 +35,7 @@ hl.bind(
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("zen-browser"), { description = "Zen browser" })
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager), { description = "File manager" })
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("lutris"), { description = "Lutris" })
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("Telegram"), { description = "Telegram" })
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("telegram-desktop"), { description = "Telegram" })
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("spotify-launcher"), { description = "Spotify" })
 
 -- --- Window Management ---
@@ -129,5 +129,6 @@ hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("recorder toggle"), { descrip
 hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("caffeine"), { description = "Caffeine / idle inhibitor" })
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("dnd"), { description = "Do Not Disturb" })
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("powerprofile"), { description = "Power profile" })
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("dms ipc call powermenu toggle"), { description = "Power menu" })
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("shells"), { description = "Shell switcher" })
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("hyprctl dispatch dpms off"), { description = "Turn off monitors" })

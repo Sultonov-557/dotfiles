@@ -58,6 +58,13 @@
   "osdAlwaysShowValue": true,
   "osdMediaPlaybackEnabled": true,
   "osdPowerProfileEnabled": true,
+  "powerMenuActions": [
+    "reboot",
+    "poweroff",
+    "lock",
+    "restart"
+  ],
+  "powerMenuDefaultAction": "lock",
   "powerMenuGridLayout": true,
   "barConfigs": [
     {
