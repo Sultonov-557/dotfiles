@@ -55,6 +55,7 @@ hl.config({
       brightness = 1.0,
       new_optimizations = true,
       xray = false,
+      ignore_opacity = true,
     },
   },
 
