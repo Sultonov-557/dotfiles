@@ -28,7 +28,7 @@
 | **Prompt** | **Starship** | Fast Rust prompt tailored with Gruvbox symbols, pixel-styled icons/glyphs, branch status, and execution timing. |
 | **Editor / IDE** | **LazyVim (Neovim)** | Keyboard-native development environment with inline image support (`image.nvim` + Kitty graphics via Ghostty), rich markdown (`render-markdown.nvim`), seamless cross-window navigation into Hyprland, and Gruvbox Material colorscheme. |
 | **File Manager** | **Yazi** (TUI) + **Nautilus** (GUI) | Async Rust file manager with terminal pixel-art image previews and vim keybindings. |
-| **Launcher & Command HUD** | **Vicinae** | Raycast-grade keyboard command center: unified app launching, rich clipboard history with previews, emojis, scripts, and quick calculator on `SUPER + Space` and `SUPER + C`. |
+| **Launcher & Command HUD** | **DankMaterialShell** (Quickshell + Go) | Native Wayland desktop launcher, clipboard history manager, and app search on `SUPER + Space` and `SUPER + C`. |
 | **Dotfiles Engine** | **Chezmoi** | Declarative configuration management with templating and clean separation of secrets and machine-specific configs. |
 
 ---
@@ -80,7 +80,7 @@ Hyprland animations tuned for zero perceived lag while retaining tactile fluid m
 | **Windows Move / Resize** | `snappy` (`[0.2, 0.85, 0.32, 1.0]`) | ~200ms (`speed = 3.5`) | Tiling adjustments glide smoothly with zero trailing lag. |
 | **Workspaces Switch** | `slide` with `easeOutQuint` | ~220ms (`speed = 3.2`) | Moving workspaces feels like flipping through tactile index cards. |
 | **Special Workspaces (Scratchpad)** | `slidevert` with `quickSpring` | ~180ms (`speed = 3.0`) | Terminal & notes drop down from top like a HUD visor, then retract instantly. |
-| **Layers / Menus (Vicinae / DMS)** | `fade` + `quick` | ~120ms (`speed = 2.2`) | Menus appear as fast as your fingers hit `SUPER + Space`. |
+| **Layers / Menus (DMS)** | `fade` + `quick` | ~120ms (`speed = 2.2`) | Menus appear as fast as your fingers hit `SUPER + Space`. |
 
 ---
 
@@ -115,8 +115,8 @@ home/dot_config/hypr/
   - `SUPER + Return`: Primary Ghostty terminal.
   - `SUPER + S`: Toggle floating terminal scratchpad (`special:terminal`).
   - `SUPER + A`: Toggle Obsidian notes scratchpad (`special:notes`).
-  - `SUPER + Space`: Toggle Vicinae app & command launcher.
-  - `SUPER + C`: Toggle Vicinae clipboard manager with image previews.
+  - `SUPER + Space`: Toggle DankMaterialShell application launcher.
+  - `SUPER + C`: Toggle DankMaterialShell clipboard manager.
 
 ---
 
@@ -146,9 +146,9 @@ To ensure a continuous, harmonious aesthetic across everyday desktop workflows:
    - Refactor `home/dot_config/hypr/` into modular files (`monitors.lua`, `env.lua`, `theme.lua`, `animations.lua`, `keybinds.lua`, `layouts.lua`, `rules.lua`).
    - Implement "Kinetic Snap" physics curves, crisp Gruvbox borders (`#d79921`), and HJKL cross-window bindings.
    - Configure scratchpads (`special:terminal` on `SUPER+S`, `special:notes` on `SUPER+A`).
-2. **Phase 2: Shell & Command Layer (DankMaterialShell + Vicinae)**
+2. **Phase 2: Shell & Command Layer (DankMaterialShell)**
    - Setup `quickshell` and DankMaterialShell with Gruvbox Material palette and pixel-styled indicators.
-   - Configure Vicinae for launcher (`SUPER+Space`) and clipboard manager (`SUPER+C`) in matching Gruvbox tones.
+   - Configure DankMaterialShell launcher (`SUPER+Space`) and clipboard manager (`SUPER+C`).
 3. **Phase 3: Terminal & Editor Flow State (Ghostty + LazyVim)**
    - Update Ghostty config to Gruvbox Dark palette with native blur.
    - Enhance LazyVim with `image.nvim`, `render-markdown.nvim`, seamless Hyprland-vim navigation, and Gruvbox Material colorscheme.

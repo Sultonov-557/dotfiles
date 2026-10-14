@@ -20,15 +20,15 @@ local terminal = "ghostty"
 local fileManager = "nautilus"
 
 -- --- App Launchers & HUDs ---
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("vicinae toggle"), { description = "Vicinae HUD launcher" })
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("dms ipc call launcher toggle"), { description = "DMS application launcher" })
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal), { description = "Primary terminal" })
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd(terminal .. " --working-directory=~/"), { description = "Terminal in ~" })
 
 -- --- Clipboard Manager ---
 hl.bind(
   mainMod .. " + C",
-  hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history?toggle=true"),
-  { description = "Vicinae clipboard history" }
+  hl.dsp.exec_cmd("dms ipc call clipboard toggle"),
+  { description = "DMS clipboard manager" }
 )
 
 -- --- Quick Apps ---
@@ -129,8 +129,5 @@ hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("recorder toggle"), { descrip
 hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("caffeine"), { description = "Caffeine / idle inhibitor" })
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("dnd"), { description = "Do Not Disturb" })
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("powerprofile"), { description = "Power profile" })
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("power-menu"), { description = "Power menu" })
-hl.bind(mainMod .. " + SHIFT + F12", hl.dsp.exec_cmd("focus"), { description = "Focus mode" })
-hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("vicinae vicinae://extensions/vicinae/vicinae/search-emojis"), { description = "Emoji picker" })
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("shells"), { description = "Shell switcher" })
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("hyprctl dispatch dpms off"), { description = "Turn off monitors" })

@@ -30,7 +30,10 @@
   "groupWorkspaceApps": false,
   "showOccupiedWorkspacesOnly": true,
   "appIdSubstitutions": [],
+  "rememberLastQuery": true,
+  "dankLauncherV2Size": "large",
   "launcherStyle": "island",
+  "spotlightBarShowModeChips": true,
   "cursorSettings": {
     "theme": "System Default",
     "size": 24,
@@ -48,6 +51,7 @@
     }
   },
   "launcherLogoMode": "os",
+  "launcherLogoColorOverride": "primary",
   "acLockTimeout": 300,
   "fadeToDpmsEnabled": false,
   "dockAutoHide": true,
@@ -97,7 +101,6 @@
           "showSwap": false,
           "showInGb": false
         },
-        "clipboard",
         "notificationButton",
         {
           "id": "controlCenterButton",
@@ -191,7 +194,14 @@
       "islandHomeVolumeDisplay": "both",
       "islandPalette": "default",
       "islandTransparency": 0.02,
-      "islandSatelliteGap": 14
+      "islandSatelliteGap": 14,
+      "islandCornerRadius": 64,
+      "islandHighContrast": false,
+      "islandSatelliteSwoopRadius": 24,
+      "islandInteractionMode": "hybrid",
+      "islandSpringStiffness": 1200,
+      "islandSpringDamping": 37,
+      "islandSpringMass": 1
     }
   ],
   "desktopClockCustomColor": {
@@ -238,7 +248,8 @@
         "scaleWithWidget": true,
         "useThemeColors": true,
         "backgroundOpacity": 0,
-        "syncPositionAcrossScreens": true
+        "syncPositionAcrossScreens": true,
+        "dayFontFamily": ""
       }
     },
     {
@@ -253,7 +264,8 @@
         "barCount": 67,
         "channels": "mono",
         "bgOpacity": 0,
-        "syncPositionAcrossScreens": true
+        "syncPositionAcrossScreens": true,
+        "colorChoice": "primary"
       }
     }
   ],

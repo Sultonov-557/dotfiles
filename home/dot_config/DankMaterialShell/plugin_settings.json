@@ -19,5 +19,30 @@
     "showMediaControls": false,
     "whiteMediaControlIconsChecked": false,
     "hideItemWhenNoControlChecked": false
+  },
+  "dmsconky": {
+    "particleSize": 8,
+    "particleCount": 150,
+    "particleOpacity": 1,
+    "musicPlayerPath": "/usr/local/bin/splayer",
+    "appSize": 80,
+    "widgetHeight": 522,
+    "widgetWidth": 298,
+    "showClock": false,
+    "showWeather": true,
+    "bgOpacity": 0
+  },
+  "depthscape": {
+    "enabled": true
+  },
+  "ambientSound": {
+    "enabled": true,
+    "enableSleepTimer": false,
+    "hiddenSounds": [],
+    "autoStartMode": "individual",
+    "autoStartRain": false,
+    "autoStartStorm": false,
+    "autoStartWind": false,
+    "defaultVolume": 50
   }
 }
