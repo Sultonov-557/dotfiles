@@ -32,7 +32,7 @@ hl.config({
     rounding_power = 2,
 
     active_opacity = 1.0,
-    inactive_opacity = 0.95,
+    inactive_opacity = 1.0,
     fullscreen_opacity = 1.0,
 
     shadow = {
@@ -47,7 +47,7 @@ hl.config({
 
     blur = {
       enabled = true,
-      size = 6,
+      size = 3,
       passes = 3,
       vibrancy = 0.1696,
       noise = 0.01,
