@@ -58,7 +58,7 @@ window-padding-y = 4
 window-save-state = always
 window-decoration = false
 background-opacity = 0.85
-background-blur-radius = 20
+background-blur = true
 
 # --- Shell ---
 shell-integration = fish
