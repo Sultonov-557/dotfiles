@@ -222,6 +222,41 @@
     "valid": true,
     "rgba": -1
   },
+  "desktopWidgetInstances": [
+    {
+      "id": "dw_1791963376906_d6y37yyaq",
+      "widgetType": "modernClock",
+      "name": "Modern Clock",
+      "enabled": true,
+      "config": {
+        "displayPreferences": [
+          "all"
+        ],
+        "showOnOverlay": false,
+        "use24Hour": true,
+        "showSeconds": true,
+        "scaleWithWidget": true,
+        "useThemeColors": true,
+        "backgroundOpacity": 0,
+        "syncPositionAcrossScreens": true
+      }
+    },
+    {
+      "id": "dw_1791963633484_5f4ju6pwq",
+      "widgetType": "cavaVisualizer",
+      "name": "Cava Visualizer",
+      "enabled": true,
+      "config": {
+        "displayPreferences": [
+          "all"
+        ],
+        "barCount": 67,
+        "channels": "mono",
+        "bgOpacity": 0,
+        "syncPositionAcrossScreens": true
+      }
+    }
+  ],
   "builtInPluginSettings": {
     "dms_settings_search": {
       "trigger": "?"
