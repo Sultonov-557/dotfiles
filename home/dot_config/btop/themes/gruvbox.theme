@@ -1,0 +1,84 @@
+# Gruvbox Dark theme for btop
+# Main background, empty for terminal default (supports transparent background)
+theme[main_bg]="#1d2021"
+
+# Main text color
+theme[main_fg]="#ebdbb2"
+
+# Title color for boxes
+theme[title]="#ebdbb2"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#fabd2f"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#3c3836"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#fabd2f"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#7c6f64"
+
+# Color of text appearing on top of graphs
+theme[graph_text]="#ebdbb2"
+
+# Background color of the percentage meters
+theme[meter_bg]="#3c3836"
+
+# Misc colors for processes box
+theme[proc_misc]="#8ec07c"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#d79921"
+theme[mem_box]="#b8bb26"
+theme[net_box]="#83a598"
+theme[proc_box]="#fe8019"
+
+# Box divider line and small boxes line color
+theme[div_line]="#504945"
+
+# Temperature graph color (Green -> Yellow -> Red)
+theme[temp_start]="#b8bb26"
+theme[temp_mid]="#fabd2f"
+theme[temp_end]="#fb4934"
+
+# CPU graph colors (Aqua -> Amber -> Red)
+theme[cpu_start]="#8ec07c"
+theme[cpu_mid]="#fabd2f"
+theme[cpu_end]="#fb4934"
+
+# Mem/Disk free meter (Purple -> Blue)
+theme[free_start]="#d3869b"
+theme[free_mid]="#83a598"
+theme[free_end]="#8ec07c"
+
+# Mem/Disk cached meter (Blue -> Aqua)
+theme[cached_start]="#83a598"
+theme[cached_mid]="#8ec07c"
+theme[cached_end]="#b8bb26"
+
+# Mem/Disk available meter (Orange -> Red)
+theme[available_start]="#fe8019"
+theme[available_mid]="#fabd2f"
+theme[available_end]="#fb4934"
+
+# Mem/Disk used meter (Green -> Amber)
+theme[used_start]="#b8bb26"
+theme[used_mid]="#fabd2f"
+theme[used_end]="#fe8019"
+
+# Download graph colors (Aqua -> Blue)
+theme[download_start]="#8ec07c"
+theme[download_mid]="#83a598"
+theme[download_end]="#d3869b"
+
+# Upload graph colors (Green -> Amber)
+theme[upload_start]="#b8bb26"
+theme[upload_mid]="#fabd2f"
+theme[upload_end]="#fe8019"
+
+# Process box color gradient
+theme[process_start]="#8ec07c"
+theme[process_mid]="#fabd2f"
+theme[process_end]="#fe8019"

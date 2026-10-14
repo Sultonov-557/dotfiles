@@ -1,19 +1,18 @@
-# Starship Prompt — Minimal Catppuccin Mocha
+# Starship Prompt — Gruvbox Pixel-Art Edition
 format = "$all"
 
-
 [directory]
-style = "fg:#bac2de"
+style = "bold fg:#83a598"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
-style = "fg:#89b4fa"
+style = "bold fg:#fe8019"
 format = " on [$symbol$branch]($style)"
 truncation_length = 20
 
 [git_status]
-style = "fg:#bac2de"
+style = "fg:#fabd2f"
 format = '[$all_status$ahead_behind]($style)'
 conflicted = " 🏳"
 up_to_date = ""
@@ -25,13 +24,13 @@ renamed = " »"
 deleted = " ✘"
 
 [character]
-success_symbol = "[❯](bold fg:#b4befe)"
-error_symbol = "[❯](bold fg:#f38ba8)"
-vicmd_symbol = "[❮](bold fg:#89b4fa)"
+success_symbol = "[❯](bold fg:#fabd2f)"
+error_symbol = "[❯](bold fg:#fb4934)"
+vicmd_symbol = "[❮](bold fg:#b8bb26)"
 
 [cmd_duration]
 min_time = 1_000
-format = " took [$duration](fg:#f9e2af)"
+format = " took [$duration](bold fg:#b8bb26)"
 
 [package]
 disabled = true

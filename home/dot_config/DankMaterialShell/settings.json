@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/sultonov/.config/DankMaterialShell/themes/catppuccin/theme.json",
+  "customThemeFile": "/home/sultonov/.config/DankMaterialShell/themes/gruvboxMaterial/theme.json",
   "registryThemeVariants": {
     "gruvboxMaterial": "medium"
   },
