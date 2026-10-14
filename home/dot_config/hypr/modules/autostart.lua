@@ -10,10 +10,6 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("hypridle")
   hl.exec_cmd("nm-applet --indicator")
   hl.exec_cmd("blueman-applet")
-  -- DankMaterialShell starts via quickshell or dms daemon
-  hl.exec_cmd("dms run")
-  -- Fallback wallpaper daemon if dms wallpaper is not running
-  hl.exec_cmd("hyprpaper")
 end)
 
 -- Hyprglass config (if installed)

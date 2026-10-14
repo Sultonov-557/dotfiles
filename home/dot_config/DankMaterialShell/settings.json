@@ -97,9 +97,10 @@
           "id": "systemTray",
           "enabled": true,
           "trayUseInlineExpansion": true,
-          "trayMaxVisibleItems": 0,
-          "trayAutoOverflow": true,
-          "trayPopupSingleLine": true
+          "trayMaxVisibleItems": 1,
+          "trayAutoOverflow": false,
+          "trayPopupSingleLine": true,
+          "trayIconSpacing": 0
         },
         "cpuUsage",
         {
