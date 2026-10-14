@@ -5,6 +5,10 @@
   "registryThemeVariants": {
     "gruvboxMaterial": "medium"
   },
+  "popupTransparency": 0,
+  "floatingWindowSyncGlobal": false,
+  "floatingWindowTransparency": 0.7,
+  "floatingWindowForegroundTransparency": 0,
   "cornerRadius": 12,
   "showWeekNumber": true,
   "clockFormat": "24h",
@@ -16,6 +20,9 @@
   "motionEffect": 2,
   "m3ElevationEnabled": false,
   "blurEnabled": true,
+  "blurForegroundLayers": false,
+  "blurLayerOutlineOpacity": 0,
+  "blurBorderEnabled": false,
   "blurBorderOpacity": 1,
   "controlCenterShowMicPercent": true,
   "showWorkspacePadding": true,
@@ -179,9 +186,12 @@
       ],
       "islandSatelliteBackground": true,
       "islandSatelliteGothCorners": true,
-      "islandSatelliteTransparency": 1,
+      "islandSatelliteTransparency": 0.01,
       "islandSatellitePosition": "island",
-      "islandHomeVolumeDisplay": "both"
+      "islandHomeVolumeDisplay": "both",
+      "islandPalette": "default",
+      "islandTransparency": 0.02,
+      "islandSatelliteGap": 14
     }
   ],
   "desktopClockCustomColor": {
