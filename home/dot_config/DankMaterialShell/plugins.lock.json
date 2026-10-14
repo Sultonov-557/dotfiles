@@ -1,0 +1,37 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "dankDesktopWeather": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankDesktopWeather",
+      "commit": "e8c36175a1a8ee4718df5d8ef60d105add94f33e"
+    },
+    "dankKDEConnect": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankKDEConnect",
+      "commit": "e8c36175a1a8ee4718df5d8ef60d105add94f33e"
+    },
+    "dankPomodoroTimer": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankPomodoroTimer",
+      "commit": "e8c36175a1a8ee4718df5d8ef60d105add94f33e"
+    },
+    "lyricsOnPanel": {
+      "repo": "https://github.com/KangweiZhu/lyrics-on-panel",
+      "path": "dms",
+      "commit": "7aab0a1955f4e79cffd663823e3d1c6933f7dd2b"
+    },
+    "modernClock": {
+      "repo": "https://github.com/beefsizzle/ModernClockDMS",
+      "commit": "0d11d9fb560547a2589d59e456598f7c94847bae"
+    },
+    "quickCapture": {
+      "repo": "https://github.com/hthienloc/dms-quick-capture",
+      "commit": "0b080dea910c70aa5e17d397b4ef9e9f19dc367d"
+    },
+    "wallpaperCarousel": {
+      "repo": "https://github.com/motor-dev/wallpaperCarousel",
+      "commit": "c08fbb92c39d4d778bb08e520cfd96e395594440"
+    }
+  }
+}

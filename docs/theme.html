@@ -3,36 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sanguine Obsidian — Gothic Red Desktop Theme Showcase</title>
+  <title>Gruvbox Material Pixel-Art — Desktop Theme Showcase</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Theme Palette Tokens */
-      --bg-base: #0d0d12;
-      --bg-surface: #14141b;
-      --bg-surface-elevated: #1a1a24;
-      --bg-hover: #222230;
+      /* Gruvbox Dark Palette Tokens */
+      --bg-base: #1d2021;
+      --bg-surface: #282828;
+      --bg-surface-elevated: #3c3836;
+      --bg-hover: #504945;
       
-      --border-subtle: #252533;
-      --border-active: #9b182d;
-      --border-focus: #e63b5a;
+      --border-subtle: #3c3836;
+      --border-active: #d79921;
+      --border-focus: #fabd2f;
       
-      --accent-crimson: #9b182d;
-      --accent-ruby: #e63b5a;
-      --accent-wine: #5e101e;
-      --accent-glow: rgba(230, 59, 90, 0.25);
+      --accent-yellow: #fabd2f;
+      --accent-orange: #fe8019;
+      --accent-red: #fb4934;
+      --accent-green: #b8bb26;
+      --accent-aqua: #8ec07c;
+      --accent-blue: #83a598;
+      --accent-purple: #d3869b;
+      --accent-glow: rgba(250, 189, 47, 0.22);
       
-      --text-main: #e2e2e8;
-      --text-muted: #9595a8;
-      --text-dim: #606073;
+      --text-main: #ebdbb2;
+      --text-muted: #a89984;
+      --text-dim: #7c6f64;
 
-      --code-bg: #101017;
-      --code-keyword: #e63b5a;
-      --code-string: #d68090;
-      --code-fn: #ffffff;
-      --code-comment: #65657a;
+      --code-bg: #1d2021;
+      --code-keyword: #fb4934;
+      --code-string: #b8bb26;
+      --code-fn: #8ec07c;
+      --code-comment: #928374;
     }
 
     * {
@@ -52,25 +56,26 @@
       overflow-x: hidden;
     }
 
-    /* Ambient Wallpaper Background */
+    /* Ambient Wallpaper Background (Pixel Art) */
     .wallpaper-backdrop {
       position: fixed;
       inset: 0;
       background: 
-        radial-gradient(circle at 50% 10%, rgba(155, 24, 45, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 90% 80%, rgba(94, 16, 30, 0.2) 0%, transparent 50%),
-        url('../home/Pictures/Wallpapers/red-city.png') center/cover no-repeat;
-      filter: brightness(0.35) contrast(1.15) blur(3px);
-      transform: scale(1.03);
+        radial-gradient(circle at 50% 10%, rgba(250, 189, 47, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 90% 80%, rgba(254, 128, 25, 0.15) 0%, transparent 50%),
+        url('../home/Pictures/Wallpapers/pixel-galaxy.png') center/cover no-repeat;
+      filter: brightness(0.38) contrast(1.1) blur(2px);
+      image-rendering: pixelated;
+      transform: scale(1.02);
       z-index: -1;
       transition: filter 0.5s ease;
     }
 
     header {
-      padding: 2.5rem 3rem 1.5rem;
-      border-bottom: 1px solid var(--border-subtle);
-      background: rgba(13, 13, 18, 0.75);
-      backdrop-filter: blur(16px);
+      padding: 2.2rem 3rem 1.5rem;
+      border-bottom: 2px solid var(--border-subtle);
+      background: rgba(29, 32, 33, 0.88);
+      backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -82,27 +87,29 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     .brand-crest {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--accent-ruby), var(--accent-wine));
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #fff;
-      box-shadow: 0 0 20px var(--accent-glow);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.9rem;
+      color: #1d2021;
+      box-shadow: 0 0 16px var(--accent-glow);
+      border: 2px solid #fabd2f;
     }
 
     .brand-title h1 {
       font-size: 1.35rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
+      color: var(--accent-yellow);
     }
 
     .brand-title p {
@@ -111,15 +118,14 @@
     }
 
     .status-badge {
-      font-size: 0.75rem;
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(155, 24, 45, 0.2);
-      border: 1px solid var(--border-active);
-      color: var(--accent-ruby);
-      font-weight: 500;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.65rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 4px;
+      background: rgba(250, 189, 47, 0.15);
+      border: 2px solid var(--border-active);
+      color: var(--accent-yellow);
       letter-spacing: 0.05em;
-      text-transform: uppercase;
     }
 
     main {
@@ -135,11 +141,11 @@
 
     /* Section Styles */
     .section-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--accent-yellow);
       margin-bottom: 1.25rem;
       display: flex;
       align-items: center;
@@ -147,12 +153,9 @@
     }
 
     .section-title::before {
-      content: "";
-      width: 4px;
-      height: 16px;
-      background: var(--accent-ruby);
-      border-radius: 2px;
-      box-shadow: 0 0 8px var(--accent-ruby);
+      content: "■";
+      font-size: 0.85rem;
+      color: var(--accent-orange);
     }
 
     /* Palette Swatches */
@@ -163,11 +166,11 @@
     }
 
     .swatch-card {
-      background: rgba(20, 20, 27, 0.75);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
+      background: rgba(40, 40, 40, 0.85);
+      border: 2px solid var(--border-subtle);
+      border-radius: 6px;
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
       transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), border-color 0.2s;
     }
 
@@ -177,7 +180,7 @@
     }
 
     .swatch-preview {
-      height: 90px;
+      height: 80px;
       position: relative;
     }
 
@@ -189,6 +192,7 @@
       font-size: 0.85rem;
       font-weight: 600;
       margin-bottom: 0.25rem;
+      color: var(--text-main);
     }
 
     .swatch-info .hex {
@@ -209,17 +213,17 @@
     }
 
     .card {
-      background: rgba(20, 20, 27, 0.8);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
+      background: rgba(40, 40, 40, 0.85);
+      border: 2px solid var(--border-subtle);
+      border-radius: 6px;
       padding: 1.75rem;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
     }
 
     .card.focused {
       border-color: var(--border-active);
-      box-shadow: 0 0 25px rgba(155, 24, 45, 0.2), 0 16px 36px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px var(--accent-glow), 0 12px 30px rgba(0,0,0,0.5);
     }
 
     /* Buttons Showcase */
@@ -237,123 +241,60 @@
       padding: 0.65rem 1.25rem;
       font-size: 0.88rem;
       font-weight: 500;
-      border-radius: 8px;
+      border-radius: 4px;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: all 0.18s cubic-bezier(0.2, 0.9, 0.3, 1);
+      transition: all 0.18s ease;
       font-family: inherit;
     }
 
     .btn-primary {
-      background: var(--accent-crimson);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(155, 24, 45, 0.4);
+      background: var(--accent-yellow);
+      color: #1d2021;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(250, 189, 47, 0.35);
     }
 
     .btn-primary:hover {
-      background: var(--accent-ruby);
-      box-shadow: 0 6px 20px rgba(230, 59, 90, 0.5);
+      background: #fabd2f;
       transform: translateY(-1px);
     }
 
     .btn-secondary {
       background: var(--bg-surface-elevated);
       color: var(--text-main);
-      border-color: var(--border-subtle);
+      border: 1px solid var(--border-subtle);
     }
 
     .btn-secondary:hover {
+      border-color: var(--accent-yellow);
       background: var(--bg-hover);
-      border-color: var(--border-active);
-      color: #fff;
     }
 
     .btn-subtle {
       background: transparent;
-      color: var(--text-muted);
-      border-color: var(--border-subtle);
-    }
-
-    .btn-subtle:hover {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text-main);
+      color: var(--accent-aqua);
+      border: 1px solid var(--accent-aqua);
     }
 
     .btn-danger {
-      background: rgba(230, 59, 90, 0.15);
-      border-color: rgba(230, 59, 90, 0.3);
-      color: var(--accent-ruby);
+      background: rgba(251, 73, 52, 0.15);
+      color: var(--accent-red);
+      border: 1px solid var(--accent-red);
     }
 
-    .btn-danger:hover {
-      background: var(--accent-ruby);
-      color: #fff;
-      box-shadow: 0 4px 16px rgba(230, 59, 90, 0.4);
-    }
-
-    /* Terminal Preview */
-    .terminal-window {
-      background: var(--code-bg);
-      border: 1px solid var(--border-active);
-      border-radius: 10px;
-      overflow: hidden;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.85rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .terminal-header {
-      background: var(--bg-surface);
-      padding: 0.6rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .term-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .term-dot.close { background: #e63b5a; }
-    .term-dot.min { background: #555566; }
-    .term-dot.max { background: #333344; }
-
-    .terminal-body {
-      padding: 1.25rem;
-      line-height: 1.6;
-    }
-
-    .prompt-sym { color: var(--accent-ruby); font-weight: 600; }
-    .prompt-path { color: var(--text-muted); }
-    .prompt-git { color: var(--code-string); }
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 15px;
-      background: var(--accent-ruby);
-      vertical-align: middle;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* QuickShell Bar Mockup */
+    /* Dank Material Shell Mockup */
     .bar-mockup {
-      width: 100%;
-      height: 44px;
-      background: rgba(20, 20, 27, 0.85);
+      background: #1d2021;
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
+      border-radius: 6px;
+      padding: 0.6rem 1.2rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 1rem;
-      backdrop-filter: blur(20px);
+      align-items: center;
+      margin-top: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.82rem;
     }
 
     .workspaces {
@@ -362,112 +303,157 @@
     }
 
     .ws-pill {
-      width: 24px;
-      height: 8px;
-      border-radius: 4px;
-      background: var(--border-subtle);
-      transition: all 0.2s ease;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
     .ws-pill.active {
-      width: 36px;
-      background: var(--accent-ruby);
-      box-shadow: 0 0 10px var(--accent-ruby);
+      background: var(--accent-yellow);
+      color: #1d2021;
+      font-weight: bold;
     }
 
     .pill-widget {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 0.3rem 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--bg-surface-elevated);
+      border-radius: 4px;
       font-size: 0.78rem;
-      font-family: 'Fira Code', monospace;
-      color: var(--text-main);
     }
 
-    /* Live Wallpaper Toggle */
-    .wallpaper-controls {
+    /* Terminal Mockup */
+    .terminal-window {
+      background: var(--code-bg);
+      border: 2px solid var(--border-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    .terminal-header {
+      background: #282828;
+      padding: 0.5rem 0.8rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: 0.4rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    .term-dot.close { background: var(--accent-red); }
+    .term-dot.min { background: var(--accent-yellow); }
+    .term-dot.max { background: var(--accent-green); }
+
+    .terminal-body {
+      padding: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .prompt-sym { color: var(--accent-yellow); font-weight: bold; }
+    .prompt-path { color: var(--accent-aqua); }
+    .prompt-git { color: var(--accent-orange); }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: var(--accent-yellow);
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-
   <div class="wallpaper-backdrop" id="backdrop"></div>
 
   <header>
     <div class="brand">
-      <div class="brand-crest">Ω</div>
+      <div class="brand-crest">GP</div>
       <div class="brand-title">
-        <h1>Sanguine Obsidian</h1>
-        <p>Gothic Dark Red System Theme & Flow Architecture</p>
+        <h1>Gruvbox Material Pixel-Art</h1>
+        <p>Earthy Warmth, Retro Pixel-Art & Dank Material Shell</p>
       </div>
     </div>
-    <div class="status-badge">Theme Validated</div>
+    <div class="status-badge">Theme Active</div>
   </header>
 
   <main>
     <!-- Palette Grid -->
     <section>
-      <div class="section-title">Color Palette Architecture</div>
+      <div class="section-title">Gruvbox Material Core Tokens</div>
       <div class="swatch-grid">
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #0d0d12;"></div>
+          <div class="swatch-preview" style="background: #1d2021;"></div>
           <div class="swatch-info">
-            <div class="name">Canvas Obsidian</div>
-            <div class="hex">#0d0d12</div>
+            <div class="name">Canvas Hard</div>
+            <div class="hex">#1d2021</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #14141b;"></div>
+          <div class="swatch-preview" style="background: #282828;"></div>
           <div class="swatch-info">
-            <div class="name">Surface Charcoal</div>
-            <div class="hex">#14141b</div>
+            <div class="name">Surface Main</div>
+            <div class="hex">#282828</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #9b182d;"></div>
+          <div class="swatch-preview" style="background: #3c3836;"></div>
           <div class="swatch-info">
-            <div class="name">Crimson Accent</div>
-            <div class="hex">#9b182d</div>
+            <div class="name">Elevated Surface</div>
+            <div class="hex">#3c3836</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #e63b5a;"></div>
+          <div class="swatch-preview" style="background: #fabd2f;"></div>
           <div class="swatch-info">
-            <div class="name">Ruby Focus</div>
-            <div class="hex">#e63b5a</div>
+            <div class="name">Amber Yellow</div>
+            <div class="hex">#fabd2f</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #5e101e;"></div>
+          <div class="swatch-preview" style="background: #fe8019;"></div>
           <div class="swatch-info">
-            <div class="name">Wine Glow</div>
-            <div class="hex">#5e101e</div>
+            <div class="name">Terracotta Orange</div>
+            <div class="hex">#fe8019</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #e2e2e8;"></div>
+          <div class="swatch-preview" style="background: #8ec07c;"></div>
           <div class="swatch-info">
-            <div class="name">High-Read Text</div>
-            <div class="hex">#e2e2e8</div>
+            <div class="name">Aqua Teal</div>
+            <div class="hex">#8ec07c</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #9595a8;"></div>
+          <div class="swatch-preview" style="background: #b8bb26;"></div>
           <div class="swatch-info">
-            <div class="name">Muted Silver</div>
-            <div class="hex">#9595a8</div>
+            <div class="name">Forest Green</div>
+            <div class="hex">#b8bb26</div>
           </div>
         </div>
         <div class="swatch-card">
-          <div class="swatch-preview" style="background: #252533;"></div>
+          <div class="swatch-preview" style="background: #ebdbb2;"></div>
           <div class="swatch-info">
-            <div class="name">Border Subtle</div>
-            <div class="hex">#252533</div>
+            <div class="name">Warm Cream Text</div>
+            <div class="hex">#ebdbb2</div>
           </div>
         </div>
       </div>
@@ -475,21 +461,21 @@
 
     <!-- Component Showcase Grid -->
     <section>
-      <div class="section-title">Component & Interaction Testing</div>
+      <div class="section-title">Component & Shell Mockups</div>
       <div class="showcase-grid">
 
-        <!-- Controls & Buttons -->
+        <!-- Controls & Dank Material Shell -->
         <div class="card focused">
-          <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">Interactive Controls & Actions</h3>
+          <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--accent-yellow);">Interactive Controls & Dank Material Shell</h3>
           <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-            Tactile crimson surfaces designed for quick visual target acquisition without fatiguing the eye.
+            Tactile, pixel-styled Gruvbox controls and modern DankMaterialShell panel preview.
           </p>
           
           <div class="button-group">
             <button class="btn btn-primary">Primary Action</button>
             <button class="btn btn-secondary">Secondary Option</button>
-            <button class="btn btn-subtle">Subtle Action</button>
-            <button class="btn btn-danger">Critical Alert</button>
+            <button class="btn btn-subtle">Aqua Action</button>
+            <button class="btn btn-danger">Alert</button>
           </div>
 
           <div style="margin-top: 2rem;">
@@ -498,15 +484,15 @@
             </div>
             <div class="bar-mockup">
               <div class="workspaces">
-                <div class="ws-pill active"></div>
-                <div class="ws-pill"></div>
-                <div class="ws-pill"></div>
-                <div class="ws-pill"></div>
+                <div class="ws-pill active">1</div>
+                <div class="ws-pill">2</div>
+                <div class="ws-pill">3</div>
+                <div class="ws-pill">4</div>
               </div>
-              <div class="pill-widget" style="color: var(--accent-ruby);">14:52:26 • SANGUINE</div>
+              <div class="pill-widget" style="color: var(--accent-yellow);">14:52:26 • GRUVBOX</div>
               <div style="display: flex; gap: 0.5rem;">
-                <div class="pill-widget">VOL 85%</div>
-                <div class="pill-widget" style="color: #6ee7b7;">BAT 98%</div>
+                <div class="pill-widget" style="color: var(--accent-aqua);">VOL 85%</div>
+                <div class="pill-widget" style="color: var(--accent-green);">BAT 98%</div>
               </div>
             </div>
           </div>
@@ -514,9 +500,9 @@
 
         <!-- Terminal & Code Legibility -->
         <div class="card">
-          <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">Legibility & Contrast Check</h3>
+          <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--accent-yellow);">Ghostty & LazyVim Contrast</h3>
           <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-            Notice how code and text remain soft silver/chalk while crimson is strictly reserved for syntax accents and the cursor.
+            Soft warm cream text on deep dark surface with amber prompts and vibrant syntax accents.
           </p>
 
           <div class="terminal-window">
@@ -528,13 +514,13 @@
             </div>
             <div class="terminal-body">
               <div><span class="prompt-sym">❯</span> <span class="prompt-path">~/dotfiles</span> <span class="prompt-git">on main</span> <span class="cursor"></span></div>
-              <div style="margin-top: 0.5rem; color: var(--code-comment);">-- Hyprland Kinetic Snap Animation</div>
-              <div><span style="color: var(--code-keyword);">hl.animation</span>({</div>
-              <div style="padding-left: 1.5rem;">leaf = <span style="color: var(--code-string);">"windows"</span>,</div>
-              <div style="padding-left: 1.5rem;">speed = <span style="color: var(--accent-ruby);">4.2</span>,</div>
-              <div style="padding-left: 1.5rem;">bezier = <span style="color: var(--code-string);">"easeOutQuint"</span></div>
+              <div style="margin-top: 0.5rem; color: var(--code-comment);">-- Hyprland Lua Theme Config</div>
+              <div><span style="color: var(--code-keyword);">hl.general</span>({</div>
+              <div style="padding-left: 1.5rem;">border_size = <span style="color: var(--accent-yellow);">2</span>,</div>
+              <div style="padding-left: 1.5rem;">col_active_border = <span style="color: var(--code-string);">"rgba(fabd2fee)"</span>,</div>
+              <div style="padding-left: 1.5rem;">col_inactive_border = <span style="color: var(--code-string);">"rgba(3c3836aa)"</span></div>
               <div>})</div>
-              <div style="margin-top: 0.5rem; color: #6ee7b7;">✓ Config hot-reloaded in 2.4ms</div>
+              <div style="margin-top: 0.5rem; color: var(--accent-green);">✓ Shell loaded with DankMaterialShell</div>
             </div>
           </div>
         </div>
@@ -542,23 +528,23 @@
       </div>
     </section>
 
-    <!-- Wallpaper Dimming / Contrast Control -->
+    <!-- Wallpaper Dimming / Pixel Wallpaper Switcher -->
     <section class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
       <div>
-        <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Wallpaper Blend Level</h4>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Adjust ambient brightness to check dark red contrast over your wallpaper.</p>
+        <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem; color: var(--accent-yellow);">Pixel-Art Wallpaper Blend</h4>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Adjust ambient brightness to check retro pixel-art contrast.</p>
       </div>
-      <div class="wallpaper-controls">
-        <button class="btn btn-secondary" onclick="setDim(0.2)">Moody (20%)</button>
-        <button class="btn btn-secondary" onclick="setDim(0.35)">Balanced (35%)</button>
-        <button class="btn btn-secondary" onclick="setDim(0.55)">High Contrast (55%)</button>
+      <div class="wallpaper-controls" style="display: flex; gap: 0.5rem;">
+        <button class="btn btn-secondary" onclick="setDim(0.25)">Dim (25%)</button>
+        <button class="btn btn-secondary" onclick="setDim(0.40)">Balanced (40%)</button>
+        <button class="btn btn-secondary" onclick="setDim(0.60)">Vibrant (60%)</button>
       </div>
     </section>
   </main>
 
   <script>
     function setDim(val) {
-      document.getElementById('backdrop').style.filter = `brightness(${val}) contrast(1.15) blur(3px)`;
+      document.getElementById('backdrop').style.filter = `brightness(${val}) contrast(1.1) blur(2px)`;
     }
   </script>
 </body>

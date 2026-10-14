@@ -1,0 +1,23 @@
+{
+  "dankKDEConnect": {
+    "enabled": true
+  },
+  "dankPomodoroTimer": {
+    "enabled": true
+  },
+  "quickCapture": {
+    "enabled": true
+  },
+  "wallpaperCarousel": {
+    "enabled": true,
+    "overlayOpacity": 75,
+    "expandMultiplier": 118,
+    "holdDelay": 1304
+  },
+  "lyricsOnPanel": {
+    "enabled": true,
+    "showMediaControls": false,
+    "whiteMediaControlIconsChecked": false,
+    "hideItemWhenNoControlChecked": false
+  }
+}
