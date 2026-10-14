@@ -69,10 +69,11 @@ hl.window_rule({ name = "noblur-wofi", match = { class = "^(wofi)$" }, no_blur =
 hl.window_rule({ name = "noblur-deadlock-overlay", match = { title = "^(deadlocked_overlay)$" }, no_blur = true })
 
 -- Workspace assignments
-hl.window_rule({ name = "ws-terminal", match = { class = "^(ghostty)$" }, workspace = "1" })
+hl.window_rule({ name = "ws-terminal", match = { class = "^(com\\.mitchellh\\.ghostty|ghostty)$" }, workspace = "1" })
 hl.window_rule({ name = "ws-browsers", match = { class = "^(firefox|floorp|brave|chromium)$" }, workspace = "2" })
 
--- Browser opacity
+-- Terminal & Browser opacity and blur
+hl.window_rule({ name = "opacity-terminal", match = { class = "^(com\\.mitchellh\\.ghostty|ghostty)$" }, opacity = "0.85 0.80" })
 hl.window_rule({ name = "opacity-browsers", match = { class = "^(floorp|firefox|brave|zen)$" }, opacity = "0.98 0.90" })
 
 -- Fullscreen window borders
