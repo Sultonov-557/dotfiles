@@ -44,6 +44,8 @@
   "acLockTimeout": 300,
   "fadeToDpmsEnabled": false,
   "dockAutoHide": true,
+  "osdAlwaysShowValue": true,
+  "osdMediaPlaybackEnabled": true,
   "osdPowerProfileEnabled": true,
   "powerMenuGridLayout": true,
   "barConfigs": [
@@ -178,7 +180,8 @@
       "islandSatelliteBackground": true,
       "islandSatelliteGothCorners": true,
       "islandSatelliteTransparency": 1,
-      "islandSatellitePosition": "island"
+      "islandSatellitePosition": "island",
+      "islandHomeVolumeDisplay": "both"
     }
   ],
   "desktopClockCustomColor": {
