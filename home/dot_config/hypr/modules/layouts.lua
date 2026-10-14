@@ -18,6 +18,17 @@ hl.config({
     orientation = "left",
     new_on_top = true,
   },
+  scrolling = {
+    column_width = 0.5,
+    focus_fit_method = 1,
+    follow_focus = true,
+    follow_min_visible = 0.4,
+    direction = "right",
+    wrap_focus = true,
+    wrap_swapcol = true,
+    fullscreen_on_one_column = true,
+    explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
+  },
   misc = {
     force_default_wallpaper = 0,
     disable_hyprland_logo = true,

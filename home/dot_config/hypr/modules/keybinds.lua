@@ -50,7 +50,15 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo(), { description = "Pseudo tile"
 hl.bind(mainMod .. " + ALT + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.layout("master"))
 hl.bind(mainMod .. " + ALT + T", hl.dsp.layout("dwindle"))
+hl.bind(mainMod .. " + CTRL + T", hl.dsp.layout("scrolling"))
 hl.bind(mainMod .. " + O", hl.dsp.layout("orientationnext"))
+
+-- Scrolling layout column controls
+hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("-col"), { description = "Previous column (scrolling)" })
+hl.bind(mainMod .. " + bracketright", hl.dsp.layout("+col"), { description = "Next column (scrolling)" })
+hl.bind(mainMod .. " + equal", hl.dsp.layout("colresize +0.1"), { description = "Expand column (scrolling)" })
+hl.bind(mainMod .. " + minus", hl.dsp.layout("colresize -0.1"), { description = "Shrink column (scrolling)" })
+hl.bind(mainMod .. " + Backslash", hl.dsp.layout("fit"), { description = "Fit column to screen (scrolling)" })
 
 -- --- Universal HJKL Focus Movement ---
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "l" }))

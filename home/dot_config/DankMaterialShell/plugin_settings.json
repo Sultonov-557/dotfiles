@@ -44,5 +44,9 @@
     "autoStartStorm": false,
     "autoStartWind": false,
     "defaultVolume": 50
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
   }
 }

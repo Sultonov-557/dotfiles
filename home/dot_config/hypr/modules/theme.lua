@@ -17,7 +17,7 @@ hl.config({
       inactive_border = "rgb(3c3836)",
     },
     resize_on_border = true,
-    layout = "dwindle",
+    layout = "scrolling",
     hover_icon_on_border = true,
     extend_border_grab_area = 15,
   },
