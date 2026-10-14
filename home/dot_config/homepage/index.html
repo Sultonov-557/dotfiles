@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>~ // home</title>
+  <style>
+    :root {
+      --bg: #1d2021;
+      --surface: rgba(40, 40, 40, 0.75);
+      --surface-elevated: rgba(60, 56, 54, 0.85);
+      --border: #3c3836;
+      --border-focus: #d79921;
+      --fg: #ebdbb2;
+      --fg-muted: #a89984;
+      --fg-dim: #7c6f64;
+      --yellow: #fabd2f;
+      --orange: #fe8019;
+      --red: #fb4934;
+      --green: #b8bb26;
+      --aqua: #8ec07c;
+      --blue: #83a598;
+      --purple: #d3869b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(rgba(29, 32, 33, 0.82), rgba(29, 32, 33, 0.96)),
+        url('/home/sultonov/Pictures/Wallpapers/gruvbox/chillhop.com-cosy_retreat_sunset.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--fg);
+      font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      user-select: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Clock & Date Header */
+    .header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .clock {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      text-shadow: 0 4px 20px rgba(250, 189, 47, 0.25);
+    }
+
+    .date {
+      font-size: 1rem;
+      color: var(--fg-muted);
+      letter-spacing: 1px;
+    }
+
+    /* Search Bar */
+    .search-wrapper {
+      width: 100%;
+      max-width: 580px;
+      position: relative;
+    }
+
+    .search-bar {
+      width: 100%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem 0.85rem 2.8rem;
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 1.05rem;
+      outline: none;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-bar:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 8px 32px rgba(215, 153, 33, 0.25);
+    }
+
+    .search-bar::placeholder {
+      color: var(--fg-dim);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--yellow);
+      font-weight: bold;
+      pointer-events: none;
+    }
+
+    /* Cards Grid */
+    .grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-3px);
+      background: var(--surface-elevated);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card:nth-child(1) .card-title { color: var(--orange); }
+    .card:nth-child(2) .card-title { color: var(--green); }
+    .card:nth-child(3) .card-title { color: var(--aqua); }
+    .card:nth-child(4) .card-title { color: var(--purple); }
+
+    .link-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .link-list a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.15s ease, padding-left 0.15s ease;
+      display: inline-block;
+    }
+
+    .link-list a:hover {
+      color: var(--yellow);
+      padding-left: 4px;
+    }
+
+    /* Keybinds footer hint */
+    .hints {
+      font-size: 0.8rem;
+      color: var(--fg-dim);
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .hint-tag {
+      background: var(--surface-elevated);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--yellow);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="clock" id="clock">00:00:00</div>
+      <div class="date" id="date">Loading...</div>
+    </div>
+
+    <div class="search-wrapper">
+      <span class="search-icon">❯</span>
+      <input type="text" id="search" class="search-bar" placeholder="Search Google or type URL (Press '/' to focus)..." autofocus autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="grid">
+      <!-- Dev & Repos -->
+      <div class="card">
+        <div class="card-title"><span>◈</span> Dev</div>
+        <ul class="link-list">
+          <li><a href="https://github.com">GitHub</a></li>
+          <li><a href="https://gitlab.com">GitLab</a></li>
+          <li><a href="https://chatgpt.com">ChatGPT</a></li>
+          <li><a href="https://claude.ai">Claude</a></li>
+          <li><a href="https://news.ycombinator.com">Hacker News</a></li>
+        </ul>
+      </div>
+
+      <!-- Media & Stream -->
+      <div class="card">
+        <div class="card-title"><span>◉</span> Media</div>
+        <ul class="link-list">
+          <li><a href="https://youtube.com">YouTube</a></li>
+          <li><a href="https://open.spotify.com">Spotify</a></li>
+          <li><a href="https://twitch.tv">Twitch</a></li>
+          <li><a href="https://reddit.com">Reddit</a></li>
+          <li><a href="https://twitter.com">Twitter / X</a></li>
+        </ul>
+      </div>
+
+      <!-- Docs & Tools -->
+      <div class="card">
+        <div class="card-title"><span>◆</span> System</div>
+        <ul class="link-list">
+          <li><a href="https://wiki.archlinux.org">Arch Wiki</a></li>
+          <li><a href="https://wiki.hyprland.org">Hyprland Wiki</a></li>
+          <li><a href="https://cachyos.org">CachyOS Docs</a></li>
+          <li><a href="https://danklinux.com">DMS Docs</a></li>
+          <li><a href="https://web.telegram.org">Telegram</a></li>
+        </ul>
+      </div>
+
+      <!-- Daily / Productivity -->
+      <div class="card">
+        <div class="card-title"><span>◇</span> Focus</div>
+        <ul class="link-list">
+          <li><a href="https://mail.google.com">Gmail</a></li>
+          <li><a href="https://calendar.google.com">Calendar</a></li>
+          <li><a href="https://notion.so">Notion</a></li>
+          <li><a href="https://monkeytype.com">Monkeytype</a></li>
+          <li><a href="https://leetcode.com">LeetCode</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hints">
+      <div><span class="hint-tag">/</span> Focus Search</div>
+      <div><span class="hint-tag">!g</span> Google</div>
+      <div><span class="hint-tag">!d</span> DuckDuckGo</div>
+      <div><span class="hint-tag">!w</span> Wikipedia</div>
+      <div><span class="hint-tag">!gh</span> GitHub</div>
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+      const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+      document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    const searchInput = document.getElementById('search');
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (!query) return;
+
+        // URL check
+        if (/^(https?:\/\/|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/.*)?$/.test(query)) {
+          window.location.href = query.startsWith('http') ? query : `https://${query}`;
+          return;
+        }
+
+        // Bangs
+        if (query.startsWith('!g ')) {
+          window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query.slice(3))}`;
+        } else if (query.startsWith('!d ')) {
+          window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query.slice(3))}`;
+        } else if (query.startsWith('!gh ')) {
+          window.location.href = `https://github.com/search?q=${encodeURIComponent(query.slice(4))}`;
+        } else if (query.startsWith('!w ')) {
+          window.location.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(query.slice(3))}`;
+        } else {
+          window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
