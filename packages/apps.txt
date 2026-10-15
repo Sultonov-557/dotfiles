@@ -21,3 +21,4 @@ telegram-desktop
 discord
 thunderbird
 libreoffice-fresh
+hermes-agent-bin

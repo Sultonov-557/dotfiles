@@ -1,8 +1,6 @@
 # Additional tools and AUR utilities
-vicinae-bin
 herdr-bin
 lazyssh-bin
-warpgui-bin
 bun-bin
 docker-compose-git
 bruno-bin
@@ -17,8 +15,6 @@ usql-bin
 ngrok
 zrok-bin
 lazydocker-bin
-android-studio
-waydroid-git
 cloudflare-warp-bin
 doggo
 kdeconnect

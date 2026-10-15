@@ -52,7 +52,6 @@
   },
   "launcherLogoMode": "os",
   "launcherLogoColorOverride": "primary",
-  "acLockTimeout": 300,
   "fadeToDpmsEnabled": false,
   "dockAutoHide": true,
   "osdAlwaysShowValue": true,
