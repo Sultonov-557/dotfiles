@@ -20,6 +20,10 @@ hl.config({
     layout = "scrolling",
     hover_icon_on_border = true,
     extend_border_grab_area = 15,
+    snap = {
+      enabled = true,
+      respect_gaps = true,
+    },
   },
 
   cursor = {
