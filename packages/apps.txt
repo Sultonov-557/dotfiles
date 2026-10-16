@@ -22,3 +22,5 @@ discord
 thunderbird
 libreoffice-fresh
 hermes-agent-bin
+photocraft-bin
+filmcraft-bin
