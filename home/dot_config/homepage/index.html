@@ -137,6 +137,12 @@
         align-items: center;
         gap: 0.75rem;
         border-radius: 12px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .search-box:focus-within {
+        border-color: var(--glass-border-focus);
+        box-shadow: 0 0 12px rgba(250, 189, 47, 0.2);
       }
 
       .search-icon {
@@ -477,21 +483,28 @@
           const query = searchInput.value.trim();
           if (!query) return;
 
-          // Direct URL routing
-          if (/^(https?:\/\/|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/.*)?$/.test(query)) {
-            window.location.href = query.startsWith("http") ? query : `https://${query}`;
+          // Direct URL and host routing (https://, domain.com, sub.domain.org, localhost:3000)
+          const urlPattern = /^(https?:\/\/[^\s]+|localhost(:\d+)?(\/[^\s]*)?|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?(\/[^\s]*)?)$/i;
+          if (urlPattern.test(query)) {
+            window.location.href = query.startsWith("http://") || query.startsWith("https://")
+              ? query
+              : `https://${query}`;
             return;
           }
 
-          // Bang handlers
-          if (query.startsWith("!g ")) {
-            window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query.slice(3))}`;
-          } else if (query.startsWith("!d ")) {
-            window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query.slice(3))}`;
-          } else if (query.startsWith("!gh ")) {
-            window.location.href = `https://github.com/search?q=${encodeURIComponent(query.slice(4))}`;
-          } else if (query.startsWith("!w ")) {
-            window.location.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(query.slice(3))}`;
+          // Bang handlers with or without trailing queries
+          if (query === "!g" || query.startsWith("!g ")) {
+            const term = query.slice(2).trim();
+            window.location.href = term ? `https://www.google.com/search?q=${encodeURIComponent(term)}` : "https://www.google.com";
+          } else if (query === "!d" || query.startsWith("!d ")) {
+            const term = query.slice(2).trim();
+            window.location.href = term ? `https://duckduckgo.com/?q=${encodeURIComponent(term)}` : "https://duckduckgo.com";
+          } else if (query === "!gh" || query.startsWith("!gh ")) {
+            const term = query.slice(3).trim();
+            window.location.href = term ? `https://github.com/search?q=${encodeURIComponent(term)}` : "https://github.com";
+          } else if (query === "!w" || query.startsWith("!w ")) {
+            const term = query.slice(2).trim();
+            window.location.href = term ? `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(term)}` : "https://en.wikipedia.org";
           } else {
             window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
           }
@@ -630,39 +643,49 @@
        * 5. SOFTWARE RELEASE RADAR (GitHub Latest Releases)
        */
       async function fetchReleases() {
-        const container = document.getElementById("releases-list");
         const cacheKey = "releases_cache";
         const cached = localStorage.getItem(cacheKey);
         const now = Date.now();
+        let cachedData = null;
 
         if (cached) {
           try {
             const parsed = JSON.parse(cached);
+            cachedData = parsed.data;
             if (now - parsed.timestamp < 2 * 60 * 60 * 1000) {
-              renderReleases(parsed.data);
+              renderReleases(cachedData);
               return;
             }
           } catch (e) {}
         }
 
-        const releasesData = [];
-        for (const item of CONFIG.releases) {
-          try {
-            const res = await fetch(`https://api.github.com/repos/${item.repo}/releases/latest`);
-            if (res.ok) {
-              const data = await res.json();
-              releasesData.push({
-                name: item.name,
-                tag: data.tag_name,
-                url: data.html_url
-              });
-            } else {
-              releasesData.push({ name: item.name, tag: "latest", url: `https://github.com/${item.repo}` });
-            }
-          } catch (err) {
-            releasesData.push({ name: item.name, tag: "latest", url: `https://github.com/${item.repo}` });
-          }
+        const prevMap = new Map();
+        if (Array.isArray(cachedData)) {
+          cachedData.forEach((item) => prevMap.set(item.name, item));
         }
+
+        const results = await Promise.allSettled(
+          CONFIG.releases.map(async (item) => {
+            const res = await fetch(`https://api.github.com/repos/${item.repo}/releases/latest`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            return {
+              name: item.name,
+              tag: data.tag_name || "latest",
+              url: data.html_url || `https://github.com/${item.repo}`
+            };
+          })
+        );
+
+        const releasesData = results.map((res, index) => {
+          const item = CONFIG.releases[index];
+          if (res.status === "fulfilled") {
+            return res.value;
+          }
+          // On rate limit or network fail, preserve previously cached tag if available
+          const existing = prevMap.get(item.name);
+          return existing || { name: item.name, tag: "latest", url: `https://github.com/${item.repo}` };
+        });
 
         localStorage.setItem(cacheKey, JSON.stringify({ timestamp: now, data: releasesData }));
         renderReleases(releasesData);
