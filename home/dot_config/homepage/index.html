@@ -696,6 +696,7 @@
           CONFIG.services.map(async (svc) => {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 3500);
+            const startTime = performance.now();
 
             try {
               // no-cors allows testing reachability without triggering browser cross-origin blocks
@@ -704,10 +705,11 @@
                 signal: controller.signal
               });
               clearTimeout(timeoutId);
-              return { name: svc.name, url: svc.url, ok: true };
+              const latency = Math.round(performance.now() - startTime);
+              return { name: svc.name, url: svc.url, ok: true, latency };
             } catch (e) {
               clearTimeout(timeoutId);
-              return { name: svc.name, url: svc.url, ok: false };
+              return { name: svc.name, url: svc.url, ok: false, latency: null };
             }
           })
         );
@@ -740,12 +742,23 @@
           infoDiv.appendChild(dot);
           infoDiv.appendChild(link);
           
+          const statusDiv = document.createElement("div");
+          statusDiv.style.cssText = "display:flex; align-items:center; gap:6px; flex-shrink:0;";
+
+          if (svc.ok && svc.latency !== null) {
+            const latencySpan = document.createElement("span");
+            latencySpan.style.cssText = "font-family:var(--font-mono); font-size:0.6875rem; color:var(--gruv-gray); font-variant-numeric:tabular-nums;";
+            latencySpan.textContent = `${svc.latency}ms`;
+            statusDiv.appendChild(latencySpan);
+          }
+
           const statusText = document.createElement("span");
-          statusText.style.cssText = `font-size:0.75rem; color:${svc.ok ? 'var(--gruv-green)' : 'var(--gruv-red)'}; flex-shrink:0;`;
-          statusText.textContent = svc.ok ? 'Up' : 'Down';
+          statusText.style.cssText = `font-family:var(--font-mono); font-size:0.6875rem; font-weight:600; color:${svc.ok ? 'var(--gruv-green)' : 'var(--gruv-red)'}; font-variant-numeric:tabular-nums;`;
+          statusText.textContent = svc.ok ? 'UP' : 'DOWN';
+          statusDiv.appendChild(statusText);
           
           li.appendChild(infoDiv);
-          li.appendChild(statusText);
+          li.appendChild(statusDiv);
           container.appendChild(li);
         });
 
