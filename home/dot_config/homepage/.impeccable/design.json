@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T22:29:15Z",
+  "title": "Design System: Gruvbox Ambient Startpage",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Gruvbox Warm Gold", "canonical": "#fabd2f" },
+      "surface-glass": { "role": "surface", "displayName": "Frosted Glass Slate", "canonical": "rgba(40, 40, 40, 0.38)" },
+      "status-up": { "role": "success", "displayName": "Gruvbox Olive Green", "canonical": "#b8bb26" },
+      "status-down": { "role": "error", "displayName": "Gruvbox Crimson Red", "canonical": "#fb4934" },
+      "radar-accent": { "role": "secondary", "displayName": "Gruvbox Bright Orange", "canonical": "#fe8019" },
+      "news-accent": { "role": "secondary", "displayName": "Gruvbox Aqua", "canonical": "#8ec07c" },
+      "pill-accent": { "role": "secondary", "displayName": "Gruvbox Dusty Purple", "canonical": "#d3869b" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Clock Display", "purpose": "Tabular digital clock hero." },
+      "headline": { "displayName": "Date Headline", "purpose": "Header uppercase date stamp." },
+      "title": { "displayName": "Widget Section Title", "purpose": "Balanced uppercase card header." },
+      "body": { "displayName": "Body & Search Text", "purpose": "Interactive inputs and list entries." },
+      "label": { "displayName": "Badges & Shortcuts", "purpose": "Version tags and keyboard badges." }
+    },
+    "shadows": [
+      { "name": "glass-elevation", "value": "0 12px 32px 0 rgba(0, 0, 0, 0.3)", "purpose": "Ambient depth for all glass cards." },
+      { "name": "focus-gold", "value": "0 0 12px rgba(250, 189, 47, 0.2)", "purpose": "Search input active focus glow." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Dashboard entrance animation curve." },
+      { "name": "ease-standard", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "Rapid state and focus transitions." }
+    ],
+    "breakpoints": [
+      { "name": "desktop-grid", "value": "900px" },
+      { "name": "mobile-stack", "value": "820px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Base translucent container for widgets and header controls.",
+      "html": "<div class=\"ds-card\"><h3>WIDGET TITLE</h3><p>Content goes here</p></div>",
+      "css": ".ds-card { background: rgba(40, 40, 40, 0.38); backdrop-filter: blur(20px); border: 1px solid rgba(235, 219, 178, 0.1); border-radius: 14px; padding: 20px; color: #ebdbb2; box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.3); transition: border-color 180ms cubic-bezier(0.2, 0, 0, 1); } .ds-card:hover { border-color: rgba(235, 219, 178, 0.2); }"
+    },
+    {
+      "name": "Search Box",
+      "kind": "input",
+      "refersTo": "search-box",
+      "description": "Full-width keyboard search input with instant focus recognition.",
+      "html": "<div class=\"ds-search-box\"><span class=\"ds-icon\">🔍</span><input type=\"text\" placeholder=\"Search...\" /><span class=\"ds-badge\">/</span></div>",
+      "css": ".ds-search-box { display: flex; align-items: center; gap: 14px; background: rgba(40, 40, 40, 0.38); backdrop-filter: blur(20px); border: 1px solid rgba(235, 219, 178, 0.1); border-radius: 12px; padding: 14px 20px; transition: border-color 160ms cubic-bezier(0.2, 0, 0, 1), box-shadow 160ms cubic-bezier(0.2, 0, 0, 1); } .ds-search-box:focus-within { border-color: rgba(250, 189, 47, 0.45); box-shadow: 0 0 12px rgba(250, 189, 47, 0.2); } .ds-search-box input { flex: 1; background: transparent; border: none; outline: none; color: #fbf1c7; font-size: 1rem; } .ds-badge { font-family: monospace; font-size: 0.75rem; color: #bdae93; background: rgba(235, 219, 178, 0.08); border: 1px solid rgba(235, 219, 178, 0.15); padding: 3px 8px; border-radius: 4px; }"
+    },
+    {
+      "name": "Status Dot",
+      "kind": "custom",
+      "refersTo": "status-dot",
+      "description": "8px operational status indicator dot with crisp 1px perimeter border.",
+      "html": "<span class=\"ds-dot ds-up\"></span>",
+      "css": ".ds-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; } .ds-dot.ds-up { background: #b8bb26; border: 1px solid rgba(184, 187, 38, 0.4); } .ds-dot.ds-down { background: #fb4934; border: 1px solid rgba(251, 73, 52, 0.4); }"
+    },
+    {
+      "name": "Release Pill",
+      "kind": "chip",
+      "refersTo": "pill-mono",
+      "description": "Tabular monospace software version badge.",
+      "html": "<span class=\"ds-pill\">v0.10.4</span>",
+      "css": ".ds-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; font-weight: 600; padding: 3px 7px; border-radius: 4px; background: rgba(211, 134, 155, 0.18); color: #d3869b; border: 1px solid rgba(211, 134, 155, 0.35); font-variant-numeric: tabular-nums; line-height: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Translucent Tiling Terminal",
+    "overview": "An ambient browser entry surface engineered specifically for keyboard-first developers in tiling window managers (Hyprland / Arch Linux). The canvas is intentionally transparent to expose the compositor wallpaper blur, while frosted Gruvbox glass cards float with tactile presence without visual clutter.",
+    "keyCharacteristics": [
+      "Zero-Latency Ambient Surface: Designed for instant new-tab paints with local-first cached telemetry.",
+      "Gruvbox Dark Glassmorphism: Deep warm slate translucent cards (rgba(40, 40, 40, 0.38)) bound with hairline borders.",
+      "Tabular Monospace Precision: Clock ticks, release tags, and shortcuts use aligned monospace figures to eliminate layout jitter."
+    ],
+    "rules": [
+      {
+        "name": "The No-Halo Rule",
+        "body": "Status dots and glowing accents use crisp 1px perimeter rings rather than diffuse colored drop-shadow halos.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Hover Rule",
+        "body": "Interactive hover highlights use warm foreground overlays (rgba(235, 219, 178, 0.06)) rather than cold white washes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Stability Rule",
+        "body": "All numeric data, release tags, and clocks declare font-variant-numeric: tabular-nums to guarantee spatial stillness across updates.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do declare font-variant-numeric: tabular-nums on all dynamic values and timestamps.",
+      "Do preserve the transparent body canvas to expose compositor window blur in Hyprland.",
+      "Do maintain a strict 4.5:1 minimum contrast ratio across all text and icon pairs.",
+      "Do provide fallback stale data from localStorage whenever external APIs error or throttle."
+    ],
+    "donts": [
+      "Don't add colored zero-offset drop-shadow halos around cards or status dots.",
+      "Don't use cold white (rgba(255, 255, 255, ...)) for hover states; tint overlays with Gruvbox warm foreground (rgba(235, 219, 178, ...)).",
+      "Don't introduce blocking layout shifts or multi-second entrance animations on tab opening."
+    ]
+  }
+}
