@@ -17,10 +17,9 @@ localsend
 vlc
 vlc-plugins-all
 google-chrome
-telegram-desktop
+telegram-desktop-bin
 discord
 thunderbird
 libreoffice-fresh
-hermes-agent-bin
 photocraft-bin
 filmcraft-bin

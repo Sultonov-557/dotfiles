@@ -18,7 +18,6 @@ yq
 direnv
 trash-cli
 github-cli
-nodejs
 npm
 python
 python-pip
