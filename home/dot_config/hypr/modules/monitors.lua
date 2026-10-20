@@ -26,16 +26,21 @@ elseif hostname == "vanguard" then
   })
 elseif hostname == "sentinel" then
   hl.monitor({
-    output = "DP-1",
+    output = "HDMI-A-1",
     mode = "1920x1080@100",
     position = "1920x0",
     scale = "1.0",
   })
   hl.monitor({
-    output = "HDMI-A-1",
+    output = "DP-1",
     mode = "1920x1080@60",
     position = "0x0",
     scale = "1.0",
+  })
+  hl.workspace_rule({
+    workspace = "1",
+    monitor = "DP-1",
+    default = true,
   })
 else
   hl.monitor({

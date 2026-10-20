@@ -25,10 +25,11 @@
   "blurBorderEnabled": false,
   "blurBorderOpacity": 1,
   "controlCenterShowMicPercent": true,
-  "showWorkspacePadding": true,
+  "showWorkspaceName": true,
   "showWorkspaceApps": true,
   "groupWorkspaceApps": false,
   "showOccupiedWorkspacesOnly": true,
+  "workspaceActiveAppHighlightEnabled": true,
   "appIdSubstitutions": [],
   "rememberLastQuery": true,
   "dankLauncherV2Size": "large",
@@ -76,7 +77,10 @@
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
-        "workspaceSwitcher",
+        {
+          "id": "workspaceSwitcher",
+          "enabled": true
+        },
         {
           "id": "network_speed_monitor",
           "enabled": true
