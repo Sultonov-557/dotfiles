@@ -52,6 +52,7 @@ x-scheme-handler/antigravity=antigravity.desktop
 x-scheme-handler/t3code=com.t3tools.T3Code.desktop
 x-scheme-handler/tonsite=org.telegram.desktop.desktop
 x-scheme-handler/ton=org.telegram.desktop.desktop
+x-scheme-handler/opencode=ai.opencode.desktop.desktop
 
 [Added Associations]
 application/x-extension-htm=zen.desktop;
