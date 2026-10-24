@@ -6,11 +6,11 @@
     "build": { "disabled": true }
   },
   "plugins": ["opencode-agent-memory"],
-  "provider": {
+  "providers": {
     "freellmapi": {
-      "npm": "@ai-sdk/openai-compatible",
+      "package": "@ai-sdk/openai-compatible",
       "name": "FreeLLMAPI",
-      "options": {
+      "settings": {
         "baseURL": "http://localhost:3001/v1",
         "apiKey": "freellmapi-98b0fbf0f73fdb986a07dfeb6cff3bcb3eb3b599299883ed"
       },
@@ -22,30 +22,30 @@
     }
   },
   "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "enabled": true,
-      "headers": {
-        "Authorization": "Bearer ctx7sk-352d1f18-a64d-475c-b680-c16f19e6c559"
+    "servers": {
+      "context7": {
+        "disabled": false,
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "headers": {
+          "Authorization": "Bearer ctx7sk-352d1f18-a64d-475c-b680-c16f19e6c559"
+        }
+      },
+      "deepwiki": {
+        "disabled": false,
+        "type": "remote",
+        "url": "https://mcp.deepwiki.com/mcp"
+      },
+      "memory": {
+        "disabled": false,
+        "type": "local",
+        "command": ["bunx", "-y", "@modelcontextprotocol/server-memory"]
+      },
+      "fetch": {
+        "disabled": false,
+        "type": "local",
+        "command": ["uvx", "mcp-server-fetch"]
       }
-    },
-    "deepwiki": {
-      "type": "remote",
-      "url": "https://mcp.deepwiki.com/mcp",
-      "enabled": true
-    },
-    "memory": {
-      "type": "local",
-      "command": "bunx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "enabled": true
-    },
-    "fetch": {
-      "type": "local",
-      "command": "uvx",
-      "args": ["mcp-server-fetch"],
-      "enabled": true
     }
   }
 }

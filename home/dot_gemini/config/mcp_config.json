@@ -2,14 +2,22 @@
   "mcpServers": {
     "memory": {
       "command": "bunx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     },
     "fetch": {
       "command": "uvx",
-      "args": ["mcp-server-fetch"]
+      "args": [
+        "mcp-server-fetch"
+      ]
     },
     "context7": {
-      "serverUrl": "https://mcp.context7.com/mcp"
+      "serverUrl": "https://mcp.context7.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ctx7sk-352d1f18-a64d-475c-b680-c16f19e6c559"
+      }
     },
     "deepwiki": {
       "serverUrl": "https://mcp.deepwiki.com/mcp"
