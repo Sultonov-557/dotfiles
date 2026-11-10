@@ -5,7 +5,7 @@
     "plan": { "disabled": true },
     "build": { "disabled": true }
   },
-  "plugins": ["opencode-agent-memory"],
+  "plugins": [],
   "providers": {
     "freellmapi": {
       "package": "@ai-sdk/openai-compatible",
@@ -23,23 +23,10 @@
   },
   "mcp": {
     "servers": {
-      "context7": {
-        "disabled": false,
-        "type": "remote",
-        "url": "https://mcp.context7.com/mcp",
-        "headers": {
-          "Authorization": "Bearer ctx7sk-352d1f18-a64d-475c-b680-c16f19e6c559"
-        }
-      },
       "deepwiki": {
         "disabled": false,
         "type": "remote",
         "url": "https://mcp.deepwiki.com/mcp"
-      },
-      "memory": {
-        "disabled": false,
-        "type": "local",
-        "command": ["bunx", "-y", "@modelcontextprotocol/server-memory"]
       },
       "fetch": {
         "disabled": false,

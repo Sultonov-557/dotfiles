@@ -1,0 +1,1 @@
+Use the plain Markdown memory directory at ~/.agents/memory to recall past decisions, project context, and user preferences. Whenever work or changes are performed on a project, log them with a timestamp under ## Activity Log in projects/<name>.md, and update memory whenever durable knowledge is learned.

@@ -48,5 +48,14 @@
   "calculator": {
     "enabled": true,
     "trigger": "="
+  },
+  "aiOverviewControl": {
+    "enabled": true,
+    "showRemainingQuota": "true",
+    "pillProviders": "antigravity",
+    "providerSelection": "antigravity"
+  },
+  "nipeControl": {
+    "enabled": true
   }
 }

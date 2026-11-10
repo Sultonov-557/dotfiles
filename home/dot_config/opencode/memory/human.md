@@ -9,3 +9,4 @@ read_only: false
 Name: Sultonov
 Dotfiles repo: /home/sultonov/dotfiles
 Global OpenCode agents directory: ~/.config/opencode/agents/
+Central agent memory directory: ~/.agents/memory/
